@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Test 1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-violet-500: #6A53FE;
+      --color-violet-100: #CAC8F3;
+      --color-ink-900: #0B0A10;
+      --color-ink-800: #1A191F;
+
+      --color-bg-base: var(--color-ink-900);
+      --color-bg-surface: var(--color-ink-800);
+      --color-bg-primary: var(--color-violet-500);
+      --color-bg-primary-hover: color-mix(in srgb, var(--color-violet-500) 90%, black);
+      --color-bg-primary-active: color-mix(in srgb, var(--color-violet-500) 80%, black);
+      --color-bg-hover: rgba(202, 200, 243, 0.06);
+      --color-bg-disabled: var(--color-ink-800);
+
+      --color-text-primary: var(--color-violet-100);
+      --color-text-muted: rgba(202, 200, 243, 0.7);
+      --color-text-disabled: rgba(202, 200, 243, 0.4);
+      --color-text-on-primary: var(--color-ink-900);
+
+      --color-border-subtle: rgba(202, 200, 243, 0.18);
+      --color-border-strong: var(--color-violet-100);
+      --color-border-accent: var(--color-violet-500);
+      --color-border-focus: var(--color-violet-100);
+
+      --space-0: 0;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-7: 48px;
+      --space-8: 64px;
+
+      --radius-none: 0;
+      --radius-md: 12px;
+
+      --button-padding-default: 0.75em 1.5em;
+      --button-padding-compact: 0.5em 1.25em;
+      --z-sticky: 1100;
+      --z-dropdown: 1000;
+
+      --motion-transition: all 150ms cubic-bezier(0.2, 0, 0, 1);
+
+      --font-display: "Barlow Condensed", sans-serif;
+      --font-body: "Manrope", sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--color-bg-base);
+      color: var(--color-text-primary);
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Typography */
+    .type-display-lg {
+      font-family: var(--font-display);
+      font-size: 56px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .type-display-md {
+      font-family: var(--font-display);
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .type-heading {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .type-subheading {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .case-caps {
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .case-sentence {
+      letter-spacing: normal;
+      text-transform: none;
+    }
+
+    .type-body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .type-body-sm {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .type-label {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    .type-button {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .type-caption {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: var(--space-4);
+      padding-right: var(--space-4);
+    }
+
+    @media (min-width: 768px) {
+      .container { padding-left: var(--space-6); padding-right: var(--space-6); }
+    }
+
+    .section { padding-top: var(--space-7); padding-bottom: var(--space-7); }
+
+    .grid {
+      display: grid;
+      gap: var(--space-5);
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 640px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1024px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Focus */
+    :focus-visible {
+      outline: 2px solid var(--color-border-focus);
+      outline-offset: 2px;
+    }
+
+    /* Links */
+    a.link {
+      color: var(--color-text-primary);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      transition: var(--motion-transition);
+    }
+
+    a.link:hover {
+      text-decoration-thickness: 2px;
+      text-decoration-color: var(--color-border-accent);
+    }
+
+    /* Buttons */
+    .btn {
+      align-items: center;
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      display: inline-flex;
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 600;
+      gap: var(--space-2);
+      justify-content: center;
+      line-height: 1.3;
+      padding: var(--button-padding-default);
+      text-decoration: none;
+      transition: var(--motion-transition);
+    }
+
+    .btn--compact {
+      font-size: 14px;
+      font-weight: 500;
+      padding: var(--button-padding-compact);
+    }
+
+    .btn--primary {
+      background: var(--color-bg-primary);
+      color: var(--color-text-on-primary);
+    }
+
+    .btn--primary:hover { background: var(--color-bg-primary-hover); }
+    .btn--primary:active { background: var(--color-bg-primary-active); }
+
+    .btn--secondary {
+      background: transparent;
+      border: 1px solid var(--color-border-strong);
+      color: var(--color-text-primary);
+    }
+
+    .btn--secondary:hover { background: var(--color-bg-hover); }
+
+    .btn--secondary:disabled,
+    .btn:disabled {
+      background: var(--color-bg-disabled);
+      border-color: var(--color-border-subtle);
+      color: var(--color-text-disabled);
+      cursor: not-allowed;
+    }
+
+    .btn--secondary:disabled:hover { background: var(--color-bg-disabled); }
+
+    /* Badge */
+    .badge {
+      align-items: center;
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-none);
+      color: var(--color-text-primary);
+      display: inline-flex;
+      gap: var(--space-2);
+      padding: var(--space-1) var(--space-2);
+      white-space: nowrap;
+    }
+
+    .badge__icon { color: var(--color-text-muted); }
+
+    /* Input */
+    .field { display: flex; flex-direction: column; }
+
+    .field__label {
+      color: var(--color-text-primary);
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+    }
+
+    .field__input {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-none);
+      color: var(--color-text-primary);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.5;
+      min-height: 44px;
+      padding: var(--space-3);
+      transition: var(--motion-transition);
+      width: 100%;
+    }
+
+    .field__input::placeholder { color: var(--color-text-disabled); }
+
+    .field__input:hover { border-color: rgba(202, 200, 243, 0.4); }
+
+    .field__input:focus {
+      border-color: var(--color-border-accent);
+      outline: 2px solid var(--color-border-focus);
+      outline-offset: 2px;
+    }
+
+    /* Component demo */
+    .demo-panel {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border-subtle);
+      padding: var(--space-5);
+    }
+
+    .demo-grid {
+      display: grid;
+      gap: var(--space-5);
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 768px) {
+      .demo-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .demo-block__title {
+      color: var(--color-text-primary);
+      font-weight: 600;
+      margin-bottom: var(--space-3);
+    }
+
+    .demo-block__desc {
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-4);
+    }
+
+    .demo-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+
+    .demo-swatches {
+      background: var(--color-bg-base);
+      display: grid;
+      gap: var(--space-3);
+      grid-template-columns: repeat(2, 1fr);
+      padding: var(--space-3);
+    }
+
+    @media (min-width: 640px) {
+      .demo-swatches { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .swatch {
+      border: 1px solid var(--color-border-subtle);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .swatch__color {
+      height: 48px;
+      width: 100%;
+    }
+
+    .swatch__color--surface { background: var(--color-bg-surface); }
+    .swatch__color--muted { background: var(--color-text-muted); }
+    .swatch__color--subtle { background: var(--color-border-subtle); }
+    .swatch__color--strong { background: var(--color-border-strong); }
+
+    .swatch__label {
+      background: var(--color-bg-base);
+      color: var(--color-text-muted);
+      padding: var(--space-2);
+    }
+
+    .text-ladder { display: flex; flex-direction: column; gap: var(--space-2); }
+
+    .text-ladder__primary { color: var(--color-text-primary); }
+    .text-ladder__muted { color: var(--color-text-muted); }
+    .text-ladder__disabled { color: var(--color-text-disabled); }
+
+    .demo-divider {
+      border: none;
+      border-top: 1px solid var(--color-border-subtle);
+      margin: var(--space-4) 0;
+    }
+
+    .demo-outline-box {
+      border: 1px solid var(--color-border-strong);
+      color: var(--color-text-primary);
+      padding: var(--space-4);
+    }
+
+    .section-intro {
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-5);
+      max-width: 65ch;
+    }
+    .nav {
+      background: var(--color-bg-base);
+      border-bottom: 1px solid var(--color-border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: var(--z-sticky);
+    }
+
+    .nav__inner {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      min-height: 56px;
+      position: relative;
+    }
+
+    .nav__wordmark {
+      color: var(--color-text-primary);
+      text-decoration: none;
+    }
+
+    .nav__wordmark:hover { text-decoration: none; }
+
+    .nav__links {
+      display: none;
+      gap: var(--space-4);
+      list-style: none;
+    }
+
+    @media (min-width: 768px) {
+      .nav__links { display: flex; }
+      .nav__menu-btn { display: none; }
+    }
+
+    .nav__link {
+      color: var(--color-text-muted);
+      min-height: 44px;
+      padding: var(--space-3) var(--space-4);
+      position: relative;
+      text-decoration: none;
+      transition: var(--motion-transition);
+    }
+
+    .nav__link:hover {
+      background: var(--color-bg-hover);
+      color: var(--color-text-primary);
+    }
+
+    .nav__link--active {
+      color: var(--color-text-primary);
+    }
+
+    .nav__link--active::after {
+      background: var(--color-border-accent);
+      bottom: 0;
+      content: "";
+      height: 2px;
+      left: var(--space-4);
+      position: absolute;
+      right: var(--space-4);
+    }
+
+    .nav__menu-btn {
+      align-items: center;
+      background: transparent;
+      border: 1px solid var(--color-border-strong);
+      color: var(--color-text-primary);
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      min-height: 44px;
+      min-width: 44px;
+      padding: var(--space-2);
+      transition: var(--motion-transition);
+    }
+
+    .nav__menu-btn:hover { background: var(--color-bg-hover); }
+
+    .nav__dropdown {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border-subtle);
+      display: none;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      z-index: var(--z-dropdown);
+    }
+
+    .nav__dropdown.is-open { display: block; }
+
+    .nav__dropdown .nav__link {
+      display: block;
+      width: 100%;
+    }
+
+    .nav__dropdown .nav__link--active::after {
+      bottom: auto;
+      height: 100%;
+      left: 0;
+      top: 0;
+      width: 2px;
+    }
+
+    /* Hero */
+    .hero {
+      padding-bottom: var(--space-8);
+      padding-top: var(--space-8);
+    }
+
+    .hero__content {
+      max-width: 65ch;
+    }
+
+    .hero__title { margin-bottom: var(--space-5); }
+
+    .hero__subtitle {
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-6);
+    }
+
+    /* Cards */
+    .card {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-none);
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      transition: var(--motion-transition);
+    }
+
+    .card:hover { background: var(--color-bg-hover); }
+
+    .card__media {
+      aspect-ratio: 16 / 9;
+      background: var(--color-bg-base);
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .card__media img {
+      display: block;
+      height: 100%;
+      object-fit: cover;
+      object-position: left center;
+      width: 100%;
+    }
+
+    .card__body { padding: var(--space-5); }
+
+    .card__title {
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-2);
+    }
+
+    .card__desc {
+      color: var(--color-text-muted);
+    }
+
+    /* Contact */
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      list-style: none;
+      margin-top: var(--space-5);
+    }
+
+    .contact-list__item {
+      align-items: flex-start;
+      display: flex;
+      gap: var(--space-3);
+    }
+
+    .contact-list__icon {
+      color: var(--color-text-muted);
+      flex-shrink: 0;
+      margin-top: 2px;
+      width: 20px;
+    }
+
+    .contact-list__label {
+      color: var(--color-text-primary);
+      display: block;
+      font-weight: 600;
+      margin-bottom: var(--space-1);
+    }
+
+    .contact-list__value {
+      color: var(--color-text-muted);
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--color-border-subtle);
+      padding: var(--space-6) 0;
+    }
+
+    .footer__placeholder {
+      color: var(--color-text-muted);
+      text-align: center;
+    }
+
+    .section-header { margin-bottom: var(--space-5); }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <header class="nav">
+    <div class="container nav__inner">
+      <a href="#" class="nav__wordmark type-heading case-sentence">Portfolio</a>
+
+      <button class="nav__menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-dropdown" id="nav-menu-btn">
+        <i data-lucide="menu" width="20" height="20"></i>
+      </button>
+
+      <ul class="nav__links" role="list">
+        <li><a href="#hero" class="nav__link type-label nav__link--active">Home</a></li>
+        <li><a href="#projects" class="nav__link type-label">Work</a></li>
+        <li><a href="#contact" class="nav__link type-label">Contact</a></li>
+      </ul>
+
+      <div class="nav__dropdown" id="nav-dropdown" role="navigation" aria-label="Mobile navigation">
+        <a href="#hero" class="nav__link type-label nav__link--active">Home</a>
+        <a href="#projects" class="nav__link type-label">Work</a>
+        <a href="#contact" class="nav__link type-label">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero section" id="hero">
+      <div class="container">
+        <div class="hero__content">
+          <h1 class="hero__title type-display-lg case-caps">Designing for clarity</h1>
+          <p class="hero__subtitle type-body">
+            Research, strategy, and modern UX at the intersection of information science and user experience.
+          </p>
+          <a href="#projects" class="btn btn--primary type-button">View projects</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project List -->
+    <section class="section" id="projects">
+      <div class="container">
+        <h2 class="section-header type-display-md case-caps">Selected work</h2>
+        <div class="grid">
+          <a href="#" class="card">
+            <div class="card__media">
+              <img src="color-contrast-validator/assets/cover-color-contrast-validator.svg" alt="" />
+            </div>
+            <div class="card__body">
+              <h3 class="card__title type-subheading case-sentence">Color contrast validator</h3>
+              <p class="card__desc type-body-sm">Accessibility tooling for design systems and WCAG compliance checks.</p>
+            </div>
+          </a>
+
+          <a href="#" class="card">
+            <div class="card__media">
+              <img src="dream-desk-visualizer/assets/cover-dream-desk.svg" alt="" />
+            </div>
+            <div class="card__body">
+              <h3 class="card__title type-subheading case-sentence">Dream desk visualizer</h3>
+              <p class="card__desc type-body-sm">Interactive workspace planning for remote and hybrid professionals.</p>
+            </div>
+          </a>
+
+          <a href="#" class="card">
+            <div class="card__media">
+              <img src="plant-glass-botanist/assets/cover-glass-botanist.svg" alt="" />
+            </div>
+            <div class="card__body">
+              <h3 class="card__title type-subheading case-sentence">Glass botanist</h3>
+              <p class="card__desc type-body-sm">Plant care companion with sensor-driven watering recommendations.</p>
+            </div>
+          </a>
+
+          <a href="#" class="card">
+            <div class="card__media">
+              <img src="stockandstem/assets/cover_stock&stem.svg" alt="" />
+            </div>
+            <div class="card__body">
+              <h3 class="card__title type-subheading case-sentence">Stock &amp; stem</h3>
+              <p class="card__desc type-body-sm">Inventory and fulfillment platform for specialty florists.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Components — secondary colors -->
+    <section class="section" id="components">
+      <div class="container">
+        <h2 class="section-header type-display-md case-caps">Components</h2>
+        <p class="section-intro type-body">
+          Secondary surfaces, borders, text emphasis, and outline controls from the design system.
+        </p>
+
+        <div class="demo-panel">
+          <div class="demo-grid">
+            <!-- Secondary color tokens -->
+            <div class="demo-block">
+              <p class="demo-block__title type-label">Secondary tokens</p>
+              <p class="demo-block__desc type-body-sm">Surface, muted text, and border values.</p>
+              <div class="demo-swatches">
+                <div class="swatch">
+                  <div class="swatch__color swatch__color--surface"></div>
+                  <span class="swatch__label type-caption">bg.surface</span>
+                </div>
+                <div class="swatch">
+                  <div class="swatch__color swatch__color--muted"></div>
+                  <span class="swatch__label type-caption">text.muted</span>
+                </div>
+                <div class="swatch">
+                  <div class="swatch__color swatch__color--subtle"></div>
+                  <span class="swatch__label type-caption">border.subtle</span>
+                </div>
+                <div class="swatch">
+                  <div class="swatch__color swatch__color--strong"></div>
+                  <span class="swatch__label type-caption">border.strong</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Text emphasis ladder -->
+            <div class="demo-block">
+              <p class="demo-block__title type-label">Text emphasis</p>
+              <p class="demo-block__desc type-body-sm">Primary, muted, and disabled hierarchy.</p>
+              <div class="text-ladder">
+                <span class="text-ladder__primary type-body">text.primary — default body copy</span>
+                <span class="text-ladder__muted type-body">text.muted — secondary supporting text</span>
+                <span class="text-ladder__disabled type-body">text.disabled — placeholders and inactive</span>
+              </div>
+            </div>
+
+            <!-- Secondary buttons -->
+            <div class="demo-block">
+              <p class="demo-block__title type-label">Secondary buttons</p>
+              <p class="demo-block__desc type-body-sm">Default (<code>button.padding.default</code>) and compact (<code>button.padding.compact</code>) share the same outline style.</p>
+              <div class="demo-row">
+                <button type="button" class="btn btn--secondary type-button">Learn more</button>
+                <button type="button" class="btn btn--secondary btn--compact type-label">Compact</button>
+                <button type="button" class="btn btn--secondary type-button" disabled>Unavailable</button>
+              </div>
+            </div>
+
+            <!-- Badges -->
+            <div class="demo-block">
+              <p class="demo-block__title type-label">Badges</p>
+              <p class="demo-block__desc type-body-sm">Neutral tags on bg.surface with border.subtle.</p>
+              <div class="demo-row">
+                <span class="badge type-caption">
+                  <i data-lucide="search" width="12" height="12" class="badge__icon"></i>
+                  Research
+                </span>
+                <span class="badge type-caption">
+                  <i data-lucide="compass" width="12" height="12" class="badge__icon"></i>
+                  Strategy
+                </span>
+                <span class="badge type-caption">
+                  <i data-lucide="layout" width="12" height="12" class="badge__icon"></i>
+                  UX
+                </span>
+              </div>
+            </div>
+
+            <!-- Input -->
+            <div class="demo-block">
+              <p class="demo-block__title type-label">Input</p>
+              <p class="demo-block__desc type-body-sm">bg.surface field with border.subtle at rest.</p>
+              <div class="field">
+                <label class="field__label type-label" for="demo-email">Email</label>
+                <input class="field__input" type="email" id="demo-email" name="demo-email" placeholder="you@example.com" />
+              </div>
+            </div>
+
+            <!-- Borders -->
+            <div class="demo-block">
+              <p class="demo-block__title type-label">Border weights</p>
+              <p class="demo-block__desc type-body-sm">Subtle divider vs strong outline.</p>
+              <hr class="demo-divider" />
+              <div class="demo-outline-box type-body-sm">
+                border.strong — high-emphasis outline container
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <div class="container">
+        <h2 class="section-header type-display-md case-caps">Contact</h2>
+        <p class="type-body" style="max-width: 65ch; color: var(--color-text-muted);">
+          Open to research collaborations, UX strategy engagements, and speaking opportunities.
+        </p>
+        <ul class="contact-list" role="list">
+          <li class="contact-list__item">
+            <span class="contact-list__icon" aria-hidden="true"><i data-lucide="mail" width="20" height="20"></i></span>
+            <div>
+              <span class="contact-list__label type-label">Email</span>
+              <a href="mailto:hello@example.com" class="link type-body">hello@example.com</a>
+            </div>
+          </li>
+          <li class="contact-list__item">
+            <span class="contact-list__icon" aria-hidden="true"><i data-lucide="map-pin" width="20" height="20"></i></span>
+            <div>
+              <span class="contact-list__label type-label">Location</span>
+              <span class="type-body contact-list__value">New York, NY</span>
+            </div>
+          </li>
+          <li class="contact-list__item">
+            <span class="contact-list__icon" aria-hidden="true"><i data-lucide="external-link" width="20" height="20"></i></span>
+            <div>
+              <span class="contact-list__label type-label">LinkedIn</span>
+              <a href="#" class="link type-body">linkedin.com/in/portfolio</a>
+            </div>
+          </li>
+        </ul>
+        <div style="margin-top: var(--space-6);">
+          <a href="mailto:hello@example.com" class="btn btn--secondary type-button">Send a message</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer placeholder -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__placeholder type-caption">Footer placeholder — navigation, legal links, and copyright will go here.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    lucide.createIcons();
+
+    const menuBtn = document.getElementById('nav-menu-btn');
+    const dropdown = document.getElementById('nav-dropdown');
+
+    menuBtn.addEventListener('click', () => {
+      const isOpen = dropdown.classList.toggle('is-open');
+      menuBtn.setAttribute('aria-expanded', isOpen);
+    });
+
+    dropdown.querySelectorAll('.nav__link').forEach(link => {
+      link.addEventListener('click', () => {
+        dropdown.classList.remove('is-open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+</body>
+</html>

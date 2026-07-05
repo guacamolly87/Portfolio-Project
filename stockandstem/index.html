@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock &amp; Stem — mgriffin designs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --color-violet-500: #6A53FE;
+      --color-violet-100: #CAC8F3;
+      --color-ink-900: #0B0A10;
+      --color-ink-800: #1A191F;
+
+      --color-bg-base: var(--color-ink-900);
+      --color-bg-surface: var(--color-ink-800);
+      --color-bg-primary: var(--color-violet-500);
+      --color-bg-primary-hover: rgba(106, 83, 254, 0.9);
+      --color-bg-primary-active: rgba(106, 83, 254, 0.8);
+      --color-bg-secondary: transparent;
+      --color-bg-hover: rgba(202, 200, 243, 0.06);
+
+      --color-text-primary: var(--color-violet-100);
+      --color-text-muted: rgba(202, 200, 243, 0.7);
+      --color-text-on-primary: var(--color-ink-900);
+
+      --color-border-subtle: rgba(202, 200, 243, 0.18);
+      --color-border-strong: var(--color-violet-100);
+      --color-border-accent: var(--color-violet-500);
+      --color-border-focus: var(--color-violet-100);
+
+      --font-display: "Barlow Condensed", sans-serif;
+      --font-body: "Manrope", sans-serif;
+
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-7: 48px;
+      --space-8: 64px;
+
+      --radius-none: 0;
+      --radius-md: 12px;
+
+      --button-padding-default: 0.75em 1.5em;
+      --transition-default: all 150ms cubic-bezier(0.2, 0, 0, 1);
+
+      --z-dropdown: 1000;
+      --z-sticky: 1100;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--color-bg-base);
+      color: var(--color-text-primary);
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: var(--space-4);
+      z-index: 9999;
+      padding: var(--space-3) var(--space-4);
+      background: var(--color-bg-primary);
+      color: var(--color-text-on-primary);
+      font-family: var(--font-body);
+      font-size: 19px;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: var(--radius-md);
+    }
+
+    .skip-link:focus { top: var(--space-4); }
+
+    .type-display-lg {
+      font-family: var(--font-display);
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0;
+    }
+
+    .type-display-md {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0;
+    }
+
+    .type-subheading {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .type-body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .type-label {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .type-caption {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .case-caps {
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .text-muted { color: var(--color-text-muted); }
+
+    @media (min-width: 768px) {
+      .type-display-lg { font-size: 56px; }
+      .type-display-md { font-size: 40px; }
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: var(--space-4);
+      padding-right: var(--space-4);
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding-left: var(--space-6);
+        padding-right: var(--space-6);
+      }
+    }
+
+    .section {
+      padding-top: var(--space-7);
+      padding-bottom: var(--space-7);
+    }
+
+    @media (min-width: 768px) {
+      .section {
+        padding-top: var(--space-8);
+        padding-bottom: var(--space-8);
+      }
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--color-border-focus);
+      outline-offset: 2px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      font-family: var(--font-body);
+      font-weight: 600;
+      line-height: 1.3;
+      border-radius: var(--radius-md);
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition-default);
+      white-space: nowrap;
+      font-size: 16px;
+      padding: var(--button-padding-default);
+    }
+
+    .btn--secondary {
+      background: var(--color-bg-secondary);
+      color: var(--color-text-primary);
+      border-color: var(--color-border-strong);
+    }
+
+    .btn--secondary:hover { background: var(--color-bg-hover); }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: var(--z-sticky);
+      background: var(--color-bg-base);
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 56px;
+      gap: var(--space-4);
+    }
+
+    .nav__wordmark {
+      display: block;
+      text-decoration: none;
+      flex-shrink: 0;
+      line-height: 0;
+    }
+
+    .nav__wordmark img {
+      display: block;
+      height: 36px;
+      width: auto;
+    }
+
+    .nav__wordmark:focus-visible { outline-offset: 4px; }
+
+    .nav__toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      background: transparent;
+      border: none;
+      color: var(--color-text-primary);
+      cursor: pointer;
+    }
+
+    .nav__menu {
+      display: none;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: var(--space-1);
+    }
+
+    .nav__menu.is-open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--color-bg-surface);
+      border-bottom: 1px solid var(--color-border-subtle);
+      padding: var(--space-3) var(--space-4);
+      z-index: var(--z-dropdown);
+    }
+
+    .nav__link {
+      display: flex;
+      align-items: center;
+      padding: var(--space-3) var(--space-4);
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.3;
+      border-bottom: 2px solid transparent;
+      transition: var(--transition-default);
+      min-height: 44px;
+    }
+
+    .nav__link:hover {
+      color: var(--color-text-primary);
+      background: var(--color-bg-hover);
+    }
+
+    .nav__link--active {
+      color: var(--color-text-primary);
+      border-bottom-color: var(--color-border-accent);
+    }
+
+    @media (min-width: 768px) {
+      .nav__toggle { display: none; }
+
+      .nav__menu,
+      .nav__menu.is-open {
+        display: flex;
+        flex-direction: row;
+        position: static;
+        background: transparent;
+        border: none;
+        padding: 0;
+      }
+    }
+
+    .nav__wrapper { position: relative; }
+
+    .project-hero {
+      padding-top: var(--space-8);
+      padding-bottom: var(--space-6);
+    }
+
+    .project-hero__tagline {
+      margin-top: var(--space-3);
+      color: var(--color-text-muted);
+    }
+
+    .project-hero__summary {
+      margin-top: var(--space-5);
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-5);
+      margin-top: var(--space-6);
+    }
+
+    .project-meta__item {
+      min-width: 140px;
+    }
+
+    .project-meta__label {
+      font-weight: 600;
+      color: var(--color-text-primary);
+    }
+
+    .project-meta__value {
+      margin-top: var(--space-1);
+    }
+
+    .project-hero__media {
+      margin-top: var(--space-6);
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+
+    .project-hero__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left center;
+    }
+
+    .section__header { margin-bottom: var(--space-6); }
+
+    .section__body + .section__body { margin-top: var(--space-4); }
+
+    .section__list {
+      margin: var(--space-4) 0 0;
+      padding-left: 1.25em;
+    }
+
+    .section__list li + li { margin-top: var(--space-3); }
+
+    .section__list--numbered {
+      list-style: decimal;
+      padding-left: 1.5em;
+    }
+
+    .feature-list {
+      margin: var(--space-5) 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .feature-list li + li { margin-top: var(--space-4); }
+
+    .demo-panel {
+      background: transparent;
+      border: none;
+      border-radius: var(--radius-none);
+      padding: 0;
+    }
+
+    .theme-card {
+      padding: var(--space-5);
+      border-radius: 8px;
+    }
+
+    @media (min-width: 768px) {
+      .theme-card {
+        padding: 30px;
+      }
+    }
+
+    .theme-card--lavender {
+      background: #CAC8F3;
+      color: #1A191F;
+    }
+
+    .theme-card--night {
+      background: #0B0A10;
+      color: #D1D2E0;
+      border: 1px solid var(--color-border-subtle);
+    }
+
+    .theme-card__body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5;
+      margin: 0 0 var(--space-6);
+      max-width: none;
+      width: 100%;
+    }
+
+    .theme-card--lavender .theme-card__body {
+      color: rgba(26, 25, 31, 0.75);
+    }
+
+    .theme-card--night .theme-card__body {
+      color: rgba(209, 210, 224, 0.75);
+    }
+
+    .theme-card__body p + p { margin-top: var(--space-4); }
+
+    .theme-card__body .section__list {
+      color: rgba(26, 25, 31, 0.75);
+    }
+
+    .theme-card--night .theme-card__body .section__list {
+      color: rgba(209, 210, 224, 0.75);
+    }
+
+    .theme-card__body .type-subheading {
+      color: #1A191F;
+      margin-top: var(--space-5);
+      margin-bottom: var(--space-3);
+    }
+
+    .theme-card--night .theme-card__body .type-subheading {
+      color: #D1D2E0;
+    }
+
+    .theme-card__body .feature-list li {
+      color: inherit;
+    }
+
+    .theme-card__images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 639px) {
+      .theme-card__images { grid-template-columns: 1fr; }
+    }
+
+    .theme-card__figure {
+      aspect-ratio: 16 / 9;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .theme-card__figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left center;
+    }
+
+    .project-back {
+      padding-top: 0;
+      padding-bottom: var(--space-8);
+    }
+
+    .footer {
+      border-top: 1px solid var(--color-border-subtle);
+      padding: var(--space-6) 0;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header class="nav">
+    <div class="container nav__wrapper">
+      <div class="nav__inner">
+        <a href="../index.html" class="nav__wordmark" aria-label="mgriffin designs — home">
+          <img src="../assets/mgriffin-designs.png?v=final2" alt="mgriffin designs" width="144" height="48">
+        </a>
+        <button class="nav__toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu" id="nav-toggle">
+          <i data-lucide="menu" aria-hidden="true"></i>
+        </button>
+        <ul class="nav__menu" id="nav-menu" role="list">
+          <li><a href="../index.html" class="nav__link">Home</a></li>
+          <li><a href="../index.html#work" class="nav__link nav__link--active">Work</a></li>
+          <li><a href="../index.html#contact" class="nav__link">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="project-hero section">
+      <div class="container">
+        <h1 class="type-display-lg case-caps">Stock &amp; Stem</h1>
+        <p class="project-hero__tagline type-subheading">Thoughtfully planned. Perfectly plated.</p>
+        <p class="project-hero__summary type-body text-muted">Stock and Stem is a React-based recipe management and meal planning web application built with Supabase, Vite, and Tailwind CSS. It applies Human-Computer Interaction (HCI) principles and information architecture to reduce the cognitive load between the grocery list and the kitchen counter.</p>
+        <dl class="project-meta">
+          <div class="project-meta__item">
+            <dt class="project-meta__label type-label">Role</dt>
+            <dd class="project-meta__value type-body text-muted">UX Designer &amp; Full-Stack Development</dd>
+          </div>
+          <div class="project-meta__item">
+            <dt class="project-meta__label type-label">Timeline</dt>
+            <dd class="project-meta__value type-body text-muted">8 weeks · 2026</dd>
+          </div>
+          <div class="project-meta__item">
+            <dt class="project-meta__label type-label">Tools</dt>
+            <dd class="project-meta__value type-body text-muted">Figma, HTML/CSS, React, Supabase, Vite, Tailwind CSS, Cursor</dd>
+          </div>
+          <div class="project-meta__item">
+            <dt class="project-meta__label type-label">Team</dt>
+            <dd class="project-meta__value type-body text-muted">Solo independent project</dd>
+          </div>
+        </dl>
+        <figure class="project-hero__media">
+          <img src="assets/mockup_hero-stock&stem-key_features.svg" alt="Stock and Stem dashboard mockup highlighting weekly meal plan, pantry alerts, and grocery list">
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="overview">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="type-display-md case-caps">Overview</h2>
+        </header>
+        <p class="section__body type-body text-muted">Home cooks juggle tight schedules and tight budgets. A weeknight stir-fry, a meal-prep Sunday, and a last-minute dinner guest all compete for the same bag of spinach before Wednesday. Most existing tools rely on enterprise-level inventory mindsets or messy, disconnected notes apps.</p>
+        <p class="section__body type-body text-muted">Stock &amp; Stem was built to explore what a dedicated meal planning and pantry tool looks like when it prioritizes user focus: fast to scan, accurate about what you have on hand, and structurally aligned with how people actually move through their week.</p>
+      </div>
+    </section>
+
+    <section class="section" id="challenge">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="type-display-md case-caps">Challenge</h2>
+        </header>
+        <div class="demo-panel">
+          <div class="theme-card theme-card--lavender">
+            <div class="theme-card__body">
+              <p class="type-body">Managing perishable groceries introduces a layer of micro-logistics that generic to-do apps ignore. Ingredients expire on different schedules, partial packages get opened mid-week, and fridge space is finite.</p>
+              <p class="type-body">When building the application, I targeted three core friction points in the typical home cooking workflow:</p>
+              <ul class="section__list type-body">
+                <li><strong>The Planning Fragmentation:</strong> Recipes live in bookmarks, grocery lists live in notes apps, and real-time pantry inventory is a mystery until you open the fridge.</li>
+                <li><strong>Delayed Visibility:</strong> Discovering a missing ingredient usually happens when the pan is already hot instead of when a quick store run is still feasible.</li>
+                <li><strong>Mental Overlap:</strong> The system needs to bridge two distinct mental models: selecting recipes (inspiration) and auditing inventory (logistics).</li>
+              </ul>
+              <p class="type-body">The goal was to design a front-end interface that minimizes data-entry friction for someone interacting with a screen with intermittent attention and one hand on a spatula.</p>
+            </div>
+            <figure class="theme-card__figure">
+              <img src="assets/cover_stock&stem.svg" alt="Stock and Stem cover art with meal planning interface">
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="type-display-md case-caps">Process</h2>
+        </header>
+        <div class="demo-panel">
+          <div class="theme-card theme-card--night">
+            <div class="theme-card__body">
+              <p class="type-body">As a solo developer applying HCI methodologies, I approached the project by mapping out a clean relational data model before writing code. I focused on translating real-world kitchen workflows into reactive state management.</p>
+              <p class="type-body">By consolidating fragmented steps into centralized hubs, the interface reduces the cognitive load of switching back and forth between separate planning, shopping, and cooking tabs.</p>
+              <h3 class="type-subheading">Key architectural &amp; design priorities</h3>
+              <ol class="section__list section__list--numbered type-body">
+                <li><strong>Glanceable hierarchy &amp; centralized planning:</strong> Critical signals—low stock, upcoming meals, expiring items—must be readable in under three seconds. This is achieved via a centralized calendar hub where users can view the day, edit schedules, pick meals, and trigger grocery generation natively in one screen.</li>
+                <li><strong>Zero-friction state toggles:</strong> To accommodate active kitchen environments, tracking must be tactile and instant. The grocery view utilizes interactive checklists with toggle states to strike off items instantly as they are tossed into a physical cart.</li>
+                <li><strong>Low-barrier inventory onboarding:</strong> Instead of requiring manual text entry for every item, the system leverages an inventory system seeded with common pantry staples that can be rapidly tagged or untagged to accurately reflect real-world stock in seconds.</li>
+              </ol>
+            </div>
+            <figure class="theme-card__figure">
+              <img src="assets/mockup_hero-stock&stem-key_features.svg" alt="Stock and Stem key features mockup used during workflow mapping">
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="solution">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="type-display-md case-caps">Solution</h2>
+        </header>
+        <div class="demo-panel">
+          <div class="theme-card theme-card--lavender">
+            <div class="theme-card__body">
+              <p class="type-body">The final concept centers on a <strong>single weekly home view</strong> that answers one question: <em>Can I cook what's on this week's plan without opening the fridge twice?</em></p>
+              <h3 class="type-subheading">Key features</h3>
+              <ul class="feature-list type-body">
+                <li><strong>Centralized calendar dashboard —</strong> A unified, day-by-day planner that handles meal assignment, schedule adjustments, and grocery generation from a single, cohesive view, eliminating the need to jump between disconnected pages.</li>
+                <li><strong>Quick-tag pantry inventory —</strong> An inventory system pre-populated with common pantry staples. Users can effortlessly tag items they already own to instantly update their household stock levels.</li>
+                <li><strong>Interactive grocery checklists —</strong> High-utility, actionable shopping lists featuring intuitive toggle interactions that let users cleanly strike items off as they shop or audit their kitchen.</li>
+                <li><strong>Smart meal-time allocation —</strong> Dedicated, clean layout blocks for Breakfast, Lunch, Dinner, and Snacks that display precise timing and meal states, ensuring the entire day is glanceable in under three seconds.</li>
+              </ul>
+              <p class="type-body">The interface stays on dark surfaces with lavender editorial panels for feature callouts—matching the portfolio design system—so dense information remains readable in a bright kitchen.</p>
+            </div>
+            <div class="theme-card__images">
+              <figure class="theme-card__figure">
+                <img src="assets/mockup_hero-stock&stem-key_features.svg" alt="Dashboard view with pantry alerts and weekly meal plan">
+              </figure>
+              <figure class="theme-card__figure">
+                <img src="assets/cover_stock&stem.svg" alt="Mobile-friendly grocery and recipe summary screen">
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="outcome">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="type-display-md case-caps">Outcome</h2>
+        </header>
+        <p class="section__body type-body text-muted">By applying Human-Computer Interaction (HCI) principles to reactive state management, Stock &amp; Stem successfully translates complex kitchen micro-logistics into a zero-friction front-end interface. Consolidating the daily planning workflows into a single calendar view drastically reduced task fragmentation.</p>
+        <p class="section__body type-body text-muted">The live, responsive application achieves a "glanceable hierarchy," allowing home cooks to successfully manage their schedule, track meal prep progress, and audit inventory with intermittent attention and one hand on a spatula.</p>
+      </div>
+    </section>
+
+    <section class="section" id="reflection">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="type-display-md case-caps">Reflection</h2>
+        </header>
+        <p class="section__body type-body text-muted">This project reinforced that <strong>research vocabulary is interface copy.</strong> The moment I replaced generic labels like "inventory item" with language cooks already used, task completion jumped—not because the layout changed, but because the system stopped feeling imported from another domain.</p>
+        <p class="section__body type-body text-muted">Consolidating the daily details taught me the value of aggressive layout simplification. In early site maps, I separated features into distinct sub-modules, but true user context demanded everything live on a single calendar axis.</p>
+        <p class="section__body type-body text-muted">If I continued the work, I would pilot offline-first sync for kitchens with spotty Wi-Fi and explore shared household views that shorten the "did we already buy this?" loop between partners. I'd also pressure-test accessibility under bright kitchen lighting and one-handed interaction—constraints that belong in the first sprint, not a polish pass.</p>
+        <p class="section__body type-body text-muted">Stock &amp; Stem is the case study I point to when explaining my librarian's eye for organization: structure only helps when it matches how people already sort the world.</p>
+      </div>
+    </section>
+
+    <section class="section project-back">
+      <div class="container">
+        <a href="../index.html#work" class="btn btn--secondary">Back to featured work</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="type-caption text-muted">&copy; 2026 Molly Griffin. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('nav-menu');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      const icon = toggle.querySelector('[data-lucide]');
+      icon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+      lucide.createIcons();
+    });
+
+    menu.querySelectorAll('.nav__link').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 768) {
+          menu.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', 'Open menu');
+          const icon = toggle.querySelector('[data-lucide]');
+          icon.setAttribute('data-lucide', 'menu');
+          lucide.createIcons();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

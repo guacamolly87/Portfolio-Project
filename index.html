@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mgriffin designs — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --color-violet-500: #6A53FE;
+      --color-violet-100: #CAC8F3;
+      --color-ink-900: #0B0A10;
+      --color-ink-800: #1A191F;
+
+      --color-bg-base: var(--color-ink-900);
+      --color-bg-surface: var(--color-ink-800);
+      --color-bg-primary: var(--color-violet-500);
+      --color-bg-primary-hover: rgba(106, 83, 254, 0.9);
+      --color-bg-primary-active: rgba(106, 83, 254, 0.8);
+      --color-bg-secondary: transparent;
+      --color-bg-hover: rgba(202, 200, 243, 0.06);
+      --color-bg-disabled: var(--color-ink-800);
+
+      --color-text-primary: var(--color-violet-100);
+      --color-text-muted: rgba(202, 200, 243, 0.7);
+      --color-text-disabled: rgba(202, 200, 243, 0.4);
+      --color-text-on-primary: var(--color-ink-900);
+
+      --color-border-subtle: rgba(202, 200, 243, 0.18);
+      --color-border-strong: var(--color-violet-100);
+      --color-border-accent: var(--color-violet-500);
+      --color-border-focus: var(--color-violet-100);
+
+      --font-display: "Barlow Condensed", sans-serif;
+      --font-body: "Manrope", sans-serif;
+
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-7: 48px;
+      --space-8: 64px;
+
+      --radius-none: 0;
+      --radius-md: 12px;
+
+      --button-padding-default: 0.75em 1.5em;
+      --button-padding-compact: 0.5em 1.25em;
+
+      --transition-default: all 150ms cubic-bezier(0.2, 0, 0, 1);
+
+      --z-dropdown: 1000;
+      --z-sticky: 1100;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--color-bg-base);
+      color: var(--color-text-primary);
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: var(--space-4);
+      z-index: 9999;
+      padding: var(--space-3) var(--space-4);
+      background: var(--color-bg-primary);
+      color: var(--color-text-on-primary);
+      font-family: var(--font-body);
+      font-size: 19px;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: var(--radius-md);
+    }
+
+    .skip-link:focus { top: var(--space-4); }
+
+    .type-display-lg {
+      font-family: var(--font-display);
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: normal;
+      margin: 0;
+    }
+
+    .type-display-md {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: normal;
+      margin: 0;
+    }
+
+    .type-subheading {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.3;
+      letter-spacing: normal;
+      margin: 0;
+    }
+
+    .type-body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .type-body-sm {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .type-label {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .type-caption {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .case-caps {
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .text-muted { color: var(--color-text-muted); }
+
+    @media (min-width: 768px) {
+      .type-display-lg { font-size: 56px; }
+      .type-display-md { font-size: 40px; }
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: var(--space-4);
+      padding-right: var(--space-4);
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding-left: var(--space-6);
+        padding-right: var(--space-6);
+      }
+    }
+
+    .section {
+      padding-top: var(--space-7);
+      padding-bottom: var(--space-7);
+    }
+
+    @media (min-width: 768px) {
+      .section {
+        padding-top: var(--space-8);
+        padding-bottom: var(--space-8);
+      }
+    }
+
+    .measure { max-width: 65ch; }
+
+    .grid {
+      display: grid;
+      gap: var(--space-5);
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 640px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--color-border-focus);
+      outline-offset: 2px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      font-family: var(--font-body);
+      font-weight: 600;
+      line-height: 1.3;
+      border-radius: var(--radius-md);
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition-default);
+      white-space: nowrap;
+    }
+
+    .btn--default {
+      font-size: 16px;
+      padding: var(--button-padding-default);
+    }
+
+    .btn--primary {
+      background: var(--color-bg-primary);
+      color: var(--color-text-on-primary);
+      border-color: transparent;
+      font-size: 19px;
+      font-weight: 700;
+    }
+
+    .btn--primary:hover { background: var(--color-bg-primary-hover); }
+    .btn--primary:active { background: var(--color-bg-primary-active); }
+
+    .btn--secondary {
+      background: var(--color-bg-secondary);
+      color: var(--color-text-primary);
+      border-color: var(--color-border-strong);
+    }
+
+    .btn--secondary:hover { background: var(--color-bg-hover); }
+
+    .link {
+      color: var(--color-text-primary);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      transition: var(--transition-default);
+    }
+
+    .link:hover {
+      text-decoration-thickness: 2px;
+      text-decoration-color: var(--color-border-accent);
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: var(--z-sticky);
+      background: var(--color-bg-base);
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 56px;
+      gap: var(--space-4);
+    }
+
+    .nav__wordmark {
+      display: block;
+      text-decoration: none;
+      flex-shrink: 0;
+      line-height: 0;
+    }
+
+    .nav__wordmark img {
+      display: block;
+      height: 36px;
+      width: auto;
+    }
+
+    .nav__wordmark:focus-visible { outline-offset: 4px; }
+
+    .nav__toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      background: transparent;
+      border: none;
+      color: var(--color-text-primary);
+      cursor: pointer;
+      border-radius: var(--radius-none);
+    }
+
+    .nav__menu {
+      display: none;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: var(--space-1);
+    }
+
+    .nav__menu.is-open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--color-bg-surface);
+      border-bottom: 1px solid var(--color-border-subtle);
+      padding: var(--space-3) var(--space-4);
+      z-index: var(--z-dropdown);
+    }
+
+    .nav__link {
+      display: flex;
+      align-items: center;
+      padding: var(--space-3) var(--space-4);
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.3;
+      border-bottom: 2px solid transparent;
+      transition: var(--transition-default);
+      min-height: 44px;
+    }
+
+    .nav__link:hover {
+      color: var(--color-text-primary);
+      background: var(--color-bg-hover);
+    }
+
+    .nav__link--active {
+      color: var(--color-text-primary);
+      border-bottom-color: var(--color-border-accent);
+    }
+
+    @media (min-width: 768px) {
+      .nav__toggle { display: none; }
+
+      .nav__menu,
+      .nav__menu.is-open {
+        display: flex;
+        flex-direction: row;
+        position: static;
+        background: transparent;
+        border: none;
+        padding: 0;
+      }
+    }
+
+    .nav__wrapper { position: relative; }
+
+    .hero {
+      padding-top: var(--space-8);
+      padding-bottom: var(--space-7);
+    }
+
+    .hero__layout {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .hero__unit {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-top: var(--space-5);
+    }
+
+    .hero__text {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .hero__image {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius-md);
+    }
+
+    .hero__lead,
+    .contact__intro {
+      width: 100%;
+    }
+
+    .hero__lead {
+      margin-top: var(--space-5);
+    }
+
+    .hero__actions { margin-top: var(--space-6); }
+
+    .card {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-none);
+      overflow: hidden;
+      transition: var(--transition-default);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover { background: var(--color-bg-hover); }
+
+    .card__media {
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    .card__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left center;
+    }
+
+    .card__body {
+      padding: var(--space-5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .section__header { margin-bottom: var(--space-6); }
+
+    .contact-list { margin-top: var(--space-5); }
+
+    .contact-item {
+      display: flex;
+      gap: var(--space-3);
+      align-items: flex-start;
+    }
+
+    .contact-item + .contact-item { margin-top: var(--space-4); }
+
+    .contact-item__icon {
+      width: 20px;
+      height: 20px;
+      color: var(--color-text-muted);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .contact-item__label {
+      font-weight: 600;
+      color: var(--color-text-primary);
+    }
+
+    .contact-item__content { margin-top: var(--space-1); }
+
+    .contact-cta { margin-top: var(--space-6); }
+
+    .footer {
+      border-top: 1px solid var(--color-border-subtle);
+      padding: var(--space-6) 0;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header class="nav">
+    <div class="container nav__wrapper">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__wordmark" aria-label="mgriffin designs — home">
+          <img src="assets/mgriffin-designs.png?v=final2" alt="mgriffin designs" width="144" height="48">
+        </a>
+        <button class="nav__toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu" id="nav-toggle">
+          <i data-lucide="menu" aria-hidden="true"></i>
+        </button>
+        <ul class="nav__menu" id="nav-menu" role="list">
+          <li><a href="#hero" class="nav__link nav__link--active">Home</a></li>
+          <li><a href="#work" class="nav__link">Work</a></li>
+          <li><a href="#contact" class="nav__link">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="hero section" id="hero">
+      <div class="container">
+        <div class="hero__layout">
+          <div class="hero__content">
+            <h1 class="type-display-lg">Hi, I'm Molly. I'm a librarian and UX designer who transforms complex information into calm, intuitive experiences.</h1>
+            <div class="hero__unit">
+              <div class="hero__media">
+                <img
+                  class="hero__image"
+                  src="assets/hero-new-image.png"
+                  alt="Illustration of a designer working on a laptop with a cat on the couch, surrounded by books and plants"
+                  width="2813"
+                  height="1875"
+                >
+              </div>
+              <div class="hero__text">
+                <p class="hero__lead type-body text-muted">
+                  Research-driven UX at the intersection of information science and human-centered design. I build thoughtful digital experiences through intentional, rapid prototyping—leveraging modern development workflows to turn ideas into reality.
+                </p>
+                <div class="hero__actions">
+                  <a href="#work" class="btn btn--default btn--primary">View featured work</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="type-display-md case-caps">Featured projects</h2>
+        </header>
+        <div class="grid">
+          <a href="stockandstem/index.html" class="card">
+            <figure class="card__media">
+              <img src="stockandstem/assets/cover_stock&stem.svg" alt="Stock and Stem project cover showing meal planning dashboard mockup">
+            </figure>
+            <div class="card__body">
+              <h3 class="type-subheading">Stock &amp; Stem</h3>
+              <p class="type-body-sm text-muted">Plan, shop, and create for a stress-free kitchen.</p>
+            </div>
+          </a>
+          <a href="plant-glass-botanist/" class="card">
+            <figure class="card__media">
+              <img src="plant-glass-botanist/assets/cover-glass-botanist.svg" alt="Glass botanist project cover">
+            </figure>
+            <div class="card__body">
+              <h3 class="type-subheading">Glass Botanist</h3>
+              <p class="type-body-sm text-muted">Plant care companion with sensor-driven watering recommendations.</p>
+            </div>
+          </a>
+          <a href="color-contrast-validator/" class="card">
+            <figure class="card__media">
+              <img src="color-contrast-validator/assets/cover-color-contrast-validator.svg" alt="Color contrast validator project cover">
+            </figure>
+            <div class="card__body">
+              <h3 class="type-subheading">Color Contrast Validator</h3>
+              <p class="type-body-sm text-muted">Accessibility tooling for design systems and WCAG compliance checks.</p>
+            </div>
+          </a>
+          <a href="dream-desk-visualizer/" class="card">
+            <figure class="card__media">
+              <img src="dream-desk-visualizer/assets/cover-dream-desk.svg" alt="Dream desk visualizer project cover">
+            </figure>
+            <div class="card__body">
+              <h3 class="type-subheading">Dream Desk Visualizer</h3>
+              <p class="type-body-sm text-muted">Interactive workspace planning for remote and hybrid professionals.</p>
+            </div>
+          </a>
+          <a href="bibliocat/" class="card">
+            <figure class="card__media">
+              <img src="bibliocat/assets/cover_bibliocat-app.png" alt="Bibliocat project cover">
+            </figure>
+            <div class="card__body">
+              <h3 class="type-subheading">Bibliocat</h3>
+              <p class="type-body-sm text-muted">Book search and discovery for titles, authors, and covers.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="type-display-md case-caps">Get in touch</h2>
+        </header>
+        <p class="contact__intro type-body text-muted">
+          I combine rigorous research with strategic design to solve high-ambiguity problems. I am actively seeking collaborations that prioritize system usability and reduced cognitive load, partnering with stakeholders to translate user insights into impactful, human-centered business outcomes.
+        </p>
+        <div class="contact-list">
+          <div class="contact-item">
+            <i data-lucide="mail" class="contact-item__icon" aria-hidden="true"></i>
+            <div>
+              <p class="contact-item__label type-label">Email</p>
+              <p class="contact-item__content type-body">
+                <a href="mailto:mollymacfaddengriffin@gmail.com" class="link">mollymacfaddengriffin@gmail.com</a>
+              </p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i data-lucide="map-pin" class="contact-item__icon" aria-hidden="true"></i>
+            <div>
+              <p class="contact-item__label type-label">Location</p>
+              <p class="contact-item__content type-body text-muted">Memphis, TN — available remotely</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i data-lucide="external-link" class="contact-item__icon" aria-hidden="true"></i>
+            <div>
+              <p class="contact-item__label type-label">LinkedIn</p>
+              <p class="contact-item__content type-body">
+                <a href="https://www.linkedin.com/in/molly-griffin-b08388101/" class="link" target="_blank" rel="noopener noreferrer">linkedin.com/in/mollygriffin</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-cta">
+          <a href="mailto:mollymacfaddengriffin@gmail.com" class="btn btn--default btn--secondary">Send a message</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="type-caption text-muted">&copy; 2026 Molly Griffin. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('nav-menu');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      const icon = toggle.querySelector('[data-lucide]');
+      icon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+      lucide.createIcons();
+    });
+
+    menu.querySelectorAll('.nav__link').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 768) {
+          menu.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', 'Open menu');
+          const icon = toggle.querySelector('[data-lucide]');
+          icon.setAttribute('data-lucide', 'menu');
+          lucide.createIcons();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
