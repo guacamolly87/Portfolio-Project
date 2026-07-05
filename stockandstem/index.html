@@ -170,14 +170,14 @@
     }
 
     .section {
-      padding-top: var(--space-7);
-      padding-bottom: var(--space-7);
+      padding-top: var(--space-5);
+      padding-bottom: var(--space-5);
     }
 
     @media (min-width: 768px) {
       .section {
-        padding-top: var(--space-8);
-        padding-bottom: var(--space-8);
+        padding-top: var(--space-6);
+        padding-bottom: var(--space-6);
       }
     }
 
@@ -211,6 +211,23 @@
     }
 
     .btn--secondary:hover { background: var(--color-bg-hover); }
+
+    .btn--primary {
+      background: var(--color-bg-primary);
+      color: var(--color-text-on-primary);
+      border-color: transparent;
+      font-size: 19px;
+      font-weight: 700;
+    }
+
+    .btn--primary:hover { background: var(--color-bg-primary-hover); }
+    .btn--primary:active { background: var(--color-bg-primary-active); }
+
+    .btn [data-lucide] {
+      width: 1.125em;
+      height: 1.125em;
+      flex-shrink: 0;
+    }
 
     .nav {
       position: sticky;
@@ -319,8 +336,8 @@
     .nav__wrapper { position: relative; }
 
     .project-hero {
-      padding-top: var(--space-8);
-      padding-bottom: var(--space-6);
+      padding-top: var(--space-6);
+      padding-bottom: var(--space-5);
     }
 
     .project-hero__tagline {
@@ -350,6 +367,10 @@
 
     .project-meta__value {
       margin-top: var(--space-1);
+    }
+
+    .project-hero__actions {
+      margin-top: var(--space-5);
     }
 
     .project-hero__media {
@@ -438,6 +459,8 @@
 
     .theme-card__body p + p { margin-top: var(--space-4); }
 
+    .theme-card__body .section__list + p { margin-top: var(--space-5); }
+
     .theme-card__body .section__list {
       color: rgba(26, 25, 31, 0.75);
     }
@@ -486,7 +509,7 @@
 
     .project-back {
       padding-top: 0;
-      padding-bottom: var(--space-8);
+      padding-bottom: var(--space-6);
     }
 
     .footer {
@@ -523,11 +546,14 @@
       <div class="container">
         <h1 class="type-display-lg case-caps">Stock &amp; Stem</h1>
         <p class="project-hero__tagline type-subheading">Thoughtfully planned. Perfectly plated.</p>
-        <p class="project-hero__summary type-body text-muted">Stock and Stem is a React-based recipe management and meal planning web application built with Supabase, Vite, and Tailwind CSS. It applies Human-Computer Interaction (HCI) principles and information architecture to reduce the cognitive load between the grocery list and the kitchen counter.</p>
+        <p class="project-hero__summary type-body text-muted">Stock & Stem was built to explore what a dedicated meal planning and pantry tool looks like when it prioritizes user focus: fast to scan, accurate about what you have on hand, and structurally aligned with how people actually move through their week.</p>
+        <figure class="project-hero__media">
+          <img src="assets/mockup_hero-stock&stem-key_features.svg" alt="Stock and Stem dashboard mockup highlighting weekly meal plan, pantry alerts, and grocery list">
+        </figure>
         <dl class="project-meta">
           <div class="project-meta__item">
             <dt class="project-meta__label type-label">Role</dt>
-            <dd class="project-meta__value type-body text-muted">UX Designer &amp; Full-Stack Development</dd>
+            <dd class="project-meta__value type-body text-muted">UX Designer &amp; Full-Stack Developer</dd>
           </div>
           <div class="project-meta__item">
             <dt class="project-meta__label type-label">Timeline</dt>
@@ -542,9 +568,12 @@
             <dd class="project-meta__value type-body text-muted">Solo independent project</dd>
           </div>
         </dl>
-        <figure class="project-hero__media">
-          <img src="assets/mockup_hero-stock&stem-key_features.svg" alt="Stock and Stem dashboard mockup highlighting weekly meal plan, pantry alerts, and grocery list">
-        </figure>
+        <p class="project-hero__actions">
+          <a href="https://stockandstem.netlify.app/" class="btn btn--primary" target="_blank" rel="noopener noreferrer">
+            Open published app
+            <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </a>
+        </p>
       </div>
     </section>
 
@@ -553,8 +582,9 @@
         <header class="section__header">
           <h2 class="type-display-md case-caps">Overview</h2>
         </header>
-        <p class="section__body type-body text-muted">Home cooks juggle tight schedules and tight budgets. A weeknight stir-fry, a meal-prep Sunday, and a last-minute dinner guest all compete for the same bag of spinach before Wednesday. Most existing tools rely on enterprise-level inventory mindsets or messy, disconnected notes apps.</p>
-        <p class="section__body type-body text-muted">Stock &amp; Stem was built to explore what a dedicated meal planning and pantry tool looks like when it prioritizes user focus: fast to scan, accurate about what you have on hand, and structurally aligned with how people actually move through their week.</p>
+        <p class="section__body type--body">Anyone who manages cooking for a busy household knows it is a delicate balance between managing tight schedules and budgets. A weeknight stir-fry, a meal-prep Sunday, and a last-minute dinner guest all compete for the same bag of spinach before Wednesday. Existing tools tend to be disparate, with many users juggling bookmarked recipes, hand-written notes, and a quick glance at an ever-changing inventory.</p>
+        <p class="section__body type--body">Stock & Stem enables users to browse and save recipes, select meals for each day and time slot during a designated timeframe, generate grocery lists, and manage inventory, all while tracking which meals have been individually prepared, packaged, or skipped.</p>
+
       </div>
     </section>
 
