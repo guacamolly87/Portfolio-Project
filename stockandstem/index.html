@@ -507,6 +507,304 @@
       object-position: left center;
     }
 
+    .theme-card__figure--contain {
+      aspect-ratio: auto;
+      overflow: visible;
+      display: flex;
+      justify-content: center;
+    }
+
+    .theme-card__figure--contain img {
+      width: 59.5%;
+      height: auto;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .theme-card__placeholder {
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-size: 14px;
+      margin: var(--space-4) 0 0;
+      width: 100%;
+    }
+
+    .theme-card--lavender .theme-card__placeholder {
+      background: rgba(26, 25, 31, 0.08);
+      border: 1px dashed rgba(26, 25, 31, 0.25);
+      color: rgba(26, 25, 31, 0.70);
+    }
+
+    .theme-card--night .theme-card__placeholder {
+      background: rgba(209, 210, 224, 0.06);
+      border: 1px dashed rgba(209, 210, 224, 0.25);
+      color: rgba(209, 210, 224, 0.55);
+    }
+
+    .theme-card__body .theme-gallery {
+      margin-top: var(--space-4);
+    }
+
+    .theme-gallery__slide.theme-card__placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      aspect-ratio: 16 / 9;
+    }
+
+    .theme-gallery {
+      position: relative;
+    }
+
+    .theme-gallery__frame {
+      position: relative;
+    }
+
+    .theme-gallery__hint {
+      display: none;
+      align-items: center;
+      gap: var(--space-2);
+      margin: 0 0 var(--space-3);
+    }
+
+    .theme-card--lavender .theme-gallery__hint {
+      color: rgba(26, 25, 31, 0.6);
+    }
+
+    .theme-card--night .theme-gallery__hint {
+      color: rgba(209, 210, 224, 0.6);
+    }
+
+    .theme-gallery__hint [data-lucide] {
+      width: 1em;
+      height: 1em;
+      flex-shrink: 0;
+    }
+
+    @media (min-width: 768px) {
+      .theme-gallery__hint {
+        display: flex;
+      }
+    }
+
+    .theme-gallery__viewport {
+      position: relative;
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: visible;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .theme-gallery__viewport::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .theme-gallery__viewport {
+        cursor: grab;
+      }
+
+      .theme-gallery__viewport.is-dragging {
+        cursor: grabbing;
+        scroll-behavior: auto;
+        user-select: none;
+      }
+
+      .theme-gallery__viewport::before,
+      .theme-gallery__viewport::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 40px;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0;
+        transition: opacity var(--transition-default);
+      }
+
+      .theme-gallery__viewport::before {
+        left: 0;
+        background: linear-gradient(to right, rgba(11, 10, 16, 0.45), transparent);
+      }
+
+      .theme-gallery__viewport::after {
+        right: 0;
+        background: linear-gradient(to left, rgba(11, 10, 16, 0.45), transparent);
+      }
+
+      .theme-card--lavender .theme-gallery__viewport::before {
+        background: linear-gradient(to right, rgba(202, 200, 243, 0.9), transparent);
+      }
+
+      .theme-card--lavender .theme-gallery__viewport::after {
+        background: linear-gradient(to left, rgba(202, 200, 243, 0.9), transparent);
+      }
+
+      .theme-gallery__viewport.can-scroll-prev::before,
+      .theme-gallery__viewport.can-scroll-next::after {
+        opacity: 1;
+      }
+    }
+
+    .theme-gallery__track {
+      display: flex;
+    }
+
+    .theme-gallery__slide {
+      flex: 0 0 auto;
+      margin: 0;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(209, 210, 224, 0.04);
+    }
+
+    .theme-gallery__figure-title {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.5;
+      margin: var(--space-4) 0 var(--space-3);
+      text-align: left;
+    }
+
+    .theme-card--night .theme-gallery__figure-title {
+      color: var(--color-violet-100);
+    }
+
+    .theme-card--lavender .theme-gallery__figure-title {
+      color: rgba(26, 25, 31, 0.75);
+    }
+
+    .theme-gallery__figure-label {
+      font-weight: 700;
+      color: inherit;
+    }
+
+    .theme-card--lavender .theme-gallery__slide {
+      background: rgba(26, 25, 31, 0.04);
+    }
+
+    .theme-gallery__slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      object-position: center;
+      pointer-events: none;
+    }
+
+    .theme-gallery__btn {
+      display: none;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border-strong);
+      background: rgba(11, 10, 16, 0.82);
+      color: var(--color-text-primary);
+      cursor: pointer;
+      transition: var(--transition-default);
+    }
+
+    .theme-card--lavender .theme-gallery__btn {
+      background: rgba(26, 25, 31, 0.82);
+      color: #CAC8F3;
+      border-color: rgba(26, 25, 31, 0.35);
+    }
+
+    .theme-gallery__btn:hover {
+      background: rgba(11, 10, 16, 0.95);
+    }
+
+    .theme-card--lavender .theme-gallery__btn:hover {
+      background: rgba(26, 25, 31, 0.95);
+    }
+
+    .theme-gallery__btn:focus-visible {
+      outline: 2px solid var(--color-border-focus);
+      outline-offset: 2px;
+    }
+
+    .theme-gallery__btn [data-lucide] {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .theme-gallery__btn--prev { left: var(--space-3); }
+    .theme-gallery__btn--next { right: var(--space-3); }
+
+    @media (min-width: 768px) {
+      .theme-gallery__btn {
+        display: inline-flex;
+      }
+    }
+
+    .theme-gallery__dots {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-2);
+      margin-top: var(--space-3);
+    }
+
+    .theme-gallery__caption {
+      margin: var(--space-3) 0 0;
+    }
+
+    .theme-card--night .theme-gallery__caption {
+      color: rgba(209, 210, 224, 0.75);
+    }
+
+    .theme-card--lavender .theme-gallery__caption {
+      color: rgba(26, 25, 31, 0.75);
+    }
+
+    .theme-gallery__dot {
+      width: 8px;
+      height: 8px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: var(--transition-default);
+      background: rgba(209, 210, 224, 0.35);
+    }
+
+    .theme-card--lavender .theme-gallery__dot {
+      background: rgba(26, 25, 31, 0.25);
+    }
+
+    .theme-gallery__dot.is-active {
+      background: var(--color-border-accent);
+      transform: scale(1.15);
+    }
+
+    .theme-card--lavender .theme-gallery__dot.is-active {
+      background: #1A191F;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .theme-gallery__viewport {
+        scroll-behavior: auto;
+      }
+    }
+
     .project-back {
       padding-top: 0;
       padding-bottom: var(--space-6);
@@ -577,17 +875,6 @@
       </div>
     </section>
 
-    <section class="section" id="overview">
-      <div class="container">
-        <header class="section__header">
-          <h2 class="type-display-md case-caps">Overview</h2>
-        </header>
-        <p class="section__body type--body">Anyone who manages cooking for a busy household knows it is a delicate balance between managing tight schedules and budgets. A weeknight stir-fry, a meal-prep Sunday, and a last-minute dinner guest all compete for the same bag of spinach before Wednesday. Existing tools tend to be disparate, with many users juggling bookmarked recipes, hand-written notes, and a quick glance at an ever-changing inventory.</p>
-        <p class="section__body type--body">Stock & Stem enables users to browse and save recipes, select meals for each day and time slot during a designated timeframe, generate grocery lists, and manage inventory, all while tracking which meals have been individually prepared, packaged, or skipped.</p>
-
-      </div>
-    </section>
-
     <section class="section" id="challenge">
       <div class="container">
         <header class="section__header">
@@ -596,7 +883,7 @@
         <div class="demo-panel">
           <div class="theme-card theme-card--lavender">
             <div class="theme-card__body">
-              <p class="type-body">Managing perishable groceries introduces a layer of micro-logistics that generic to-do apps ignore. Ingredients expire on different schedules, partial packages get opened mid-week, and fridge space is finite.</p>
+              <p class="type-body">Anyone who manages cooking for a busy household knows it is a delicate balance to juggle tight schedules and budgets. A weeknight stir-fry, a meal-prep Sunday, and a last-minute dinner guest all compete for the same bag of spinach before Wednesday. Existing tools tend to be disparate, with many users relying on bookmarked recipes, hand-written notes, and a quick glance at an ever-changing inventory. Furthermore, monitoring perishable groceries introduces a layer of micro-logistics that generic to-do apps ignore. Ingredients expire on different schedules, partial packages get opened mid-week, and fridge space is finite.</p>
               <p class="type-body">When building the application, I targeted three core friction points in the typical home cooking workflow:</p>
               <ul class="section__list type-body">
                 <li><strong>The Planning Fragmentation:</strong> Recipes live in bookmarks, grocery lists live in notes apps, and real-time pantry inventory is a mystery until you open the fridge.</li>
@@ -605,9 +892,6 @@
               </ul>
               <p class="type-body">The goal was to design a front-end interface that minimizes data-entry friction for someone interacting with a screen with intermittent attention and one hand on a spatula.</p>
             </div>
-            <figure class="theme-card__figure">
-              <img src="assets/cover_stock&stem.svg" alt="Stock and Stem cover art with meal planning interface">
-            </figure>
           </div>
         </div>
       </div>
@@ -621,24 +905,104 @@
         <div class="demo-panel">
           <div class="theme-card theme-card--night">
             <div class="theme-card__body">
-              <p class="type-body">As a solo developer applying HCI methodologies, I approached the project by mapping out a clean relational data model before writing code. I focused on translating real-world kitchen workflows into reactive state management.</p>
-              <p class="type-body">By consolidating fragmented steps into centralized hubs, the interface reduces the cognitive load of switching back and forth between separate planning, shopping, and cooking tabs.</p>
-              <h3 class="type-subheading">Key architectural &amp; design priorities</h3>
-              <ol class="section__list section__list--numbered type-body">
-                <li><strong>Glanceable hierarchy &amp; centralized planning:</strong> Critical signals—low stock, upcoming meals, expiring items—must be readable in under three seconds. This is achieved via a centralized calendar hub where users can view the day, edit schedules, pick meals, and trigger grocery generation natively in one screen.</li>
-                <li><strong>Zero-friction state toggles:</strong> To accommodate active kitchen environments, tracking must be tactile and instant. The grocery view utilizes interactive checklists with toggle states to strike off items instantly as they are tossed into a physical cart.</li>
-                <li><strong>Low-barrier inventory onboarding:</strong> Instead of requiring manual text entry for every item, the system leverages an inventory system seeded with common pantry staples that can be rapidly tagged or untagged to accurately reflect real-world stock in seconds.</li>
-              </ol>
+              <h3 class="type-subheading">Sketching</h3>
+              <p class="type-body">I used Crazy 8s as a low-stakes way to explore design ideas for the site's four main pages and to identify key user flows. This process allowed me to develop a pastel, retro aesthetic to evoke feelings of comfort and home-cooked meals. My inspiration for the design became the calming, pastel color palette of the KitchenAid mixer (cool mints and pale purples).</p>
+              <div class="theme-gallery" data-gallery>
+                <p class="theme-gallery__hint type-caption">
+                  <i data-lucide="move-horizontal" aria-hidden="true"></i>
+                  Swipe or drag to browse
+                </p>
+                <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 1.</span> Examples of Sketches</p>
+                <div class="theme-gallery__frame">
+                  <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Sketching process images" aria-roledescription="carousel">
+                    <div class="theme-gallery__track">
+                      <figure class="theme-gallery__slide">
+                        <img src="assets/sketches-1.png" alt="Initial design sketches for recipe and grocery list pages">
+                      </figure>
+                      <figure class="theme-gallery__slide">
+                        <img src="assets/sketches-2.png" alt="Initial design sketches for meal planner and consistency tracker pages">
+                      </figure>
+                    </div>
+                  </div>
+                  <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
+                    <i data-lucide="chevron-left" aria-hidden="true"></i>
+                  </button>
+                  <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
+                    <i data-lucide="chevron-right" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+              <h3 class="type-subheading">Developing Key Userflows</h3>
+              <p class="type-body">The key userflows focused on the core functionality of the app including assigning and retrieving recipes for meals, generating grocery lists, updating inventory, and tracking the progress of meal preparation.</p>
+              <div class="theme-gallery" data-gallery>
+                <p class="theme-gallery__hint type-caption">
+                  <i data-lucide="move-horizontal" aria-hidden="true"></i>
+                  Swipe or drag to browse
+                </p>
+                <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 2.</span> Examples of User Flows</p>
+                <div class="theme-gallery__frame">
+                  <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Key userflow images" aria-roledescription="carousel">
+                    <div class="theme-gallery__track">
+                      <figure class="theme-gallery__slide" data-caption="This flow was designed to minimize the friction of inventory management by allowing users to quickly update what they already have on hand, effectively reducing waste.">
+                        <img src="assets/User_flow_ex.1.png" alt="User flow diagram for updating meal prep progress on the Progress page">
+                      </figure>
+                      <figure class="theme-gallery__slide" data-caption="To reduce cognitive load regarding inventory management, I designed a pantry sync flow that allows users to quickly toggle owned items">
+                        <img src="assets/User_flow_ex.2.png" alt="User flow diagram for key app functionality">
+                      </figure>
+                    </div>
+                  </div>
+                  <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
+                    <i data-lucide="chevron-left" aria-hidden="true"></i>
+                  </button>
+                  <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
+                    <i data-lucide="chevron-right" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <p class="theme-gallery__caption type-body" aria-live="polite"></p>
+              </div>
+              <h3 class="type-subheading">Design Iterations</h3>
+              <p class="type-body">Design iterations included consolidating the daily planning workflows into a single calendar view and creating a quick-tagged inventory system.</p>
+              <h3 class="type-subheading">Visual Style Development</h3>
+              <p class="type-body">The following moodboard was developed to curate a cozy, retro-inspired aesthetic that captures the comforting essence of home-cooked meals while fostering a calming, stress-free kitchen environment through balanced deep purple and teal accents.</p>
+              <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 3.</span> Mood Board</p>
+              <figure class="theme-card__figure theme-card__figure--contain">
+                <img src="assets/Stock&Stem_moodboard.png" alt="Stock and Stem moodboard with cozy retro-inspired aesthetic, deep purple and teal accents">
+              </figure>
+              <h3 class="type-subheading">AI-Assisted Development</h3>
+              <p class="type-body">I used Cursor to generate code, set up Supabase and Unsplash API integrations for images, and generate placeholder content for the app, as well as the project documentation. Please view the gallery below to view sample prompts.</p>
+              <div class="theme-gallery" data-gallery>
+                <p class="theme-gallery__hint type-caption">
+                  <i data-lucide="move-horizontal" aria-hidden="true"></i>
+                  Swipe or drag to browse
+                </p>
+                <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 4.</span> AI Assistance During the Build Process</p>
+                <div class="theme-gallery__frame">
+                  <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="AI-assisted development images" aria-roledescription="carousel">
+                    <div class="theme-gallery__track">
+                      <figure class="theme-gallery__slide theme-card__placeholder" role="img" aria-label="AI-assisted development image placeholder 1">Image placeholder</figure>
+                      <figure class="theme-gallery__slide theme-card__placeholder" role="img" aria-label="AI-assisted development image placeholder 2">Image placeholder</figure>
+                      <figure class="theme-gallery__slide theme-card__placeholder" role="img" aria-label="AI-assisted development image placeholder 3">Image placeholder</figure>
+                      <figure class="theme-gallery__slide theme-card__placeholder" role="img" aria-label="AI-assisted development image placeholder 4">Image placeholder</figure>
+                      <figure class="theme-gallery__slide theme-card__placeholder" role="img" aria-label="AI-assisted development image placeholder 5">Image placeholder</figure>
+                      <figure class="theme-gallery__slide theme-card__placeholder" role="img" aria-label="AI-assisted development image placeholder 6">Image placeholder</figure>
+                    </div>
+                  </div>
+                  <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
+                    <i data-lucide="chevron-left" aria-hidden="true"></i>
+                  </button>
+                  <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
+                    <i data-lucide="chevron-right" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <p class="theme-gallery__caption type-body" aria-live="polite" hidden></p>
+              </div>
             </div>
-            <figure class="theme-card__figure">
-              <img src="assets/mockup_hero-stock&stem-key_features.svg" alt="Stock and Stem key features mockup used during workflow mapping">
-            </figure>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="solution">
+    <section class="section" id="final-concept">
       <div class="container">
         <header class="section__header">
           <h2 class="type-display-md case-caps">Solution</h2>
@@ -655,14 +1019,6 @@
                 <li><strong>Smart meal-time allocation —</strong> Dedicated, clean layout blocks for Breakfast, Lunch, Dinner, and Snacks that display precise timing and meal states, ensuring the entire day is glanceable in under three seconds.</li>
               </ul>
               <p class="type-body">The interface stays on dark surfaces with lavender editorial panels for feature callouts—matching the portfolio design system—so dense information remains readable in a bright kitchen.</p>
-            </div>
-            <div class="theme-card__images">
-              <figure class="theme-card__figure">
-                <img src="assets/mockup_hero-stock&stem-key_features.svg" alt="Dashboard view with pantry alerts and weekly meal plan">
-              </figure>
-              <figure class="theme-card__figure">
-                <img src="assets/cover_stock&stem.svg" alt="Mobile-friendly grocery and recipe summary screen">
-              </figure>
             </div>
           </div>
         </div>
@@ -732,6 +1088,142 @@
         }
       });
     });
+
+    document.querySelectorAll('[data-gallery]').forEach((gallery) => {
+      const viewport = gallery.querySelector('.theme-gallery__viewport');
+      const slides = Array.from(gallery.querySelectorAll('.theme-gallery__slide'));
+      const prevBtn = gallery.querySelector('.theme-gallery__btn--prev');
+      const nextBtn = gallery.querySelector('.theme-gallery__btn--next');
+      const dotsContainer = gallery.querySelector('.theme-gallery__dots');
+      const captionEl = gallery.querySelector('.theme-gallery__caption');
+      if (!viewport || slides.length === 0) return;
+
+      let activeIndex = 0;
+      let dragStartX = 0;
+      let dragScrollLeft = 0;
+      let isDragging = false;
+
+      if (dotsContainer) {
+        slides.forEach((_, index) => {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'theme-gallery__dot' + (index === 0 ? ' is-active' : '');
+          dot.setAttribute('role', 'tab');
+          dot.setAttribute('aria-label', `Image ${index + 1} of ${slides.length}`);
+          dot.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+          dot.addEventListener('click', () => goTo(index));
+          dotsContainer.appendChild(dot);
+        });
+      }
+
+      const dots = dotsContainer ? Array.from(dotsContainer.querySelectorAll('.theme-gallery__dot')) : [];
+
+      function layoutSlides() {
+        const width = Math.round(viewport.clientWidth);
+        if (width <= 0) return;
+        slides.forEach((slide) => {
+          slide.style.flex = `0 0 ${width}px`;
+          slide.style.width = `${width}px`;
+        });
+      }
+
+      function refreshGallery() {
+        layoutSlides();
+        goTo(activeIndex);
+        updateState();
+      }
+
+      function slideOffset(index) {
+        return index * viewport.clientWidth;
+      }
+
+      function goTo(index) {
+        activeIndex = Math.max(0, Math.min(index, slides.length - 1));
+        viewport.scrollTo({
+          left: slideOffset(activeIndex),
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+        });
+      }
+
+      function updateState() {
+        const slideWidth = viewport.clientWidth || 1;
+        activeIndex = Math.round(viewport.scrollLeft / slideWidth);
+        activeIndex = Math.max(0, Math.min(activeIndex, slides.length - 1));
+
+        dots.forEach((dot, index) => {
+          const isActive = index === activeIndex;
+          dot.classList.toggle('is-active', isActive);
+          dot.setAttribute('aria-selected', String(isActive));
+        });
+
+        viewport.classList.toggle('can-scroll-prev', activeIndex > 0);
+        viewport.classList.toggle('can-scroll-next', activeIndex < slides.length - 1);
+
+        if (captionEl) {
+          const caption = slides[activeIndex]?.dataset.caption || '';
+          captionEl.textContent = caption;
+          captionEl.hidden = !caption;
+        }
+      }
+
+      if (prevBtn) prevBtn.addEventListener('click', () => goTo(activeIndex - 1));
+      if (nextBtn) nextBtn.addEventListener('click', () => goTo(activeIndex + 1));
+
+      viewport.addEventListener('scroll', updateState, { passive: true });
+      window.addEventListener('resize', refreshGallery);
+
+      viewport.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          goTo(activeIndex - 1);
+        }
+        if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          goTo(activeIndex + 1);
+        }
+      });
+
+      viewport.addEventListener('pointerdown', (event) => {
+        if (event.pointerType === 'mouse' && window.innerWidth >= 768) {
+          isDragging = true;
+          dragStartX = event.clientX;
+          dragScrollLeft = viewport.scrollLeft;
+          viewport.classList.add('is-dragging');
+          viewport.setPointerCapture(event.pointerId);
+        }
+      });
+
+      viewport.addEventListener('pointermove', (event) => {
+        if (!isDragging) return;
+        const delta = event.clientX - dragStartX;
+        viewport.scrollLeft = dragScrollLeft - delta;
+      });
+
+      function endDrag(event) {
+        if (!isDragging) return;
+        isDragging = false;
+        viewport.classList.remove('is-dragging');
+        if (event.pointerId !== undefined && viewport.hasPointerCapture(event.pointerId)) {
+          viewport.releasePointerCapture(event.pointerId);
+        }
+        const slideWidth = viewport.clientWidth || 1;
+        goTo(Math.round(viewport.scrollLeft / slideWidth));
+      }
+
+      viewport.addEventListener('pointerup', endDrag);
+      viewport.addEventListener('pointercancel', endDrag);
+
+      gallery.querySelectorAll('img').forEach((img) => {
+        if (!img.complete) {
+          img.addEventListener('load', refreshGallery, { once: true });
+        }
+      });
+
+      refreshGallery();
+      requestAnimationFrame(refreshGallery);
+    });
+
+    lucide.createIcons();
   </script>
 </body>
 </html>
