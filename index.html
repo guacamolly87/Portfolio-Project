@@ -238,8 +238,6 @@
       background: var(--color-bg-primary);
       color: var(--color-text-on-primary);
       border-color: transparent;
-      font-size: 19px;
-      font-weight: 700;
     }
 
     .btn--primary:hover { background: var(--color-bg-primary-hover); }
@@ -477,6 +475,11 @@
 
     .contact-cta { margin-top: var(--space-6); }
 
+    .contact-feedback {
+      margin-top: var(--space-3);
+      min-height: 1.5em;
+    }
+
     .footer {
       border-top: 1px solid var(--color-border-subtle);
       padding: var(--space-6) 0;
@@ -605,7 +608,7 @@
             <div>
               <p class="contact-item__label type-label">Email</p>
               <p class="contact-item__content type-body">
-                <a href="mailto:mollymacfaddengriffin@gmail.com" class="link">mollymacfaddengriffin@gmail.com</a>
+                <a href="mailto:mollymacfaddengriffin@gmail.com?subject=Message%20from%20mgriffin%20designs%20portfolio" class="link" data-contact-link>mollymacfaddengriffin@gmail.com</a>
               </p>
             </div>
           </div>
@@ -627,7 +630,8 @@
           </div>
         </div>
         <div class="contact-cta">
-          <a href="mailto:mollymacfaddengriffin@gmail.com" class="btn btn--default btn--secondary">Send a message</a>
+          <a href="mailto:mollymacfaddengriffin@gmail.com?subject=Message%20from%20mgriffin%20designs%20portfolio" class="btn btn--default btn--secondary" data-contact-link>Send a message</a>
+          <p id="contact-feedback" class="contact-feedback type-caption text-muted" aria-live="polite"></p>
         </div>
       </div>
     </section>
@@ -664,6 +668,39 @@
           const icon = toggle.querySelector('[data-lucide]');
           icon.setAttribute('data-lucide', 'menu');
           lucide.createIcons();
+        }
+      });
+    });
+
+    const contactEmail = 'mollymacfaddengriffin@gmail.com';
+    const contactMailto = `mailto:${contactEmail}?subject=${encodeURIComponent('Message from mgriffin designs portfolio')}`;
+    const contactFeedback = document.getElementById('contact-feedback');
+
+    function showContactFeedback(message) {
+      if (contactFeedback) {
+        contactFeedback.textContent = message;
+      }
+    }
+
+    document.querySelectorAll('[data-contact-link]').forEach((link) => {
+      link.setAttribute('href', contactMailto);
+
+      link.addEventListener('click', async (event) => {
+        event.preventDefault();
+
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = contactMailto;
+        document.body.appendChild(iframe);
+        window.setTimeout(() => iframe.remove(), 2000);
+
+        window.location.href = contactMailto;
+
+        try {
+          await navigator.clipboard.writeText(contactEmail);
+          showContactFeedback('Opening your email app. Address copied to clipboard as a backup.');
+        } catch {
+          showContactFeedback(`Email: ${contactEmail}`);
         }
       });
     });

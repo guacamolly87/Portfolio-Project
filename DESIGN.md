@@ -2,7 +2,7 @@
 
 A precise implementation guide for generating interface screens consistently. **Always consume semantic tokens, never raw hex.**
 
-**Reference implementation:** `test-2.html` — canonical page demonstrating tokens, components, layout patterns, theme showcases, motion utilities, and WCAG patterns below.
+**Reference implementation:** `test-2.html` — canonical homepage/demo page demonstrating tokens, components, layout patterns, theme showcases, motion utilities, and WCAG patterns below. **`stockandstem/index.html`** — canonical project case-study page (theme galleries, feature lists, deployment CTA).
 
 **Global defaults** (unless a component explicitly overrides): dark surfaces only · `radius.none` on structural UI (buttons use `radius.md`) · flat elevation (no drop shadows except modals) · a single violet accent governed by the Accent Budget · content-based `em` padding inside controls · px `space.*` for layout gaps.
 
@@ -114,7 +114,7 @@ Violet is **never** used for hover states, body text, decorative fills, dividers
 | `color.text.primary` | `violet.100` @ 100% | Default text on dark (12.3:1 on base — AAA) |
 | `color.text.muted` | `violet.100` @ 70% | Secondary text, inactive nav/tab labels, contact values (6.3:1 on base — AA) |
 | `color.text.disabled` | `violet.100` @ 40% | Disabled text, placeholders (2.8:1 — exempt from contrast requirements) |
-| `color.text.onPrimary` | `ink.900` | **Mandatory** label on violet fill (4.0:1 — AA large text ≥18.67px bold only). All primary buttons and accent badges. |
+| `color.text.onPrimary` | `ink.900` | **Mandatory** label on violet fill (4.0:1). Primary buttons and accent badges. |
 | `color.text.accent` | `violet.500` | Emphasis on **large text only** (≥24px or ≥18.67px bold; 4.0:1 on base) |
 
 ### Semantic — borders
@@ -372,9 +372,8 @@ All components inherit global defaults unless noted. Every interactive component
 ### Button
 - **Variants:** Primary — `bg.primary`, `text.onPrimary`, no border, `radius.md`. Secondary — `bg.secondary` (transparent), `border.strong` (1px), `text.primary`, `radius.md`.
 - **Sizes:**
-  - `button.default` — `type.button` (16px/semibold), `button.padding.default`, `radius.md`. Content-driven height. Hero CTAs, forms, standalone actions.
+  - `button.default` — `type.button` (16px/semibold), `button.padding.default`, `radius.md`. Content-driven height. Hero CTAs, forms, standalone actions. **Primary and secondary variants share this size** — primary differs by fill color only.
   - `button.compact` — `type.label` (14px/medium), `button.padding.compact`, `radius.md`. Dense UI: cards, tables, toolbars. Not the sole primary CTA on a view.
-- **Primary WCAG sizing:** `button.default` primary variant uses **19px / bold (700)** so `text.onPrimary` on `violet.500` (4.0:1) meets WCAG 2.2 AA large-text minimum (3:1). Secondary buttons remain 16px / semibold.
 - **States:** Primary hover → `bg.primary.hover` · active → `bg.primary.active` · Secondary hover → `bg.hover` wash · Focus → `border.focus` 2px ring, 2px offset · Disabled → `bg.disabled`, `text.disabled`, `cursor: not-allowed`.
 - **Layout:** icon↔label `space.2`; adjacent buttons `space.3`.
 - **Rules:** one primary per view; sentence-case labels; shared padding per size; no pills or gradients.
@@ -401,13 +400,37 @@ All components inherit global defaults unless noted. Every interactive component
 Alternate editorial panels for hero blocks, feature callouts, and case-study intros. See **Color theme showcases** for tokens. Not interchangeable with project Cards.
 
 - **Variants:** `theme.lavender` (grid) · `theme.lavender.split` (showcase only) · `theme.night` (grid) · `theme.night.split` (showcase only)
-- **Classes:** `.theme-card` · `.theme-card--lavender` / `.theme-card--night` · `.theme-card--split` (showcase only) · `.theme-card__split` · `.theme-card__split--image-left` · `.theme-card__content` · `.theme-card__body` · `.theme-card__figure` · `.theme-card__images` · `.theme-card__placeholder` · `.theme-card__placeholder--tall`
+- **Classes:** `.theme-card` · `.theme-card--lavender` / `.theme-card--night` · `.theme-card--split` (showcase only) · `.theme-card__split` · `.theme-card__split--image-left` · `.theme-card__content` · `.theme-card__body` · `.theme-card__figure` · `.theme-card__figure--full-width` · `.theme-card__figure--contain` · `.theme-card__images` · `.theme-card__placeholder` · `.theme-card__placeholder--tall`
 - **Style:** `border-radius: 8px` (explicit exception to `radius.none` for theme panels only)
 - **Padding:** `space.5` (24px) all sides below `bp.md`; `30px` all sides at `bp.md`+. Text must never touch the colored card edge.
-- **Grid anatomy (project pages):** body (`type.body` @ 75% opacity theme color) → optional `type.subheading` → one `.theme-card__figure` (16:9) or `.theme-card__images` grid (two 16:9 figures). Stack vertically — no side-by-side text/image columns.
+- **Grid anatomy (project pages):** body (`type.body` @ 75% opacity theme color) → optional `type.subheading` → figures, galleries, or lists. Stack vertically — no side-by-side text/image columns.
+- **Figure modifiers (project pages):**
+  - `.theme-card__figure` — default 16:9, `object-fit: cover`, `object-position: left center`
+  - `.theme-card__figure--full-width` — bleeds toward card edge, leaving `space.3` (12px) lavender/night frame visible; use for hero mockups and feature screenshots inside cards
+  - `.theme-card__figure--contain` — no fixed aspect ratio; image centered at 68.4% width; use for mood boards and tall assets
 - **Split anatomy (showcase only):** lavender = content left + tall image right · night = tall image left + content right; placeholder spans ≈ `300px` height. Reserved for `test-2.html` theme demos — not for generated case-study pages.
 - **Spacing (grid):** body↔images `space.6` · images↔card bottom `16px` · image gap `16px` · paragraph stack inside body `space.4`
 - **Wrapper:** on homepage/demo pages, inside `demo-panel` (`bg.surface` + `border.subtle`, `space.5` padding). On **project pages**, `demo-panel` is a pass-through wrapper (transparent, no border, no padding) — see **Project pages**.
+
+### Theme Gallery
+Horizontal image carousel inside theme cards (Process / Solution sections). Copy CSS and JS from `stockandstem/index.html`.
+
+- **Classes:** `.theme-gallery` · `.theme-gallery--compact` · `.theme-gallery__hint` · `.theme-gallery__figure-title` · `.theme-gallery__figure-label` · `.theme-gallery__frame` · `.theme-gallery__viewport` · `.theme-gallery__track` · `.theme-gallery__slide` · `.theme-gallery__btn` · `.theme-gallery__caption` · `.theme-gallery__dots`
+- **Markup:** root `[data-gallery]` · viewport `tabindex="0"` `role="region"` `aria-roledescription="carousel"` · prev/next chevron buttons · optional `aria-live` caption
+- **Figure labels:** `<p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure N.</span> Title</p>` before each gallery
+- **Compact variant:** `.theme-gallery--compact` — frame `max-width: 84%`, centered; slides `aspect-ratio: 16/9`, images `object-fit: contain`. Use for user flows, prompt screenshots, and dense process artifacts.
+- **Full-width variant:** default `.theme-gallery` — slides span viewport width; images `object-fit: contain`
+- **Captions:** optional `data-caption` on `.theme-gallery__slide`; rendered in `.theme-gallery__caption` when present (user-flow galleries)
+- **Hint:** `.theme-gallery__hint` with Lucide `move-horizontal`; visible ≥ `bp.md`
+- **JS:** `document.querySelectorAll('[data-gallery]')` init — layout slides to viewport width, scroll-snap, drag on desktop, dot nav when `.theme-gallery__dots` exists
+
+### Feature List
+Bulleted feature callouts inside lavender Solution theme cards.
+
+- **Classes:** `.feature-list` on `<ul>`; items are plain `<li>` with `<strong>Feature name —</strong>` lead-in
+- **Inline figures:** nest `.theme-card__figure.theme-card__figure--full-width` inside a `<li>` after copy; `margin-top: space.4` on figure
+- **Spacing:** list `margin-top: space.5`; `li + li` gap `space.4`
+- **Rules:** no list markers; full-width figures per feature when a screenshot supports the bullet; optional hero prototype figure above the list
 
 ### Navigation
 - **Style:** `bg.base`, `border.subtle` bottom divider, sticky `z.sticky`. Items `type.label`; wordmark = Brand mark logo image (see Brand mark).
@@ -439,7 +462,8 @@ Alternate editorial panels for hero blocks, feature callouts, and case-study int
 ### Contact List
 - **Purpose:** Group of Contact Items for a contact/About section.
 - **Style:** vertical list on `bg.base`; intro paragraph `type.body` + `text.muted`, max 65ch.
-- **Spacing:** list top offset `space.5`; optional secondary CTA below list `space.6`.
+- **Spacing:** list top offset `space.5`; optional secondary CTA below list `space.6`; feedback line `space.3` below CTA (`.contact-feedback`, `aria-live="polite"`).
+- **Mailto handling:** email link and CTA share `data-contact-link`; JS sets `mailto:` with encoded subject, triggers iframe + `location.href` fallback, copies address to clipboard, writes status to `#contact-feedback`. Required on homepage `index.html`.
 - **Rules:** every row is a complete Contact Item; CTA below list uses `button.default` secondary variant.
 
 ### Contact Item
@@ -482,33 +506,39 @@ Nested project pages (`{slug}/index.html`) extend the homepage design system wit
 | Section | H-level | Surface | Key components |
 |---------|---------|---------|----------------|
 | Nav | — | `bg.base` | Navigation; Work link active; wordmark links to `../index.html` |
-| Project hero | H1 | `bg.base` | `type.display.lg`, tagline (`type.subheading`), summary (`type.body text-muted`), meta row (role / timeline / tools / team), optional 16:9 hero media |
-| Overview | H2 | `bg.base` | `section__body` paragraphs — full container width |
-| Challenge | H2 | `theme.lavender` | Single-column theme card: body + one 16:9 figure |
-| Process | H2 | `theme.night` | Single-column theme card: body + one 16:9 figure |
-| Solution | H2 | `theme.lavender` | Single-column theme card: body + two 16:9 figures in `.theme-card__images` |
-| Outcome | H2 | `bg.base` | `section__body` paragraphs — full container width |
+| Project hero | H1 | `bg.base` | `type.display.lg` + `case.caps`, tagline (`type.subheading`), summary (`type.body text-muted`), 16:9 `.project-hero__media`, meta row (`dl.project-meta`), optional `btn--default btn--primary` when `externalUrl` set |
+| Challenge | H2 | `theme.lavender` | Single-column theme card: body paragraphs + optional `section__list` |
+| Process | H2 | `theme.night` | Single-column theme card: `type.subheading` blocks, `.theme-gallery` carousels, mood board (`.theme-card__figure--contain`) |
+| Solution | H2 | `theme.lavender` | Single-column theme card: `feature-list` with optional per-item `.theme-card__figure--full-width`; prototype figure above list |
+| Deployment | H2 | `bg.base` | `section__body` paragraphs; optional repeat of external CTA (`project-hero__actions` + `btn--default btn--primary`) |
 | Reflection | H2 | `bg.base` | `section__body` paragraphs — full container width |
-| Back link | — | `bg.base` | `btn--secondary` → `../index.html#work` |
+| Back link | — | `bg.base` | `btn btn--default btn--secondary` → `../index.html#work` |
 | Footer | — | `bg.base` | `type.caption text-muted` |
+
+**Section naming:** authors may use **Deployment** instead of Outcome when the section covers launch and live app links. Map `## Deployment` or `## Outcome` in `content.md` to the dark `#outcome` section pattern.
+
+**Project hero order:** title → tagline (optional) → summary → hero media (16:9, before meta) → meta row → external CTA (optional).
 
 **Body copy width:** Do **not** apply `.measure` or `max-width: 65ch` to hero summaries, `.section__body`, or `.theme-card__body` on project pages. Text spans the full container content width (1200px max, minus `space.pad.page`).
 
 **`demo-panel` on project pages:** pass-through wrapper only — `background: transparent`, no border, `padding: 0`. The theme card inside spans the full container width. (Contrast: homepage/demo `demo-panel` uses `bg.surface` + `border.subtle` + `space.5` padding.)
 
 **Theme cards on project pages:**
-- Use **grid (single-column) layout only** — body stacked above image(s). Never use `.theme-card--split` or side-by-side text/image columns.
+- Use **grid (single-column) layout only** — body stacked above media. Never use `.theme-card--split` or side-by-side text/image columns.
 - Apply `type-body` to paragraphs, lists, and list items inside `.theme-card__body`.
-- `.theme-card__body`: `max-width: none`, `width: 100%`, `margin-bottom: space.6` before figures.
+- `.theme-card__body`: `max-width: none`, `width: 100%`.
 - Card padding: `space.5` (< `bp.md`) / `30px` (≥ `bp.md`) on all sides — prevents text from touching the lavender or night card edge.
-- Subheadings within cards: `type.subheading` (sentence case).
-- Images: `.theme-card__figure` (single) or `.theme-card__images` (pair); 16:9, `object-fit: cover`, `object-position: left center`.
+- Subheadings within cards: `type.subheading` (sentence case), `margin-top: space.5`.
+- Process galleries: copy full `.theme-gallery` CSS + init script from `stockandstem/index.html`.
+- Solution features: `.feature-list` with `<strong>Title —</strong>` lead-ins; nest `.theme-card__figure--full-width` inside `<li>` when a screenshot supports the bullet.
 
-**Dark sections** (Overview, Outcome, Reflection): body copy as `<p class="section__body type-body text-muted">` directly in `.container` — no theme card, no `.measure`.
+**Dark sections** (Deployment, Reflection): body copy as `<p class="section__body type-body text-muted">` directly in `.container` — no theme card, no `.measure`.
+
+**Buttons on project pages:** always pair size with variant — `btn btn--default btn--primary` or `btn btn--default btn--secondary`. Primary and secondary share `button.default` sizing (16px/semibold); primary differs by violet fill only. External app links use `target="_blank"` `rel="noopener noreferrer"`.
 
 **Paths (local `file://` browsing):** wordmark/home `../index.html` · work `../index.html#work` · contact `../index.html#contact` · project assets `assets/...` relative to project folder.
 
-**Accent budget:** no primary button on project pages; back link is secondary only. Work nav item is the single location indicator.
+**Accent budget:** Work nav item is the location indicator. External published-app CTAs may use `btn--primary` in project hero and again in Deployment; back link stays `btn--secondary`. Do not add unrelated primary actions.
 
 ---
 
@@ -584,7 +614,7 @@ Verified contrast ratios (calculated per WCAG relative luminance). Status key: *
 | `text.primary` on `bg.surface` | 10.9:1 | Pass AAA | Cards, panels, inputs |
 | `text.muted` on `bg.base` | 6.3:1 | Pass AA | Secondary copy, nav labels |
 | `text.muted` on `bg.surface` | 6.0:1 | Pass AA | Helper text, captions |
-| `text.onPrimary` on `bg.primary` | 4.0:1 | Pass (large) | Primary buttons — **19px bold required** |
+| `text.onPrimary` on `bg.primary` | 4.0:1 | Known constraint | Primary buttons — short labels only; see Accessibility |
 | `text.accent` on `bg.base` | 4.0:1 | Pass (large) | Large emphasis only |
 | `ink.800` on `theme.lavender` | 10.9:1 | Pass AAA | Light lavender headers |
 | Lavender body (75% ink) on lavender | 5.8:1 | Pass AA | Theme card body copy |
@@ -611,12 +641,12 @@ Verified contrast ratios (calculated per WCAG relative luminance). Status key: *
 
 **Known constraints:**
 - `text.disabled` and placeholder text in inactive fields are exempt — do not use for essential instructions.
-- `text.onPrimary` on `violet.500` does **not** meet 4.5:1 normal text; primary buttons must use large-text sizing (19px / bold).
+- `text.onPrimary` on `violet.500` (4.0:1) does **not** meet 4.5:1 normal text AA. Primary buttons use `button.default` sizing (16px/semibold) for visual parity with secondary actions; keep labels short (≤3 words).
 - Theme placeholder labels use minimum AA opacities: lavender `ink.800` @ 70% · night `#D1D2E0` @ 55%.
 
 ### Policy summary
 
-- **Contrast:** `text.primary` on base/surface ≈12:1 (AAA). `text.muted` ≈6:1 (AA). `text.onPrimary` on `bg.primary` ≈4.0:1 — **large text only** (19px bold on primary buttons). `text.accent` violet on base ≈4.0:1 — large text only.
+- **Contrast:** `text.primary` on base/surface ≈12:1 (AAA). `text.muted` ≈6:1 (AA). `text.onPrimary` on `bg.primary` ≈4.0:1 — short primary-button labels only. `text.accent` violet on base ≈4.0:1 — large text only.
 - **Focus:** visible 2px `border.focus`, 2px offset on all interactives.
 - **Never rely on violet alone** for state — pair with indicator (underline, icon, text).
 - **No hue-coded status** — icon + text always.
@@ -674,10 +704,10 @@ Map tokens to CSS custom properties in implementation files:
   --button-padding-compact: 0.5em 1.25em;
 }
 
-/* Primary button — WCAG large-text sizing (see Accessibility) */
+/* Primary button — fill variant; shares button.default sizing */
 .btn--primary {
-  font-size: 19px;
-  font-weight: 700;
+  background: var(--color-bg-primary);
+  color: var(--color-text-on-primary);
 }
 
 /* Skip link — first focusable element */
@@ -718,12 +748,13 @@ Map tokens to CSS custom properties in implementation files:
 - Use `radius.none` on cards, inputs, badges; `radius.md` on buttons; `radius.full` on avatars only; **`8px` only on theme cards**.
 - Apply `case.caps` only to H1/H2 with ≤3 words; `case.sentence` on all H3/H4 and long H1/H2.
 - Use `button.padding.default` for standard buttons; `button.compact` in dense UI only.
-- Use `text.onPrimary` (`ink.900`) on all primary buttons and accent badges; render primary at **19px bold** for WCAG AA.
+- Use `text.onPrimary` (`ink.900`) on all primary buttons and accent badges.
 - Render every Contact Item with icon + label + content.
 - Match card media to 16:9 with `object-position: left center`.
 - Use the dark-background logo (`assets/mgriffin-designs.png`) in nav on `bg.base`.
 - Wrap theme showcases in `demo-panel` (`bg.surface` + `border.subtle`); use all four theme variants (grid + split) on demo pages where appropriate.
-- On project case-study pages, use single-column theme cards only; let body copy span full container width; keep `space.5` / `30px` padding inside theme cards.
+- On project case-study pages, use single-column theme cards only; let body copy span full container width; keep `space.5` / `30px` padding inside theme cards; copy theme-gallery CSS/JS from `stockandstem/index.html` when carousels are needed.
+- Use `btn--default` with every button (`btn--default btn--primary` or `btn--default btn--secondary`); primary and secondary share the same size.
 - Include a skip link to `#main` as the first focusable element.
 - Apply `animate-pop-in` utilities with `prefers-reduced-motion` fallback for staged reveals.
 - Meet theme placeholder contrast minimums (lavender 70% · night 55%).
@@ -744,4 +775,5 @@ Map tokens to CSS custom properties in implementation files:
 - Don't use split theme-card layouts (`.theme-card--split`) on project case-study pages — compresses body copy on laptop viewports.
 - Don't apply `.measure` or `65ch` max-width to project page body copy.
 - Don't remove horizontal padding from theme cards — text must not touch the colored card edge.
+- Don't use `btn--primary` or `btn--secondary` without `btn--default` — size tokens live on the default modifier.
 - Don't apply `8px` border-radius outside theme cards and pop-in demo shells.
