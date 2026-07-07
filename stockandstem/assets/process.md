@@ -71,6 +71,6 @@ The live, responsive application achieves a "glanceable hierarchy," allowing hom
 
 ## Reflection
 
-Consolidating the daily details taught me the value of aggressive layout simplification. In early site maps, I separated features into distinct sub-modules, but true user context demanded everything live on a single calendar axis.
+Consolidating the daily details taught me the value of aggressive layout simplification. In early site maps, I separated features into distinct sub-sections, but true user context demanded everything live on a single calendar axis.
 
 If I continued the work, I would pilot offline-first sync for kitchens with spotty Wi-Fi and explore shared household views that shorten the "did we already buy this?" loop between partners. I'd also pressure-test accessibility under bright kitchen lighting and one-handed interaction—constraints that belong in the first sprint, not a polish pass.

@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glass Botanist — mgriffin designs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --color-violet-500: #6A53FE;
+      --color-violet-100: #CAC8F3;
+      --color-ink-900: #0B0A10;
+      --color-ink-800: #1A191F;
+
+      --color-bg-base: var(--color-ink-900);
+      --color-bg-surface: var(--color-ink-800);
+      --color-bg-primary: var(--color-violet-500);
+      --color-bg-primary-hover: rgba(106, 83, 254, 0.9);
+      --color-bg-primary-active: rgba(106, 83, 254, 0.8);
+      --color-bg-secondary: transparent;
+      --color-bg-hover: rgba(202, 200, 243, 0.06);
+
+      --color-text-primary: var(--color-violet-100);
+      --color-text-muted: rgba(202, 200, 243, 0.7);
+      --color-text-on-primary: var(--color-ink-900);
+
+      --color-border-subtle: rgba(202, 200, 243, 0.18);
+      --color-border-strong: var(--color-violet-100);
+      --color-border-accent: var(--color-violet-500);
+      --color-border-focus: var(--color-violet-100);
+
+      --font-display: "Barlow Condensed", sans-serif;
+      --font-body: "Manrope", sans-serif;
+
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-7: 48px;
+      --space-8: 64px;
+
+      --radius-none: 0;
+      --radius-md: 12px;
+
+      --button-padding-default: 0.75em 1.5em;
+      --transition-default: all 150ms cubic-bezier(0.2, 0, 0, 1);
+
+      --z-dropdown: 1000;
+      --z-sticky: 1100;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--color-bg-base);
+      color: var(--color-text-primary);
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: var(--space-4);
+      z-index: 9999;
+      padding: var(--space-3) var(--space-4);
+      background: var(--color-bg-primary);
+      color: var(--color-text-on-primary);
+      font-family: var(--font-body);
+      font-size: 19px;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: var(--radius-md);
+    }
+
+    .skip-link:focus { top: var(--space-4); }
+
+    .type-display-lg {
+      font-family: var(--font-display);
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0;
+    }
+
+    .type-display-md {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0;
+    }
+
+    .type-subheading {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .type-body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .type-label {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .type-caption {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .case-caps {
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .text-muted { color: var(--color-text-muted); }
+
+    @media (min-width: 768px) {
+      .type-display-lg { font-size: 56px; }
+      .type-display-md { font-size: 40px; }
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: var(--space-4);
+      padding-right: var(--space-4);
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding-left: var(--space-6);
+        padding-right: var(--space-6);
+      }
+    }
+
+    .section {
+      padding-top: var(--space-5);
+      padding-bottom: var(--space-5);
+    }
+
+    @media (min-width: 768px) {
+      .section {
+        padding-top: var(--space-6);
+        padding-bottom: var(--space-6);
+      }
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--color-border-focus);
+      outline-offset: 2px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      font-family: var(--font-body);
+      font-weight: 600;
+      line-height: 1.3;
+      border-radius: var(--radius-md);
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition-default);
+      white-space: nowrap;
+    }
+
+    .btn--default {
+      font-size: 16px;
+      padding: var(--button-padding-default);
+    }
+
+    .btn--secondary {
+      background: var(--color-bg-secondary);
+      color: var(--color-text-primary);
+      border-color: var(--color-border-strong);
+    }
+
+    .btn--secondary:hover { background: var(--color-bg-hover); }
+
+    .btn--primary {
+      background: var(--color-bg-primary);
+      color: var(--color-text-on-primary);
+      border-color: transparent;
+    }
+
+    .btn--primary:hover { background: var(--color-bg-primary-hover); }
+    .btn--primary:active { background: var(--color-bg-primary-active); }
+
+    .btn [data-lucide] {
+      width: 1.125em;
+      height: 1.125em;
+      flex-shrink: 0;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: var(--z-sticky);
+      background: var(--color-bg-base);
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 56px;
+      gap: var(--space-4);
+    }
+
+    .nav__wordmark {
+      display: block;
+      text-decoration: none;
+      flex-shrink: 0;
+      line-height: 0;
+    }
+
+    .nav__wordmark img {
+      display: block;
+      height: 36px;
+      width: auto;
+    }
+
+    .nav__wordmark:focus-visible { outline-offset: 4px; }
+
+    .nav__toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      background: transparent;
+      border: none;
+      color: var(--color-text-primary);
+      cursor: pointer;
+    }
+
+    .nav__menu {
+      display: none;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: var(--space-1);
+    }
+
+    .nav__menu.is-open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--color-bg-surface);
+      border-bottom: 1px solid var(--color-border-subtle);
+      padding: var(--space-3) var(--space-4);
+      z-index: var(--z-dropdown);
+    }
+
+    .nav__link {
+      display: flex;
+      align-items: center;
+      padding: var(--space-3) var(--space-4);
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.3;
+      border-bottom: 2px solid transparent;
+      transition: var(--transition-default);
+      min-height: 44px;
+    }
+
+    .nav__link:hover {
+      color: var(--color-text-primary);
+      background: var(--color-bg-hover);
+    }
+
+    .nav__link--active {
+      color: var(--color-text-primary);
+      border-bottom-color: var(--color-border-accent);
+    }
+
+    @media (min-width: 768px) {
+      .nav__toggle { display: none; }
+
+      .nav__menu,
+      .nav__menu.is-open {
+        display: flex;
+        flex-direction: row;
+        position: static;
+        background: transparent;
+        border: none;
+        padding: 0;
+      }
+    }
+
+    .nav__wrapper { position: relative; }
+
+    .project-hero {
+      padding-top: var(--space-6);
+      padding-bottom: var(--space-5);
+    }
+
+    .project-hero__tagline {
+      margin-top: var(--space-3);
+      color: var(--color-text-muted);
+    }
+
+    .project-hero__summary {
+      margin-top: var(--space-5);
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-5);
+      margin-top: var(--space-6);
+    }
+
+    .project-meta__item {
+      min-width: 140px;
+    }
+
+    @media (min-width: 768px) {
+      .project-meta {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+        gap: var(--space-6) var(--space-8);
+        text-align: left;
+      }
+
+      .project-meta__item {
+        min-width: 0;
+      }
+    }
+
+    .project-meta__label {
+      font-weight: 600;
+      color: var(--color-text-primary);
+    }
+
+    .project-meta__value {
+      margin-top: var(--space-1);
+    }
+
+    .project-hero__actions {
+      margin-top: var(--space-5);
+    }
+
+    .project-hero__media {
+      margin-top: var(--space-6);
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+
+    .project-hero__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left center;
+    }
+
+    .section__header { margin-bottom: var(--space-6); }
+
+    .section__body + .section__body { margin-top: var(--space-4); }
+
+    .section__list {
+      margin: var(--space-4) 0 0;
+      padding-left: 1.25em;
+    }
+
+    .section__list li + li { margin-top: var(--space-3); }
+
+    .section__list--numbered {
+      list-style: decimal;
+      padding-left: 1.5em;
+    }
+
+    .feature-list {
+      margin: var(--space-5) 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .feature-list li + li { margin-top: var(--space-4); }
+
+    .feature-list li .theme-card__figure {
+      margin-top: var(--space-4);
+    }
+
+    .feature-list li .theme-gallery__figure-title + .theme-card__figure {
+      margin-top: 0;
+    }
+
+    .feature-list li .theme-gallery__figure-title {
+      margin-top: var(--space-4);
+      margin-bottom: var(--space-3);
+    }
+
+    .theme-card__body > .theme-gallery__figure-title {
+      margin-top: var(--space-4);
+    }
+
+    .demo-panel {
+      background: transparent;
+      border: none;
+      border-radius: var(--radius-none);
+      padding: 0;
+    }
+
+    .theme-card {
+      padding: var(--space-5);
+      border-radius: 8px;
+    }
+
+    @media (min-width: 768px) {
+      .theme-card {
+        padding: 30px;
+      }
+    }
+
+    .theme-card--lavender {
+      background: #CAC8F3;
+      color: #1A191F;
+    }
+
+    .theme-card--night {
+      background: #0B0A10;
+      color: #D1D2E0;
+      border: 1px solid var(--color-border-subtle);
+    }
+
+    .theme-card__body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5;
+      margin: 0 0 var(--space-6);
+      max-width: none;
+      width: 100%;
+    }
+
+    .theme-card--lavender .theme-card__body {
+      color: rgba(26, 25, 31, 0.75);
+    }
+
+    .theme-card--night .theme-card__body {
+      color: rgba(209, 210, 224, 0.75);
+    }
+
+    .theme-card__body p + p { margin-top: var(--space-4); }
+
+    .theme-card__body .section__list + p { margin-top: var(--space-5); }
+
+    .theme-card__body .feature-list + p { margin-top: var(--space-5); }
+
+    .theme-card__body .section__list {
+      color: rgba(26, 25, 31, 0.75);
+    }
+
+    .theme-card--night .theme-card__body .section__list {
+      color: rgba(209, 210, 224, 0.75);
+    }
+
+    .theme-card__body .type-subheading {
+      color: #1A191F;
+      margin-top: var(--space-5);
+      margin-bottom: var(--space-3);
+    }
+
+    .theme-card--night .theme-card__body .type-subheading {
+      color: #D1D2E0;
+    }
+
+    .theme-card__body .feature-list li {
+      color: inherit;
+    }
+
+    .theme-card__images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 639px) {
+      .theme-card__images { grid-template-columns: 1fr; }
+    }
+
+    .theme-card__figure {
+      aspect-ratio: 16 / 9;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .theme-card__body > .theme-card__figure,
+    .theme-card__body .feature-list .theme-card__figure {
+      margin-bottom: var(--space-6);
+    }
+
+    .theme-card__figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left center;
+    }
+
+    .theme-card__figure--contain {
+      aspect-ratio: auto;
+      overflow: visible;
+      display: flex;
+      justify-content: center;
+    }
+
+    .theme-card__figure--contain img {
+      width: 68.4%;
+      height: auto;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .theme-card__figure--full-width {
+      --figure-card-inset: var(--space-3);
+      width: calc(100% + 2 * (var(--space-5) - var(--figure-card-inset)));
+      margin-inline: calc(-1 * (var(--space-5) - var(--figure-card-inset)));
+    }
+
+    @media (min-width: 768px) {
+      .theme-card__figure--full-width {
+        width: calc(100% + 2 * (30px - var(--figure-card-inset)));
+        margin-inline: calc(-1 * (30px - var(--figure-card-inset)));
+      }
+    }
+
+    .theme-card__figure--full-width img {
+      object-fit: cover;
+      object-position: left center;
+    }
+
+    .theme-card__placeholder {
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-size: 14px;
+      margin: var(--space-4) 0 0;
+      width: 100%;
+    }
+
+    .theme-card--lavender .theme-card__placeholder {
+      background: rgba(26, 25, 31, 0.08);
+      border: 1px dashed rgba(26, 25, 31, 0.25);
+      color: rgba(26, 25, 31, 0.70);
+    }
+
+    .theme-card--night .theme-card__placeholder {
+      background: rgba(209, 210, 224, 0.06);
+      border: 1px dashed rgba(209, 210, 224, 0.25);
+      color: rgba(209, 210, 224, 0.55);
+    }
+
+    .theme-card__body .theme-gallery {
+      margin-top: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+
+    .theme-gallery__slide.theme-card__placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      aspect-ratio: 16 / 9;
+    }
+
+    .theme-gallery {
+      position: relative;
+    }
+
+    .theme-gallery--compact .theme-gallery__frame {
+      max-width: 84%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .theme-gallery--compact .theme-gallery__slide {
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+
+    .theme-gallery--compact .theme-gallery__slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .theme-gallery__frame {
+      position: relative;
+    }
+
+    .theme-gallery__hint {
+      display: none;
+      align-items: center;
+      gap: var(--space-2);
+      margin: 0 0 var(--space-3);
+    }
+
+    .theme-card--lavender .theme-gallery__hint {
+      color: rgba(26, 25, 31, 0.6);
+    }
+
+    .theme-card--night .theme-gallery__hint {
+      color: rgba(209, 210, 224, 0.6);
+    }
+
+    .theme-gallery__hint [data-lucide] {
+      width: 1em;
+      height: 1em;
+      flex-shrink: 0;
+    }
+
+    @media (min-width: 768px) {
+      .theme-gallery__hint {
+        display: flex;
+      }
+    }
+
+    .theme-gallery__viewport {
+      position: relative;
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+      overscroll-behavior-x: contain;
+      scrollbar-width: none;
+    }
+
+    .theme-gallery__viewport::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .theme-gallery__viewport {
+        cursor: grab;
+      }
+
+      .theme-gallery__viewport.is-dragging {
+        cursor: grabbing;
+        scroll-behavior: auto;
+        user-select: none;
+      }
+
+      .theme-gallery__viewport::before,
+      .theme-gallery__viewport::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 40px;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0;
+        transition: opacity var(--transition-default);
+      }
+
+      .theme-gallery__viewport::before {
+        left: 0;
+        background: linear-gradient(to right, rgba(11, 10, 16, 0.45), transparent);
+      }
+
+      .theme-gallery__viewport::after {
+        right: 0;
+        background: linear-gradient(to left, rgba(11, 10, 16, 0.45), transparent);
+      }
+
+      .theme-card--lavender .theme-gallery__viewport::before {
+        background: linear-gradient(to right, rgba(202, 200, 243, 0.9), transparent);
+      }
+
+      .theme-card--lavender .theme-gallery__viewport::after {
+        background: linear-gradient(to left, rgba(202, 200, 243, 0.9), transparent);
+      }
+
+      .theme-gallery__viewport.can-scroll-prev::before,
+      .theme-gallery__viewport.can-scroll-next::after {
+        opacity: 1;
+      }
+    }
+
+    .theme-gallery__track {
+      display: flex;
+      flex-wrap: nowrap;
+      width: max-content;
+      min-width: 100%;
+    }
+
+    .theme-gallery__slide {
+      flex: 0 0 auto;
+      margin: 0;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(209, 210, 224, 0.04);
+    }
+
+    .theme-gallery__figure-title {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.5;
+      margin: var(--space-4) 0 var(--space-3);
+      text-align: left;
+    }
+
+    .theme-card--night .theme-gallery__figure-title {
+      color: var(--color-violet-100);
+    }
+
+    .theme-card--lavender .theme-gallery__figure-title {
+      color: rgba(26, 25, 31, 0.75);
+    }
+
+    .theme-gallery__figure-label {
+      font-weight: 700;
+      color: inherit;
+    }
+
+    .theme-card--lavender .theme-gallery__slide {
+      background: rgba(26, 25, 31, 0.04);
+    }
+
+    .theme-gallery__slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      object-position: center;
+      pointer-events: none;
+    }
+
+    .theme-gallery__btn {
+      display: inline-flex;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border-strong);
+      background: rgba(11, 10, 16, 0.82);
+      color: var(--color-text-primary);
+      cursor: pointer;
+      transition: var(--transition-default);
+    }
+
+    .theme-card--lavender .theme-gallery__btn {
+      background: rgba(26, 25, 31, 0.82);
+      color: #CAC8F3;
+      border-color: rgba(26, 25, 31, 0.35);
+    }
+
+    .theme-gallery__btn:hover {
+      background: rgba(11, 10, 16, 0.95);
+    }
+
+    .theme-card--lavender .theme-gallery__btn:hover {
+      background: rgba(26, 25, 31, 0.95);
+    }
+
+    .theme-gallery__btn:focus-visible {
+      outline: 2px solid var(--color-border-focus);
+      outline-offset: 2px;
+    }
+
+    .theme-gallery__btn [data-lucide] {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .theme-gallery__btn--prev { left: var(--space-3); }
+    .theme-gallery__btn--next { right: var(--space-3); }
+
+    .theme-gallery__dots {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-2);
+      margin-top: var(--space-3);
+    }
+
+    .theme-gallery__caption {
+      margin: var(--space-3) 0 0;
+    }
+
+    .theme-card--night .theme-gallery__caption {
+      color: rgba(209, 210, 224, 0.75);
+    }
+
+    .theme-card--lavender .theme-gallery__caption {
+      color: rgba(26, 25, 31, 0.75);
+    }
+
+    .theme-gallery__dot {
+      width: 8px;
+      height: 8px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: var(--transition-default);
+      background: rgba(209, 210, 224, 0.35);
+    }
+
+    .theme-card--lavender .theme-gallery__dot {
+      background: rgba(26, 25, 31, 0.25);
+    }
+
+    .theme-gallery__dot.is-active {
+      background: var(--color-border-accent);
+      transform: scale(1.15);
+    }
+
+    .theme-card--lavender .theme-gallery__dot.is-active {
+      background: #1A191F;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .theme-gallery__viewport {
+        scroll-behavior: auto;
+      }
+    }
+
+    .project-back {
+      padding-top: 0;
+      padding-bottom: var(--space-6);
+    }
+
+    .footer {
+      border-top: 1px solid var(--color-border-subtle);
+      padding: var(--space-6) 0;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header class="nav">
+    <div class="container nav__wrapper">
+      <div class="nav__inner">
+        <a href="../index.html" class="nav__wordmark" aria-label="mgriffin designs — home">
+          <img src="../assets/mgriffin-designs.png?v=final2" alt="mgriffin designs" width="144" height="48">
+        </a>
+        <button class="nav__toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu" id="nav-toggle">
+          <i data-lucide="menu" aria-hidden="true"></i>
+        </button>
+        <ul class="nav__menu" id="nav-menu" role="list">
+          <li><a href="../index.html" class="nav__link">Home</a></li>
+          <li><a href="../index.html#work" class="nav__link nav__link--active">Work</a></li>
+          <li><a href="../index.html#contact" class="nav__link">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="project-hero section">
+      <div class="container">
+        <h1 class="type-display-lg case-caps">Glass Botanist</h1>
+        <p class="project-hero__tagline type-subheading">Keep your greens glowing.</p>
+        <p class="project-hero__summary type-body text-muted">The Glass Botanist is a centralized plant-care dashboard that tracks individual watering schedules based on specific plant categories to ensure optimal health. The app uses a visual health-status system to alert you which plants need attention, helping you keep through timely reminders.</p>
+        <figure class="project-hero__media">
+          <img src="assets/mockup_hero-plant-watering-app.svg" alt="The key features of the Glass Botanist include: plant management (add, update, and archive your plants while tracking your watering dates), health tracking (happy, neutral, and sad faces indicate when your plant requires care), and the leaf library, which enables you to customize your plant's care based on its watering needs">
+        </figure>
+        <dl class="project-meta">
+          <div class="project-meta__item">
+            <dt class="project-meta__label type-label">Role</dt>
+            <dd class="project-meta__value type-body text-muted">UX Designer &amp; Full-Stack Developer</dd>
+          </div>
+          <div class="project-meta__item">
+            <dt class="project-meta__label type-label">Timeline</dt>
+            <dd class="project-meta__value type-body text-muted">2 weeks · 2026</dd>
+          </div>
+          <div class="project-meta__item">
+            <dt class="project-meta__label type-label">Tools</dt>
+            <dd class="project-meta__value type-body text-muted">HTML/CSS, JavaScript, Tailwind CSS, Cursor, Lucid icons, and Unsplash API</dd>
+          </div>
+          <div class="project-meta__item">
+            <dt class="project-meta__label type-label">Team</dt>
+            <dd class="project-meta__value type-body text-muted">Solo independent project</dd>
+          </div>
+        </dl>
+        <p class="project-hero__actions">
+          <a href="https://griffin-plant-glass-botanist.netlify.app/" class="btn btn--default btn--primary" target="_blank" rel="noopener noreferrer">
+            Open published app
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="challenge">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="type-display-md case-caps">Challenge</h2>
+        </header>
+        <div class="demo-panel">
+          <div class="theme-card theme-card--lavender">
+            <div class="theme-card__body">
+              <p class="type-body">Many plant owners only recognize the need for care after their plants exhibit clear signs of distress. Seasonal changes can affect plant health, including changes in temperature, sunlight levels, and humidity. Further compounding this issue is that the needs of one plant can vary significantly from the needs of another.</p>
+              <p class="type-body">To address this, my goal became simplifying the cognitive burden of plant care by transforming the mundane chore of watering plants into an intuitive process that uses visual cues to encourage consistent routines.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="type-display-md case-caps">Process</h2>
+        </header>
+        <div class="demo-panel">
+          <div class="theme-card theme-card--night">
+            <div class="theme-card__body">
+              <h3 class="type-subheading">Establishing the web application structure &amp; basic elements</h3>
+              <p class="type-body">As a Memphis native and avid gardener of perennials, I am all too familiar with the unpleasant surprise of finding my thirsty hydrangeas wilting during the unforgiving summer months. I could easily empathize with this specific challenge, as I have personally spent many afternoons outside watering my plants after they have already started to protest, combating the humidity, swarming mosquitoes, and a leaking water hose that tends to spray everywhere.</p>
+              <p class="type-body">However, because this was a two-week project, I decided to narrow my focus. I chose to focus on the habit of providing consistent care rather than the actual science behind plant care.</p>
+              <p class="type-body">I began by establishing a site map comprised of four main pages: home (/), new (/new), my plants (/my_plants), and the leaf library (/library). I used Vibe coding to build out these sections.</p>
+              <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 1.</span> Application site map</p>
+              <figure class="theme-card__figure theme-card__figure--full-width">
+                <img src="assets/site-map-plant-watering.png" alt="Site map for the Glass Botanist app showing home, new plant, my plants, and leaf library pages">
+              </figure>
+              <p class="type-body">Next, I created relevant subsections that define the functions of each page. I mapped various user flows, including the quick watering function on the home page (/) and the ability to edit and archive existing plants within their collection.</p>
+              <div class="theme-gallery theme-gallery--compact" data-gallery>
+                <p class="theme-gallery__hint type-caption">
+                  <i data-lucide="move-horizontal" aria-hidden="true"></i>
+                  Swipe or drag to browse
+                </p>
+                <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 2.</span> Key user flows</p>
+                <div class="theme-gallery__frame">
+                  <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="User flow diagrams" aria-roledescription="carousel">
+                    <div class="theme-gallery__track">
+                      <figure class="theme-gallery__slide" data-caption="User flow for editing and archiving plants within a collection on the My Plants page.">
+                        <img src="assets/manage-plants-user-flow.png" alt="User flow diagram for managing and archiving plants in a collection">
+                      </figure>
+                      <figure class="theme-gallery__slide" data-caption="User flow for the quick watering function on the home page, enabling fast care updates with minimal taps.">
+                        <img src="assets/quick-water_user-flow.png" alt="User flow diagram for the quick water feature on the home page">
+                      </figure>
+                    </div>
+                  </div>
+                  <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
+                    <i data-lucide="chevron-left" aria-hidden="true"></i>
+                  </button>
+                  <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
+                    <i data-lucide="chevron-right" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <p class="theme-gallery__caption type-body" aria-live="polite"></p>
+                <div class="theme-gallery__dots"></div>
+              </div>
+              <p class="type-body">Additionally, an attempt at narrowing my scope, I decided that the Leaf Library would be a way for the user to designate their plant into one of four categories:</p>
+              <ul class="section__list type-body">
+                <li><strong>Desert dweller</strong> – low maintenance, prefers dry conditions; watering is needed every 14 – 17 days</li>
+                <li><strong>Standard houseplant</strong> – requires a consistent amount of moderate moisture; watering is needed every 7 days</li>
+                <li><strong>Thirsty tropical</strong> – prefers humid environments and damp soil; watering is needed every 3–5 days</li>
+                <li><strong>Hydration heavy</strong> – the soil should never be dry; water every 1–2 days</li>
+              </ul>
+              <p class="type-body">Additionally, I decided to integrate a getPlantHealthStatus function that determines the plant's facial expression, setting the criteria as follows:</p>
+              <ul class="section__list type-body">
+                <li><strong>Happy</strong> – if the plant is within its recommended watering window</li>
+                <li><strong>Neutral</strong> – if the plant is at the end of its watering window</li>
+                <li><strong>Distressed</strong> – if the plant has exceeded its watering window</li>
+              </ul>
+
+              <h3 class="type-subheading">Visual style development</h3>
+              <p class="type-body">Initially, I decided to use an earth-tone color scheme for all app pages (i.e., sage green, terracotta, warm browns, and creams). Unfortunately, I was unable to include the reactive faces based on plant health status to render correctly. The app could only show neutral and sad faces, so I left the feature out because it wasn't part of my initial MVP.</p>
+              <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 3.</span> Initial launch home screen</p>
+              <figure class="theme-card__figure theme-card__figure--full-width">
+                <img src="assets/initial-launch-plant.png" alt="Initial home page for the Glass Botanist app at first launch with earth-tone color scheme">
+              </figure>
+              <p class="type-body">However, I was able to continue iterating later, refining my design and troubleshooting the getPlantHealthStatus function. I created a reusable skill, /inspire-design-system, to generate a Design.md folder. I reviewed various web applications on Dribbble and Landbook, and ultimately prompted Cursor to use the following site, https://hellopebl.com/?ref=land-book.com, as design inspiration. The following test file was generated.</p>
+              <div class="theme-gallery theme-gallery--compact" data-gallery>
+                <p class="theme-gallery__hint type-caption">
+                  <i data-lucide="move-horizontal" aria-hidden="true"></i>
+                  Swipe or drag to browse
+                </p>
+                <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 4.</span> Design system test pages</p>
+                <div class="theme-gallery__frame">
+                  <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Design system test page images" aria-roledescription="carousel">
+                    <div class="theme-gallery__track">
+                      <figure class="theme-gallery__slide">
+                        <img src="assets/test-page1.png" alt="Example of design test site page one for Glass Botanist">
+                      </figure>
+                      <figure class="theme-gallery__slide">
+                        <img src="assets/test-page2.png" alt="Example of design test site page two for Glass Botanist">
+                      </figure>
+                      <figure class="theme-gallery__slide">
+                        <img src="assets/test-page3.png" alt="Example of design test site page three for Glass Botanist">
+                      </figure>
+                      <figure class="theme-gallery__slide">
+                        <img src="assets/test-page4.png" alt="Example of design test site page four for Glass Botanist">
+                      </figure>
+                    </div>
+                  </div>
+                  <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
+                    <i data-lucide="chevron-left" aria-hidden="true"></i>
+                  </button>
+                  <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
+                    <i data-lucide="chevron-right" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div class="theme-gallery__dots"></div>
+              </div>
+              <p class="type-body">I applied the new color palette and manually modified the plant icons because the new design clashed with the initial earth-tone color scheme. Please see the various iterations below.</p>
+              <div class="theme-gallery theme-gallery--compact" data-gallery>
+                <p class="theme-gallery__hint type-caption">
+                  <i data-lucide="move-horizontal" aria-hidden="true"></i>
+                  Swipe or drag to browse
+                </p>
+                <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 5.</span> Plant icon iterations</p>
+                <div class="theme-gallery__frame">
+                  <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Plant icon iteration images" aria-roledescription="carousel">
+                    <div class="theme-gallery__track">
+                      <figure class="theme-gallery__slide">
+                        <img src="assets/plant1.png" alt="Early plant icon iteration for Glass Botanist">
+                      </figure>
+                      <figure class="theme-gallery__slide">
+                        <img src="assets/plant2.png" alt="Mid plant icon iteration for Glass Botanist">
+                      </figure>
+                      <figure class="theme-gallery__slide">
+                        <img src="assets/plant3.png" alt="Later plant icon iteration for Glass Botanist">
+                      </figure>
+                      <figure class="theme-gallery__slide">
+                        <img src="assets/plant4.png" alt="Final plant icon iteration for Glass Botanist">
+                      </figure>
+                    </div>
+                  </div>
+                  <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
+                    <i data-lucide="chevron-left" aria-hidden="true"></i>
+                  </button>
+                  <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
+                    <i data-lucide="chevron-right" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div class="theme-gallery__dots"></div>
+              </div>
+              <p class="type-body">I was also able to restore the happy, neutral, and distressed faces to the pots at this time, ultimately discovering that the sad and happy mouths were too similar (Q28 24 vs Q28 25). Updating the PLANT_POT_EXPRESSIONS to happy (Q28 25) and sad (Q28 19) resolved the issue at last. Furthermore, I used Awaad to find a website with a liquid glass effect. I decided to apply this to my plant card containers.</p>
+
+              <h3 class="type-subheading">AI assisted development</h3>
+              <p class="type-body">I used Cursor to generate a my /inspire-design-system skill and DESIGN.md file. I also built the entire application by outlining the site map and key user flows, as well as troubleshooting the reactive expressions, and various designs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="solution">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="type-display-md case-caps">Solution</h2>
+        </header>
+        <div class="demo-panel">
+          <div class="theme-card theme-card--lavender">
+            <div class="theme-card__body">
+              <h3 class="type-subheading">How might we help new plant owners create consistent care habits by integrating gamified feedback?</h3>
+              <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 6.</span> Key screens across the app</p>
+              <figure class="theme-card__figure theme-card__figure--full-width">
+                <img src="assets/glass-botanist-phones.png" alt="Glass Botanist app screens on iPhone showing My Plants, New Plant, and Home pages">
+              </figure>
+              <p class="type-body">My app bridges the gap through a two-part solution:</p>
+              <ul class="feature-list type-body">
+                <li><strong>Educational clarity —</strong> The app categorizes plants into four distinct watering tiers (Desert Dweller, Standard Houseplant, Thirsty Tropical, and Hydration Heavy), which helps remove the guesswork from care schedules.</li>
+                <li><strong>Gamification —</strong> The app provides immediate, relatable emotional feedback through dynamic facial expressions (happy/neutral/distressed) to help users engage in an intuitive, interactive experience that promotes long-term plant care.</li>
+              </ul>
+              <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 7.</span> Finished app on iPad and iPhone</p>
+              <figure class="theme-card__figure theme-card__figure--full-width">
+                <img src="assets/glass-botanist-ipad.png" alt="Finished Glass Botanist app displayed on iPad and iPhone with liquid glass plant cards">
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="outcome">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="type-display-md case-caps">Deployment</h2>
+        </header>
+        <p class="section__body type-body text-muted">The Glass Botanist translates the anxiety of plant care into a low-friction, intuitive interface. Dynamic status modeling replaces reactive guesswork, allowing the user to interpret plant maintenance using clear, glanceable health indicators.</p>
+        <p class="section__body type-body text-muted">The live, responsive application prioritizes proactive habit formation, allowing new plant owners to manage care schedules, monitor moisture levels, and maintain overall plant health with minimal cognitive load.</p>
+        <p class="project-hero__actions">
+          <a href="https://griffin-plant-glass-botanist.netlify.app/" class="btn btn--default btn--primary" target="_blank" rel="noopener noreferrer">
+            Open published app
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="reflection">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="type-display-md case-caps">Reflection</h2>
+        </header>
+        <p class="section__body type-body text-muted">My work on the Glass Botanist highlights the transition from creating purely functional tools to designing for human behavior. I discovered that the most effective interfaces not only solve problems but also lessen the cognitive load of everyday life. This is achieved through state-driven design that adapts to the user's reality in real time.</p>
+      </div>
+    </section>
+
+    <section class="section project-back">
+      <div class="container">
+        <a href="../index.html#work" class="btn btn--default btn--secondary">Back to featured work</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="type-caption text-muted">&copy; 2026 Molly Griffin. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('nav-menu');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      const icon = toggle.querySelector('[data-lucide]');
+      icon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    });
+
+    menu.querySelectorAll('.nav__link').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 768) {
+          menu.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', 'Open menu');
+          const icon = toggle.querySelector('[data-lucide]');
+          icon.setAttribute('data-lucide', 'menu');
+          if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+      });
+    });
+
+    document.querySelectorAll('[data-gallery]').forEach((gallery) => {
+      const viewport = gallery.querySelector('.theme-gallery__viewport');
+      const track = gallery.querySelector('.theme-gallery__track');
+      const slides = Array.from(gallery.querySelectorAll('.theme-gallery__slide'));
+      const prevBtn = gallery.querySelector('.theme-gallery__btn--prev');
+      const nextBtn = gallery.querySelector('.theme-gallery__btn--next');
+      const dotsContainer = gallery.querySelector('.theme-gallery__dots');
+      const captionEl = gallery.querySelector('.theme-gallery__caption');
+      if (!viewport || slides.length === 0) return;
+
+      let activeIndex = 0;
+      let dragStartX = 0;
+      let dragScrollLeft = 0;
+      let isDragging = false;
+      let touchStartX = 0;
+
+      if (dotsContainer) {
+        slides.forEach((_, index) => {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'theme-gallery__dot' + (index === 0 ? ' is-active' : '');
+          dot.setAttribute('role', 'tab');
+          dot.setAttribute('aria-label', `Image ${index + 1} of ${slides.length}`);
+          dot.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+          dot.addEventListener('click', () => goTo(index));
+          dotsContainer.appendChild(dot);
+        });
+      }
+
+      const dots = dotsContainer ? Array.from(dotsContainer.querySelectorAll('.theme-gallery__dot')) : [];
+
+      function layoutSlides() {
+        const width = Math.round(viewport.clientWidth);
+        if (width <= 0) return;
+        slides.forEach((slide) => {
+          slide.style.flex = `0 0 ${width}px`;
+          slide.style.width = `${width}px`;
+        });
+        if (track) {
+          track.style.width = `${width * slides.length}px`;
+        }
+      }
+
+      function refreshGallery() {
+        layoutSlides();
+        goTo(activeIndex);
+        updateState();
+      }
+
+      function slideOffset(index) {
+        return index * viewport.clientWidth;
+      }
+
+      function goTo(index) {
+        activeIndex = Math.max(0, Math.min(index, slides.length - 1));
+        viewport.scrollTo({
+          left: slideOffset(activeIndex),
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+        });
+      }
+
+      function updateState() {
+        const slideWidth = viewport.clientWidth || 1;
+        activeIndex = Math.round(viewport.scrollLeft / slideWidth);
+        activeIndex = Math.max(0, Math.min(activeIndex, slides.length - 1));
+
+        dots.forEach((dot, index) => {
+          const isActive = index === activeIndex;
+          dot.classList.toggle('is-active', isActive);
+          dot.setAttribute('aria-selected', String(isActive));
+        });
+
+        viewport.classList.toggle('can-scroll-prev', activeIndex > 0);
+        viewport.classList.toggle('can-scroll-next', activeIndex < slides.length - 1);
+
+        if (captionEl) {
+          const caption = slides[activeIndex]?.dataset.caption || '';
+          captionEl.textContent = caption;
+          captionEl.hidden = !caption;
+        }
+      }
+
+      if (prevBtn) prevBtn.addEventListener('click', () => goTo(activeIndex - 1));
+      if (nextBtn) nextBtn.addEventListener('click', () => goTo(activeIndex + 1));
+
+      viewport.addEventListener('scroll', updateState, { passive: true });
+      window.addEventListener('resize', refreshGallery);
+
+      viewport.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          goTo(activeIndex - 1);
+        }
+        if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          goTo(activeIndex + 1);
+        }
+      });
+
+      viewport.addEventListener('pointerdown', (event) => {
+        if (event.pointerType === 'mouse') {
+          isDragging = true;
+          dragStartX = event.clientX;
+          dragScrollLeft = viewport.scrollLeft;
+          viewport.classList.add('is-dragging');
+          viewport.setPointerCapture(event.pointerId);
+        }
+      });
+
+      viewport.addEventListener('pointermove', (event) => {
+        if (!isDragging) return;
+        const delta = event.clientX - dragStartX;
+        viewport.scrollLeft = dragScrollLeft - delta;
+      });
+
+      function endDrag(event) {
+        if (!isDragging) return;
+        isDragging = false;
+        viewport.classList.remove('is-dragging');
+        if (event.pointerId !== undefined && viewport.hasPointerCapture(event.pointerId)) {
+          viewport.releasePointerCapture(event.pointerId);
+        }
+        const slideWidth = viewport.clientWidth || 1;
+        goTo(Math.round(viewport.scrollLeft / slideWidth));
+      }
+
+      viewport.addEventListener('pointerup', endDrag);
+      viewport.addEventListener('pointercancel', endDrag);
+
+      viewport.addEventListener('touchstart', (event) => {
+        touchStartX = event.touches[0].clientX;
+      }, { passive: true });
+
+      viewport.addEventListener('touchend', (event) => {
+        const delta = event.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(delta) > 40) {
+          goTo(activeIndex + (delta < 0 ? 1 : -1));
+        }
+      }, { passive: true });
+
+      gallery.querySelectorAll('img').forEach((img) => {
+        if (!img.complete) {
+          img.addEventListener('load', refreshGallery, { once: true });
+        }
+      });
+
+      refreshGallery();
+      requestAnimationFrame(refreshGallery);
+      window.addEventListener('load', refreshGallery);
+    });
+
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>
