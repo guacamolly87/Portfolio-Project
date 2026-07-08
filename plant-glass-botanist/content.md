@@ -92,7 +92,6 @@ Insert scrollable gallery with:
 - `prompt2.png` — Cursor prompt defining preview phase constraints for DESIGN.md and preview.html
 - `prompt3.png` — Cursor /inspire-design-system prompt with helopebl.com design inspiration URL
 - `prompt4.png` — Cursor prompt to replace legacy CSS variables with the new Pacific palette
-- `prompt5.png` — Glass Botanist project metadata showing role, timeline, tools, and team
 - `prompt6.png` — Cursor prompt to refine card styling with white surfaces and subtle borders
 - `prompt7.png` — Cursor prompt to standardize plant icons with teal foliage and charcoal pots
 - `prompt8.png` — Cursor prompt to adjust plant icon spacing and increase foliage size
@@ -149,7 +148,6 @@ Available assets in `assets/`:
 - `prompt2.png` — Cursor prompt defining preview phase constraints
 - `prompt3.png` — Cursor prompt with helopebl.com design inspiration URL
 - `prompt4.png` — Cursor prompt to replace legacy CSS variables with Pacific palette
-- `prompt5.png` — project metadata (role, timeline, tools, team)
 - `prompt6.png` — Cursor prompt to refine card styling
 - `prompt7.png` — Cursor prompt to standardize plant icons
 - `prompt8.png` — Cursor prompt to adjust plant icon spacing
