@@ -211,7 +211,6 @@
     .measure { max-width: var(--prose-max-width); }
 
     .prose-measure,
-    .hero__lead,
     .contact__intro {
       max-width: var(--prose-max-width);
     }
@@ -406,6 +405,12 @@
       gap: var(--space-6);
     }
 
+    @media (min-width: 768px) {
+      .hero__intro {
+        max-width: var(--prose-max-width);
+      }
+    }
+
     .hero__unit {
       display: flex;
       flex-direction: column;
@@ -551,10 +556,12 @@
       <div class="container">
         <div class="hero__layout">
           <div class="hero__content">
-            <h1 class="type-display-lg">Hi, I'm Molly, a librarian turned UX designer who turns complex systems into clear, intuitive experiences that work for people.</h1>
-            <p class="hero__lead type-body text-muted">
-              Research-driven UX at the intersection of information science and human-centered design. I build thoughtful digital experiences through intentional, rapid prototyping—leveraging modern development workflows to turn ideas into reality.
-            </p>
+            <div class="hero__intro">
+              <h1 class="type-display-lg">Hi, I'm Molly, a librarian turned UX designer who turns complex systems into clear, intuitive experiences that work for people.</h1>
+              <p class="hero__lead type-body text-muted">
+                Research-driven UX at the intersection of information science and human-centered design. I build thoughtful digital experiences through intentional, rapid prototyping—leveraging modern development workflows to turn ideas into reality.
+              </p>
+            </div>
             <div class="hero__unit">
               <div class="hero__media">
                 <img
@@ -626,7 +633,7 @@
             </a>
             <div class="card__body">
               <h3 class="type-subheading">Dream Desk Visualizer</h3>
-              <p class="type-body-sm text-muted">Craft your comfort. Visualize your dream workspace in seconds.</p>
+              <p class="type-body-sm text-muted">Craft your comfort by creating your dream workspace.</p>
               <a href="dream-desk-visualizer/index.html" class="btn btn--compact btn--secondary">Project Overview ↗</a>
             </div>
           </article>

@@ -507,8 +507,8 @@
     }
 
     .case-study-visual--night .theme-gallery__figure-title,
-    #process .demo-panel .case-study-visual .theme-gallery__figure-title,
-    #process .demo-panel > .theme-gallery .theme-gallery__figure-title {
+    #process > .container .case-study-visual .theme-gallery__figure-title,
+    #process > .container > .theme-gallery .theme-gallery__figure-title {
       color: var(--color-violet-100);
     }
 
@@ -542,7 +542,9 @@
     @media (min-width: 768px) {
       .demo-panel > .prose-card,
       .demo-panel > .case-study-visual,
-      .demo-panel > .theme-gallery {
+      .demo-panel > .theme-gallery,
+      #process > .container > .case-study-visual,
+      #process > .container > .theme-gallery {
         max-width: var(--content-column-max);
         margin-inline: auto;
       }
@@ -748,8 +750,22 @@
 
     .theme-card--night .theme-gallery__hint,
     .case-study-visual--night .theme-gallery__hint,
-    #process .demo-panel > .theme-gallery .theme-gallery__hint {
+    #process > .container > .theme-gallery .theme-gallery__hint {
       color: rgba(209, 210, 224, 0.6);
+    }
+
+    #process > .container > .type-subheading {
+      margin-top: var(--space-7);
+      margin-bottom: var(--space-4);
+    }
+
+    #process > .container > .section__header + .type-subheading {
+      margin-top: 0;
+    }
+
+    #process > .container > .theme-gallery,
+    #process > .container > .case-study-visual {
+      margin-top: var(--space-5);
     }
 
     .theme-gallery__hint [data-lucide] {
@@ -1073,147 +1089,132 @@
         <header class="section__header">
           <h2 class="type-display-md case-caps">Process</h2>
         </header>
-        <div class="demo-panel">
-          <div class="theme-card theme-card--night prose-card">
-            <div class="theme-card__body">
-              <h3 class="type-subheading">Sketching</h3>
-              <p class="type-body">I used Crazy 8s as a low-stakes way to explore design ideas for the website's four main pages and to identify key user flows.</p>
-            </div>
-          </div>
-          <div class="theme-gallery" data-gallery>
-                <p class="theme-gallery__hint type-caption">
-                  <i data-lucide="move-horizontal" aria-hidden="true"></i>
-                  Swipe or drag to browse
-                </p>
-                <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 1.</span> Examples of Sketches</p>
-                <div class="theme-gallery__frame">
-                  <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Sketching process images" aria-roledescription="carousel">
-                    <div class="theme-gallery__track">
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/sketches-1.png" alt="Initial design sketches for recipe and grocery list pages">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/sketches-2.png" alt="Initial design sketches for meal planner and consistency tracker pages">
-                      </figure>
-                    </div>
-                  </div>
-                  <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
-                    <i data-lucide="chevron-left" aria-hidden="true"></i>
-                  </button>
-                  <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
-                    <i data-lucide="chevron-right" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </div>
-          <div class="theme-card theme-card--night prose-card">
-            <div class="theme-card__body">
-              <h3 class="type-subheading">Developing Key Userflows</h3>
-              <p class="type-body">The key userflows focused on the core functionality of the app including assigning and retrieving recipes for meals, generating grocery lists, updating inventory, and tracking the progress of meal preparation.</p>
-            </div>
-          </div>
-          <div class="theme-gallery theme-gallery--compact" data-gallery>
-                <p class="theme-gallery__hint type-caption">
-                  <i data-lucide="move-horizontal" aria-hidden="true"></i>
-                  Swipe or drag to browse
-                </p>
-                <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 2.</span> Examples of User Flows</p>
-                <div class="theme-gallery__frame">
-                  <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Key userflow images" aria-roledescription="carousel">
-                    <div class="theme-gallery__track">
-                      <figure class="theme-gallery__slide" data-caption="This user flow shows how common items can easily be added to the individual's pantry, reducing cognitive load and improving efficiency during inventory management.">
-                        <img src="assets/user-flow-ex1.png" alt="User flow diagram for updating meal prep progress on the Progress page">
-                      </figure>
-                      <figure class="theme-gallery__slide" data-caption="This flow was designed to minimize the friction of inventory management by allowing users to quickly update what they already have on hand, ultimately reducing waste.">
-                        <img src="assets/user-flow-ex2.png" alt="User flow diagram for pantry sync and inventory management on the Grocery List page">
-                      </figure>
-                    </div>
-                  </div>
-                  <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
-                    <i data-lucide="chevron-left" aria-hidden="true"></i>
-                  </button>
-                  <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
-                    <i data-lucide="chevron-right" aria-hidden="true"></i>
-                  </button>
-                </div>
-                <p class="theme-gallery__caption type-body" aria-live="polite"></p>
-              </div>
 
-          <div class="theme-card theme-card--night prose-card">
-            <div class="theme-card__body">
-              <h3 class="type-subheading">Visual Style Development</h3>
-              <p class="type-body">I created a moodboard centered on a cozy, retro-inspired aesthetic designed to foster a calm, stress-free kitchen environment. Inspired by the soft, nostalgic color palette of vintage kitchenware, specifically the cool mints and pale purples found in classic KitchenAid mixers, I utilized purple and teal accents to balance the pastels and evoke the warmth and comfort of a home-cooked meal.</p>
+        <h3 class="type-subheading">Sketching</h3>
+        <p class="section__body type-body text-muted">I used Crazy 8s as a low-stakes way to explore design ideas for the website's four main pages and to identify key user flows.</p>
+        <div class="theme-gallery" data-gallery>
+          <p class="theme-gallery__hint type-caption">
+            <i data-lucide="move-horizontal" aria-hidden="true"></i>
+            Swipe or drag to browse
+          </p>
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 1.</span> Examples of Sketches</p>
+          <div class="theme-gallery__frame">
+            <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Sketching process images" aria-roledescription="carousel">
+              <div class="theme-gallery__track">
+                <figure class="theme-gallery__slide">
+                  <img src="assets/sketches-1.png" alt="Initial design sketches for recipe and grocery list pages">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/sketches-2.png" alt="Initial design sketches for meal planner and consistency tracker pages">
+                </figure>
+              </div>
             </div>
+            <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
+              <i data-lucide="chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
+              <i data-lucide="chevron-right" aria-hidden="true"></i>
+            </button>
           </div>
-          <div class="case-study-visual case-study-visual--night">
-            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 3.</span> Mood Board</p>
-            <figure class="theme-card__figure theme-card__figure--contain">
-              <img src="assets/stock&stem2.png" alt="Stock and Stem moodboard with cozy retro-inspired aesthetic, deep purple and teal accents">
-            </figure>
-          </div>
-          <div class="theme-card theme-card--night prose-card">
-            <div class="theme-card__body">
-              <h3 class="type-subheading">Design Iterations</h3>
-              <p class="type-body">Design iterations included consolidating the daily planning workflows into a single calendar view, creating a quick-tagged inventory system, and sorting the grocery list by category with toggles that allow users to quickly mark items off their shopping list.</p>
-              <h3 class="type-subheading">AI-Assisted Development</h3>
-              <p class="type-body">I used Cursor to generate code, set up Supabase and Unsplash API integrations for images, and generate placeholder content for the app, as well as the project documentation. Please view the gallery below to view sample prompts.</p>
+        </div>
+
+        <h3 class="type-subheading">Developing Key Userflows</h3>
+        <p class="section__body type-body text-muted">The key userflows focused on the core functionality of the app including assigning and retrieving recipes for meals, generating grocery lists, updating inventory, and tracking the progress of meal preparation.</p>
+        <div class="theme-gallery theme-gallery--compact" data-gallery>
+          <p class="theme-gallery__hint type-caption">
+            <i data-lucide="move-horizontal" aria-hidden="true"></i>
+            Swipe or drag to browse
+          </p>
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 2.</span> Examples of User Flows</p>
+          <div class="theme-gallery__frame">
+            <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Key userflow images" aria-roledescription="carousel">
+              <div class="theme-gallery__track">
+                <figure class="theme-gallery__slide" data-caption="This user flow shows how common items can easily be added to the individual's pantry, reducing cognitive load and improving efficiency during inventory management.">
+                  <img src="assets/user-flow-ex1.png" alt="User flow diagram for updating meal prep progress on the Progress page">
+                </figure>
+                <figure class="theme-gallery__slide" data-caption="This flow was designed to minimize the friction of inventory management by allowing users to quickly update what they already have on hand, ultimately reducing waste.">
+                  <img src="assets/user-flow-ex2.png" alt="User flow diagram for pantry sync and inventory management on the Grocery List page">
+                </figure>
+              </div>
             </div>
+            <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
+              <i data-lucide="chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
+              <i data-lucide="chevron-right" aria-hidden="true"></i>
+            </button>
           </div>
-          <div class="theme-gallery theme-gallery--compact" data-gallery>
-                <p class="theme-gallery__hint type-caption">
-                  <i data-lucide="move-horizontal" aria-hidden="true"></i>
-                  Swipe or drag to browse
-                </p>
-                <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 4.</span> Examples of AI Assistance During the Build Process</p>
-                <div class="theme-gallery__frame">
-                  <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="AI-assisted development images" aria-roledescription="carousel">
-                    <div class="theme-gallery__track">
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt-1.png" alt="Cursor prompt to analyze mood board and extract reusable visual design patterns">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt-2.png" alt="Cursor prompt to create DESIGN.md implementation guide from design system draft">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt-3.png" alt="Cursor prompt to implement Supabase backend setup and user login">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt-4.png" alt="Cursor prompt to wire up useMealSlots and useRecipes hooks with persistence layer">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt-5.png" alt="Cursor prompt to fix Supabase initialization for Netlify deployment">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt-6.png" alt="Cursor prompt to refactor grocery list into grouped single-column rows with toggles">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt-7.png" alt="Cursor prompt to add quick-add pantry staples for new users">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt-8.png" alt="Cursor prompt to install axios and verify environment for recipe image feature">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt-10.png" alt="Cursor prompt to create Unsplash image service with axios">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt-11.png" alt="Cursor prompt to configure Unsplash environment variables and update RecipeCard">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt-12.png" alt="Cursor prompt to create welcome landing page with hero layout and sign-in button">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt-13.png" alt="Cursor prompt to implement protected route pattern with Supabase auth">
-                      </figure>
-                    </div>
-                  </div>
-                  <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
-                    <i data-lucide="chevron-left" aria-hidden="true"></i>
-                  </button>
-                  <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
-                    <i data-lucide="chevron-right" aria-hidden="true"></i>
-                  </button>
-                </div>
-                <p class="theme-gallery__caption type-body" aria-live="polite" hidden></p>
+          <p class="theme-gallery__caption type-body" aria-live="polite"></p>
+        </div>
+
+        <h3 class="type-subheading">Visual Style Development</h3>
+        <p class="section__body type-body text-muted">I created a moodboard centered on a cozy, retro-inspired aesthetic designed to foster a calm, stress-free kitchen environment. Inspired by the soft, nostalgic color palette of vintage kitchenware, specifically the cool mints and pale purples found in classic KitchenAid mixers, I utilized purple and teal accents to balance the pastels and evoke the warmth and comfort of a home-cooked meal.</p>
+        <div class="case-study-visual case-study-visual--night">
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 3.</span> Mood Board</p>
+          <figure class="theme-card__figure theme-card__figure--contain">
+            <img src="assets/stock&stem2.png" alt="Stock and Stem moodboard with cozy retro-inspired aesthetic, deep purple and teal accents">
+          </figure>
+        </div>
+
+        <h3 class="type-subheading">Design Iterations</h3>
+        <p class="section__body type-body text-muted">Design iterations included consolidating the daily planning workflows into a single calendar view, creating a quick-tagged inventory system, and sorting the grocery list by category with toggles that allow users to quickly mark items off their shopping list.</p>
+        <h3 class="type-subheading">AI-Assisted Development</h3>
+        <p class="section__body type-body text-muted">I used Cursor to generate code, set up Supabase and Unsplash API integrations for images, and generate placeholder content for the app, as well as the project documentation. Please view the gallery below to view sample prompts.</p>
+        <div class="theme-gallery theme-gallery--compact" data-gallery>
+          <p class="theme-gallery__hint type-caption">
+            <i data-lucide="move-horizontal" aria-hidden="true"></i>
+            Swipe or drag to browse
+          </p>
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 4.</span> Examples of AI Assistance During the Build Process</p>
+          <div class="theme-gallery__frame">
+            <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="AI-assisted development images" aria-roledescription="carousel">
+              <div class="theme-gallery__track">
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt-1.png" alt="Cursor prompt to analyze mood board and extract reusable visual design patterns">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt-2.png" alt="Cursor prompt to create DESIGN.md implementation guide from design system draft">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt-3.png" alt="Cursor prompt to implement Supabase backend setup and user login">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt-4.png" alt="Cursor prompt to wire up useMealSlots and useRecipes hooks with persistence layer">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt-5.png" alt="Cursor prompt to fix Supabase initialization for Netlify deployment">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt-6.png" alt="Cursor prompt to refactor grocery list into grouped single-column rows with toggles">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt-7.png" alt="Cursor prompt to add quick-add pantry staples for new users">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt-8.png" alt="Cursor prompt to install axios and verify environment for recipe image feature">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt-10.png" alt="Cursor prompt to create Unsplash image service with axios">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt-11.png" alt="Cursor prompt to configure Unsplash environment variables and update RecipeCard">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt-12.png" alt="Cursor prompt to create welcome landing page with hero layout and sign-in button">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt-13.png" alt="Cursor prompt to implement protected route pattern with Supabase auth">
+                </figure>
+              </div>
+            </div>
+            <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
+              <i data-lucide="chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
+              <i data-lucide="chevron-right" aria-hidden="true"></i>
+            </button>
           </div>
+          <p class="theme-gallery__caption type-body" aria-live="polite" hidden></p>
         </div>
       </div>
     </section>
