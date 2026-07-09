@@ -47,6 +47,7 @@
 
       --leading-relaxed: 1.625;
       --prose-max-width: 70ch;
+      --content-column-max: 880px;
 
       --space-1: 4px;
       --space-2: 8px;
@@ -536,6 +537,38 @@
       background: #0B0A10;
       color: #D1D2E0;
       border: 1px solid var(--color-border-subtle);
+    }
+
+    @media (min-width: 768px) {
+      .demo-panel > .prose-card,
+      .demo-panel > .case-study-visual,
+      .demo-panel > .theme-gallery {
+        max-width: var(--content-column-max);
+        margin-inline: auto;
+      }
+
+      .theme-card.prose-card {
+        padding: var(--space-5);
+        background: transparent;
+        border: 1px solid var(--color-border-subtle);
+      }
+
+      .theme-card.prose-card.theme-card--lavender {
+        color: var(--color-text-primary);
+      }
+
+      .theme-card.prose-card.theme-card--lavender .theme-card__body,
+      .theme-card.prose-card.theme-card--lavender .theme-card__body .section__list {
+        color: var(--color-text-muted);
+      }
+
+      .theme-card.prose-card.theme-card--lavender .theme-card__body .type-subheading {
+        color: var(--color-text-primary);
+      }
+
+      .theme-card.prose-card.theme-card--night {
+        background: transparent;
+      }
     }
 
     .theme-card__body {
