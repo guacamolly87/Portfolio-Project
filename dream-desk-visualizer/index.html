@@ -522,6 +522,21 @@
     .section__body,
     .project-hero__summary {
       max-width: var(--prose-max-width);
+      text-align: left;
+    }
+
+    @media (min-width: 768px) {
+      .prose-measure,
+      .theme-card__body > p,
+      .theme-card__body > ul,
+      .theme-card__body > h3,
+      .theme-card__body > .theme-gallery__figure-title,
+      .theme-card__body .feature-list > li:not(:has(.theme-card__figure)),
+      .section__body,
+      .project-hero__summary {
+        margin-left: auto;
+        margin-right: auto;
+      }
     }
 
     .theme-card--lavender .theme-card__body {
@@ -1197,7 +1212,7 @@
                 <li><strong>Improved confidence in decision making —</strong> Enjoy the peace of mind that comes with a realistic, risk-free preview, allowing you to assess the cohesion of your design choices before committing to significant financial investments.
                   <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 6.</span> Manage, edit and share</p>
                   <figure class="theme-card__figure theme-card__figure--full-width">
-                    <img src="assets/manage-edit-share.png" alt="Dream Desk Visualizer manage, edit and share screen with desk and chair cards and edit controls on mobile">
+                    <img src="assets/dream-desk-manage.png" alt="Dream Desk Visualizer manage, edit and share screen with desk and chair cards and edit controls on mobile">
                   </figure>
                 </li>
               </ul>

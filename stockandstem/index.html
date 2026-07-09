@@ -501,6 +501,21 @@
     .section__body,
     .project-hero__summary {
       max-width: var(--prose-max-width);
+      text-align: left;
+    }
+
+    @media (min-width: 768px) {
+      .prose-measure,
+      .theme-card__body > p,
+      .theme-card__body > ul,
+      .theme-card__body > h3,
+      .theme-card__body > .theme-gallery__figure-title,
+      .theme-card__body .feature-list > li:not(:has(.theme-card__figure)),
+      .section__body,
+      .project-hero__summary {
+        margin-left: auto;
+        margin-right: auto;
+      }
     }
 
     .theme-card--lavender .theme-card__body {

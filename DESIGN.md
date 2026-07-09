@@ -248,8 +248,28 @@ Long-form reading blocks use a comfortable line length — **not** full card/con
 .section__body,
 .project-hero__summary {
   max-width: var(--prose-max-width);
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .prose-measure,
+  .theme-card__body > p,
+  .theme-card__body > ul,
+  .theme-card__body > h3,
+  .theme-card__body > .theme-gallery__figure-title,
+  .theme-card__body .feature-list > li:not(:has(.theme-card__figure)),
+  .section__body,
+  .project-hero__summary {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 ```
+
+**Layout rules (project pages):**
+- **Section headers** (`.section__header` H2s like Challenge, Process) stay **left-aligned** as visual anchors — do not center.
+- **Prose blocks** (selectors above) are **centered** within the theme card or section container at `bp.md`+, with **left-aligned** text inside.
+- **Visuals** — `.theme-card__figure`, `.theme-gallery`, `.theme-card__images`, and `.feature-list` items that contain figures — stay **full card width**; no `max-width` or horizontal centering.
 
 Figures, galleries, and feature-list items with screenshots stay full card width. Body copy uses `line-height: var(--leading-relaxed)` for a calm, airy rhythm.
 
@@ -576,7 +596,7 @@ Nested project pages (`{slug}/index.html`) extend the homepage design system wit
 
 **Project hero order:** title → tagline (optional) → summary → hero media (16:9, before meta) → meta row → external CTA (optional).
 
-**Body copy width:** Apply `--prose-max-width` (70ch) to long-form prose — `.section__body`, `.project-hero__summary`, and direct text children inside `.theme-card__body` (see **Prose measure**). Do **not** cap figures, galleries, or feature-list items that include full-width screenshots. Do not apply `.measure` or `max-width: 65ch` to entire `.theme-card__body` wrappers.
+**Body copy width:** Apply `--prose-max-width` (70ch) to long-form prose — `.section__body`, `.project-hero__summary`, and direct text children inside `.theme-card__body` (see **Prose measure**). Center prose blocks at `bp.md`+ with `margin-inline: auto`; keep text `text-align: left`. Leave `.section__header` H2s left-aligned. Do **not** cap or center figures, galleries, or feature-list items that include full-width screenshots.
 
 **`demo-panel` on project pages:** pass-through wrapper only — `background: transparent`, no border, `padding: 0`. The theme card inside spans the full container width. (Contrast: homepage/demo `demo-panel` uses `bg.surface` + `border.subtle` + `space.5` padding.)
 
