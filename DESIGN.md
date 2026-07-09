@@ -112,7 +112,7 @@ Violet is **never** used for hover states, body text, decorative fills, dividers
 | Token | Value | Usage |
 |-------|-------|-------|
 | `color.text.primary` | `violet.100` @ 100% | Default text on dark (12.3:1 on base — AAA) |
-| `color.text.muted` | `violet.100` @ 70% | Secondary text, inactive nav/tab labels, contact values (6.3:1 on base — AA) |
+| `color.text.muted` | `violet.100` @ 100% | Secondary text, inactive nav/tab labels, contact values (12.3:1 on base — AAA) |
 | `color.text.disabled` | `violet.100` @ 40% | Disabled text, placeholders (2.8:1 — exempt from contrast requirements) |
 | `color.text.onPrimary` | `ink.900` | **Mandatory** label on violet fill (4.0:1). Primary buttons and accent badges. |
 | `color.text.accent` | `violet.500` | Emphasis on **large text only** (≥24px or ≥18.67px bold; 4.0:1 on base) |
@@ -720,8 +720,8 @@ Verified contrast ratios (calculated per WCAG relative luminance). Status key: *
 |------|-------|---------|-------|
 | `text.primary` on `bg.base` | 12.3:1 | Pass AAA | Body copy, links, headings |
 | `text.primary` on `bg.surface` | 10.9:1 | Pass AAA | Cards, panels, inputs |
-| `text.muted` on `bg.base` | 6.3:1 | Pass AA | Secondary copy, nav labels |
-| `text.muted` on `bg.surface` | 6.0:1 | Pass AA | Helper text, captions |
+| `text.muted` on `bg.base` | 12.3:1 | Pass AAA | Secondary copy, nav labels |
+| `text.muted` on `bg.surface` | 10.9:1 | Pass AAA | Helper text, captions |
 | `text.onPrimary` on `bg.primary` | 4.0:1 | Known constraint | Primary buttons — short labels only; see Accessibility |
 | `text.accent` on `bg.base` | 4.0:1 | Pass (large) | Large emphasis only |
 | `ink.800` on `theme.lavender` | 10.9:1 | Pass AAA | Light lavender headers |
@@ -754,7 +754,7 @@ Verified contrast ratios (calculated per WCAG relative luminance). Status key: *
 
 ### Policy summary
 
-- **Contrast:** `text.primary` on base/surface ≈12:1 (AAA). `text.muted` ≈6:1 (AA). `text.onPrimary` on `bg.primary` ≈4.0:1 — short primary-button labels only. `text.accent` violet on base ≈4.0:1 — large text only.
+- **Contrast:** `text.primary` and `text.muted` on base/surface ≈12:1 / ≈11:1 (AAA). `text.onPrimary` on `bg.primary` ≈4.0:1 — short primary-button labels only. `text.accent` violet on base ≈4.0:1 — large text only.
 - **Focus:** visible 2px `border.focus`, 2px offset on all interactives.
 - **Never rely on violet alone** for state — pair with indicator (underline, icon, text).
 - **No hue-coded status** — icon + text always.
@@ -785,7 +785,7 @@ Map tokens to CSS custom properties in implementation files:
   --color-bg-surface: var(--color-ink-800);
   --color-bg-primary: var(--color-violet-500);
   --color-text-primary: var(--color-violet-100);
-  --color-text-muted: rgba(202, 200, 243, 0.7);
+  --color-text-muted: var(--color-violet-100);
   --color-text-disabled: rgba(202, 200, 243, 0.4);
   --color-text-on-primary: var(--color-ink-900);
   --color-border-subtle: rgba(202, 200, 243, 0.18);
