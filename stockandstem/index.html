@@ -481,12 +481,9 @@
     .prose-card .theme-card__body {
       display: flex;
       flex-direction: column;
-    }
-
-    @media (min-width: 768px) {
-      .prose-card .theme-card__body {
-        align-items: center;
-      }
+      max-width: var(--prose-max-width);
+      width: 100%;
+      margin-inline: auto;
     }
 
     .prose-card .theme-card__body > p,
@@ -495,7 +492,6 @@
     .prose-card .theme-card__body > h3,
     .prose-card .theme-card__body > .feature-list,
     .prose-card .theme-card__body .feature-list > li {
-      max-width: var(--prose-max-width);
       width: 100%;
       text-align: left;
     }

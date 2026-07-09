@@ -210,8 +210,7 @@
 
     .measure { max-width: var(--prose-max-width); }
 
-    .prose-measure,
-    .contact__intro {
+    .prose-measure {
       max-width: var(--prose-max-width);
     }
 
@@ -405,16 +404,14 @@
       gap: var(--space-6);
     }
 
-    @media (min-width: 768px) {
-      .hero__intro {
-        max-width: var(--prose-max-width);
-      }
+    .hero__intro,
+    .hero__unit {
+      width: 100%;
     }
 
     .hero__unit {
       display: flex;
       flex-direction: column;
-      width: 100%;
       margin-top: var(--space-5);
     }
 
