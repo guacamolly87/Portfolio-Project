@@ -217,18 +217,41 @@ Two alternate section treatments for hero blocks, feature panels, or case-study 
 **Families:** `font.family.display` = "Barlow Condensed"; `font.family.body` = "Manrope".
 **Weights:** regular 400 · medium 500 · semibold 600 · bold 700.
 **Sizes:** fluid `rem` scale anchored to a responsive root (see **Responsive root** below). Reference targets at 16px browser default: xs 12 · sm 14 · md 16 (base) · lg 20 · xl 28 · 2xl 40 · 3xl 56.
-**Leading:** tight 1.1 · snug 1.3 · normal 1.5. **Tracking:** tight −0.01em · normal 0 · wide 0.04em.
+**Leading:** tight 1.1 · snug 1.3 · normal 1.5 · relaxed 1.625. **Tracking:** tight −0.01em · normal 0 · wide 0.04em.
 
 ### Responsive root
 Set on `html` in every page — do **not** hard-code `px` on `body` or type presets:
 
 ```css
 html {
-  font-size: clamp(1rem, 0.9375rem + 0.35vw, 1.125rem);
+  font-size: clamp(1rem, 0.9375rem + 0.35vw, 1.25rem);
 }
 ```
 
-This keeps body copy at 16px on narrow viewports and scales up to 18px on laptop/desktop widths, improving readability without oversized text on large monitors.
+This keeps body copy at 16px on narrow viewports and scales up to 20px on laptop/desktop widths, improving readability without oversized text on large monitors.
+
+### Prose measure
+Long-form reading blocks use a comfortable line length — **not** full card/container width:
+
+```css
+:root {
+  --leading-relaxed: 1.625;
+  --prose-max-width: 70ch;
+}
+
+.prose-measure,
+.theme-card__body > p,
+.theme-card__body > ul,
+.theme-card__body > h3,
+.theme-card__body > .theme-gallery__figure-title,
+.theme-card__body .feature-list > li:not(:has(.theme-card__figure)),
+.section__body,
+.project-hero__summary {
+  max-width: var(--prose-max-width);
+}
+```
+
+Figures, galleries, and feature-list items with screenshots stay full card width. Body copy uses `line-height: var(--leading-relaxed)` for a calm, airy rhythm.
 
 ### Type tokens (`:root`)
 Define once per page; all `.type-*` classes reference these variables:
@@ -253,8 +276,8 @@ Define once per page; all `.type-*` classes reference these variables:
 | `type.display.md` | display | `var(--type-display-md)` | bold | see case rules | tight / wide† |
 | `type.heading` | display | `var(--type-heading)` | bold | sentence | snug / normal |
 | `type.subheading` | display | `var(--type-subheading)` | semibold | sentence | snug / normal |
-| `type.body` | body | `var(--type-body)` | regular | sentence | normal |
-| `type.body.sm` | body | `var(--type-body-sm)` | regular | sentence | normal |
+| `type.body` | body | `var(--type-body)` | regular | sentence | relaxed |
+| `type.body.sm` | body | `var(--type-body-sm)` | regular | sentence | relaxed |
 | `type.label` | body | `var(--type-label)` | medium | sentence | snug |
 | `type.button` | body | `var(--type-body)` | semibold | sentence | snug |
 | `type.caption` | body | `var(--type-caption)` | regular | sentence | normal |
@@ -285,7 +308,7 @@ Keep source HTML in sentence case; apply `case.caps` via CSS `text-transform` fo
 - **Heading mapping:** H1 → `type.display.lg` · H2 → `type.display.md` · H3 → `type.heading` · H4 → `type.subheading`. Do not skip levels.
 - All headings use Barlow Condensed with `case.caps` or `case.sentence` per table. All non-heading text uses Manrope.
 - **`type.label` vs `type.body.sm`:** `label` (medium) = form labels, column headers, metadata keys, contact anchors (weight 600 when anchoring). `body.sm` (regular) = helper text, card descriptions, secondary paragraphs.
-- **Measure:** body text max ≈ 65ch on homepage and demo pages (`.measure`); **full container width** on project case-study pages (no `.measure`). Theme-card body copy on project pages also spans full width within card padding.
+- **Measure:** body text max ≈ 70ch (`.prose-measure` / `--prose-max-width`) on homepage intro copy and project case-study prose blocks; theme-card figures and galleries may span full card width. Homepage `.measure` maps to the same `70ch` token.
 - **Links:** `text.primary` + 1px underline at rest; underline thickens / shifts to `border.accent` on hover. Not violet-filled text.
 
 ---
@@ -436,7 +459,7 @@ Alternate editorial panels for hero blocks, feature callouts, and case-study int
   - `.theme-card__figure--full-width` — bleeds toward card edge, leaving `space.3` (12px) lavender/night frame visible; use for hero mockups and feature screenshots inside cards
   - `.theme-card__figure--contain` — no fixed aspect ratio; image centered at 68.4% width; use for mood boards and tall assets
 - **Split anatomy (showcase only):** lavender = content left + tall image right · night = tall image left + content right; placeholder spans ≈ `300px` height. Reserved for `test-2.html` theme demos — not for generated case-study pages.
-- **Spacing (grid):** paragraph stack inside body `space.4` · image gap in `.theme-card__images` `16px` · images↔card bottom `16px`
+- **Spacing (grid):** paragraph stack inside body `space.4` · image gap in `.theme-card__images` `16px` · images↔card bottom `16px` · `.theme-card__body` uses `margin: 0` — card padding alone controls inset on all sides; do not add extra `margin-bottom` on the body wrapper
 - **Image ↔ text spacing (project pages — required CSS):** theme-card body copy must never sit flush against figures or galleries. Copy these rules into every `{slug}/index.html`:
   - **Figure label → figure:** `.theme-gallery__figure-title` uses `margin: space.4 0 space.5` (16px above label, 24px below label before image)
   - **Figure → following text:** `.theme-card__body > .theme-card__figure` and `.theme-card__body .feature-list .theme-card__figure` use `margin-bottom: space.6` (32px)
@@ -553,14 +576,14 @@ Nested project pages (`{slug}/index.html`) extend the homepage design system wit
 
 **Project hero order:** title → tagline (optional) → summary → hero media (16:9, before meta) → meta row → external CTA (optional).
 
-**Body copy width:** Do **not** apply `.measure` or `max-width: 65ch` to hero summaries, `.section__body`, or `.theme-card__body` on project pages. Text spans the full container content width (1200px max, minus `space.pad.page`).
+**Body copy width:** Apply `--prose-max-width` (70ch) to long-form prose — `.section__body`, `.project-hero__summary`, and direct text children inside `.theme-card__body` (see **Prose measure**). Do **not** cap figures, galleries, or feature-list items that include full-width screenshots. Do not apply `.measure` or `max-width: 65ch` to entire `.theme-card__body` wrappers.
 
 **`demo-panel` on project pages:** pass-through wrapper only — `background: transparent`, no border, `padding: 0`. The theme card inside spans the full container width. (Contrast: homepage/demo `demo-panel` uses `bg.surface` + `border.subtle` + `space.5` padding.)
 
 **Theme cards on project pages:**
 - Use **grid (single-column) layout only** — body stacked above media. Never use `.theme-card--split` or side-by-side text/image columns.
 - Apply `type-body` to paragraphs, lists, and list items inside `.theme-card__body`.
-- `.theme-card__body`: `max-width: none`, `width: 100%`.
+- `.theme-card__body`: `max-width: none`, `width: 100%`, `margin: 0`.
 - Card padding: `space.5` (< `bp.md`) / `30px` (≥ `bp.md`) on all sides — prevents text from touching the lavender or night card edge.
 - Subheadings within cards: `type.subheading` (sentence case), `margin-top: space.5`.
 - **Image ↔ text spacing:** include all Theme Card **Image ↔ text spacing** selectors in project-page CSS — do not rely on `p + p` alone; figures and galleries are not paragraphs and need explicit sibling margins.

@@ -45,6 +45,9 @@
       --type-label: 0.875rem;
       --type-caption: 0.75rem;
 
+      --leading-relaxed: 1.625;
+      --prose-max-width: 70ch;
+
       --space-1: 4px;
       --space-2: 8px;
       --space-3: 12px;
@@ -75,7 +78,7 @@
     *, *::before, *::after { box-sizing: border-box; }
 
     html {
-      font-size: clamp(1rem, 0.9375rem + 0.35vw, 1.125rem);
+      font-size: clamp(1rem, 0.9375rem + 0.35vw, 1.25rem);
     }
 
     body {
@@ -85,7 +88,7 @@
       font-family: var(--font-body);
       font-size: var(--type-body);
       font-weight: 400;
-      line-height: 1.5;
+      line-height: var(--leading-relaxed);
       -webkit-font-smoothing: antialiased;
     }
 
@@ -136,7 +139,7 @@
       font-family: var(--font-body);
       font-size: var(--type-body);
       font-weight: 400;
-      line-height: 1.5;
+      line-height: var(--leading-relaxed);
       margin: 0;
     }
 
@@ -483,10 +486,21 @@
       font-family: var(--font-body);
       font-size: var(--type-body);
       font-weight: 400;
-      line-height: 1.5;
-      margin: 0 0 var(--space-6);
+      line-height: var(--leading-relaxed);
+      margin: 0;
       max-width: none;
       width: 100%;
+    }
+
+    .prose-measure,
+    .theme-card__body > p,
+    .theme-card__body > ul,
+    .theme-card__body > h3,
+    .theme-card__body > .theme-gallery__figure-title,
+    .theme-card__body .feature-list > li:not(:has(.theme-card__figure)),
+    .section__body,
+    .project-hero__summary {
+      max-width: var(--prose-max-width);
     }
 
     .theme-card--lavender .theme-card__body {
