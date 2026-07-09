@@ -23,8 +23,8 @@ team: "Solo independent project"
 What problem were you solving? Who was affected and why did it matter?
 
 ## Process
-<!-- theme: night.split | image: assets/mockup_hero-stock&stem-key_features.svg | imageAlt: Stock and Stem key features mockup used during workflow mapping -->
-How did you approach it - researc, ideation, decisions, iterations?
+<!-- galleries: true -->
+How did you approach it - research, ideation, decisions, iterations?
 Images (optional, one per line)
 
 ## Solution

@@ -83,7 +83,6 @@ externalUrl: "https://your-app.netlify.app/"
 <!-- theme: lavender -->
 
 ## Process
-<!-- theme: night -->
 <!-- galleries: true -->
 
 ## Solution

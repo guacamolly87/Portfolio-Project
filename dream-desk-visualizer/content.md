@@ -27,6 +27,8 @@ Individuals often feel overwhelmed when designing a personalized workspace, stru
 <!-- theme: lavender -->
 
 ## Process
+<!-- galleries: true -->
+
 ### Establishing the web application structure & basic elements
 
 I began by creating a site map to establish the main architecture, global state dependencies, and bidirectional navigation, which allowed me to prioritize technical planning alongside UI design. 
@@ -70,36 +72,9 @@ Ultimately, I discovered that relying on Cursor to generate pre-composed, full-s
 ### AI-assisted development
 In Cursor, I started by checking for necessary dependencies and installing Node.js and npm. 
 
-**Figure 3.** 
-Insert: 
+**Figure 3.**
+Insert:
 `figma-make-prompt.png`
-
-<!-- theme: night -->
-<!-- galleries: true -->
-
-### Establishing the web application structure & basic elements
-
-### **Photorealistic Integration:** Experience seamlessly integrated, full-scene images that avoid rendering errors such as jagged edges, difficulty blending, and unsightly artifacts.
-
-### **Artful Combination:** Effortlessly mix and match pieces from diverse themes, ensuring that furniture, textures, and accessories blend harmoniously, regardless of the combination. 
-
-### **Improved Confidence in Decision Making:** Enjoy the peace of mind that comes with a realistic, risk-free preview, allowing you to assess the cohesion of your design choices before committing to significant financial investments.
-
-<!-- theme: lavender -->
-<!-- features: true -->
-
-
-
-### Visual style development
-
-
-### AI assisted development
-
-The primary challenge of developing the 'Dream Desk Visualizer' was allowing users to interactively assemble a personalized office space using multiple layers (background, desk, chair, and computer), while maintaining a high-fidelity, photorealistic aesthetic. 
-
-
-<!-- theme: night -->
-<!-- galleries: true -->
 
 ## Solution
 

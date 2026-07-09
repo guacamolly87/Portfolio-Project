@@ -528,8 +528,8 @@
     }
 
     .case-study-visual--night .theme-gallery__figure-title,
-    #process .demo-panel .case-study-visual .theme-gallery__figure-title,
-    #process .demo-panel > .theme-gallery .theme-gallery__figure-title {
+    #process > .container .case-study-visual .theme-gallery__figure-title,
+    #process > .container > .theme-gallery .theme-gallery__figure-title {
       color: var(--color-violet-100);
     }
 
@@ -563,7 +563,9 @@
     @media (min-width: 768px) {
       .demo-panel > .prose-card,
       .demo-panel > .case-study-visual,
-      .demo-panel > .theme-gallery {
+      .demo-panel > .theme-gallery,
+      #process > .container > .case-study-visual,
+      #process > .container > .theme-gallery {
         max-width: var(--content-column-max);
         margin-inline: auto;
       }
@@ -776,8 +778,34 @@
 
     .theme-card--night .theme-gallery__hint,
     .case-study-visual--night .theme-gallery__hint,
-    #process .demo-panel > .theme-gallery .theme-gallery__hint {
+    #process > .container > .theme-gallery .theme-gallery__hint {
       color: rgba(209, 210, 224, 0.6);
+    }
+
+    #process > .container > .type-subheading {
+      margin-top: var(--space-7);
+      margin-bottom: var(--space-4);
+    }
+
+    #process > .container > .section__header + .type-subheading {
+      margin-top: 0;
+    }
+
+    #process > .container > .theme-gallery,
+    #process > .container > .case-study-visual {
+      margin-top: var(--space-5);
+    }
+
+    #process > .container > .section__list {
+      margin-top: var(--space-4);
+    }
+
+    #process > .container > .section__list + .section__body {
+      margin-top: var(--space-4);
+    }
+
+    #process > .container > .theme-gallery .theme-gallery__slide-caption {
+      color: var(--color-text-muted);
     }
 
     .theme-gallery__hint [data-lucide] {
@@ -1138,134 +1166,117 @@
         <header class="section__header">
           <h2 class="type-display-md case-caps">Process</h2>
         </header>
-        <div class="demo-panel">
-          <div class="theme-card theme-card--night prose-card">
-            <div class="theme-card__body">
-              <h3 class="type-subheading">Establishing the web application structure &amp; basic elements</h3>
-              <p class="type-body">I began by creating a site map to establish the main architecture, global state dependencies, and bidirectional navigation, which allowed me to prioritize technical planning alongside UI design.</p>
-            </div>
-          </div>
-          <div class="case-study-visual case-study-visual--night">
-            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 1.</span> Application site map</p>
-            <figure class="theme-card__figure theme-card__figure--full-width">
-              <img src="assets/dream-desk_site_map.png" alt="Dream Desk Visualizer application site map showing page architecture and navigation flow">
-            </figure>
-          </div>
-          <div class="theme-card theme-card--night prose-card">
-            <div class="theme-card__body">
-              <p class="type-body">Next, I submitted a detailed prompt to Figma Make and developed four main office background themes:</p>
-              <ul class="section__list type-body">
-                <li><strong>Boho:</strong> includes rattan shelves, natural materials, textiles, macramé, fairy lights, and warm earth tones.</li>
-                <li><strong>Dark academic:</strong> moody, library vibes with dark woods, candles, antique bookcases, and velvet textiles.</li>
-                <li><strong>Mid-century modern:</strong> clean lines, minimalist storage, geometric accents, natural lighting, and abstract art.</li>
-                <li><strong>Gamer vibes:</strong> a modern aesthetic with neon lights, dark purple hues, ample space for multiple monitors, speakers, and accessories.</li>
-              </ul>
-              <p class="type-body">I also built out the select chair page, specifying desk options for users, while leaving the accessorize, summarize, and manage pages blank:</p>
-              <ul class="section__list type-body">
-                <li>A natural, light-colored wood desk</li>
-                <li>An ornate mahogany desk</li>
-                <li>A teak or walnut mid-century modern desk</li>
-                <li>A sitting/standing modern desk with a headphone holder</li>
-              </ul>
-              <p class="type-body">I didn&rsquo;t love the visual output in the live preview section of the page, but the site structure was accurate. I decided to export the code as a zip file and import my project folder into Cursor to save Figma Make credits. You can view the <a href="https://griffin-desk-organizer-app.figma.site/" class="link" target="_blank" rel="noopener noreferrer">initial site structure on Figma</a>.</p>
-            </div>
-          </div>
-          <div class="theme-card theme-card--night prose-card">
-            <div class="theme-card__body">
-              <h3 class="type-subheading">Visual style development</h3>
-              <p class="type-body">The primary challenge in developing the Dream Desk Visualizer was enabling users to interactively assemble a personalized office space across multiple layers (background, desk, chair, and computer), while maintaining a high-fidelity, photorealistic aesthetic. To move away from the flat, CSS-generated background, I uploaded an example image I generated in Gemini as inspiration for my boho-inspired theme. I proceeded to do this with the remaining three themes, and the result was much better-quality visuals for the background layer.</p>
-              <p class="type-body">Unfortunately, continuing to stack images in the live preview proved to be challenging. I experimented with using PNG files with transparent backgrounds, but I encountered issues with jagged edges, lighting, and sizing relative to other objects on the screen. Even after manually tweaking the object sizes in chairAssets.ts to fine-tune the CSS width, it proved unsuccessful, as placement was also a significant factor (for example, chairs must be partially tucked under the desk).</p>
-            </div>
-          </div>
-          <div class="theme-gallery" data-gallery>
-                <p class="theme-gallery__hint type-caption">
-                  <i data-lucide="move-horizontal" aria-hidden="true"></i>
-                  Swipe or drag to browse
-                </p>
-                <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 2.</span> Design iteration challenges</p>
-                <div class="theme-gallery__frame">
-                  <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Design iteration images" aria-roledescription="carousel">
-                    <div class="theme-gallery__track">
-                      <figure class="theme-gallery__slide">
-                        <div class="theme-gallery__slide-media theme-gallery__slide-media--stack">
-                          <img src="assets/figma-gamer-ex.png" alt="Gamer theme with modern standing desk using Figma flat CSS-generated images">
-                          <img src="assets/figma-midcentury-ex.png" alt="Boho theme with light natural wood desk using Figma flat CSS-generated images">
-                        </div>
-                        <figcaption class="theme-gallery__slide-caption type-body">Examples of the gamer theme with a modern standing desk and the boho theme with a light natural wood desk, both using Figma&rsquo;s flat, CSS-generated images.</figcaption>
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <div class="theme-gallery__slide-media">
-                          <img src="assets/missing-legs.png" alt="Layered desk asset with missing legs and floating furniture rendering errors">
-                        </div>
-                        <figcaption class="theme-gallery__slide-caption type-body">Early attempts to layer isolated desk assets resulted in significant rendering errors, including missing legs and &lsquo;floating&rsquo; furniture.</figcaption>
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <div class="theme-gallery__slide-media">
-                          <img src="assets/desks_w_accessories.png" alt="Failed image layering with boho background bleeding into mid-century modern setup">
-                        </div>
-                        <figcaption class="theme-gallery__slide-caption type-body">Additionally, stacking images using the live preview was unsuccessful, as shown by the boho office background bleeding into the mid-century modern setup.</figcaption>
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <div class="theme-gallery__slide-media">
-                          <img src="assets/desk_w_acessories2.png" alt="Layered assets with poor chair blending and boho artifacts in gamer background">
-                        </div>
-                        <figcaption class="theme-gallery__slide-caption type-body">Another attempt to layer disparate assets, resulting in poor chair-to-floor blending and distracting artifact leakage from the boho accessory set into the gamer background.</figcaption>
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <div class="theme-gallery__slide-media">
-                          <img src="assets/giant-chair.png" alt="Oversized chair asset illustrating scaling and perspective failures">
-                        </div>
-                        <figcaption class="theme-gallery__slide-caption type-body">A clear example of the scaling and perspective issues encountered during the initial layering phase, where independent assets failed to maintain proper proportions relative to the workspace.</figcaption>
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <div class="theme-gallery__slide-media">
-                          <img src="assets/giant-screen.png" alt="Disproportionately large computer screen asset in workspace preview">
-                        </div>
-                        <figcaption class="theme-gallery__slide-caption type-body">Another instance of scaling failure where the computer asset&rsquo;s dimensions were disproportionately large, illustrating the lack of control over perspective when using independent transparent overlays.</figcaption>
-                      </figure>
-                    </div>
+
+        <h3 class="type-subheading">Establishing the web application structure &amp; basic elements</h3>
+        <p class="section__body type-body text-muted">I began by creating a site map to establish the main architecture, global state dependencies, and bidirectional navigation, which allowed me to prioritize technical planning alongside UI design.</p>
+        <div class="case-study-visual case-study-visual--night">
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 1.</span> Application site map</p>
+          <figure class="theme-card__figure theme-card__figure--full-width">
+            <img src="assets/dream-desk_site_map.png" alt="Dream Desk Visualizer application site map showing page architecture and navigation flow">
+          </figure>
+        </div>
+
+        <p class="section__body type-body text-muted">Next, I submitted a detailed prompt to Figma Make and developed four main office background themes:</p>
+        <ul class="section__list type-body text-muted">
+          <li><strong>Boho:</strong> includes rattan shelves, natural materials, textiles, macramé, fairy lights, and warm earth tones.</li>
+          <li><strong>Dark academic:</strong> moody, library vibes with dark woods, candles, antique bookcases, and velvet textiles.</li>
+          <li><strong>Mid-century modern:</strong> clean lines, minimalist storage, geometric accents, natural lighting, and abstract art.</li>
+          <li><strong>Gamer vibes:</strong> a modern aesthetic with neon lights, dark purple hues, ample space for multiple monitors, speakers, and accessories.</li>
+        </ul>
+        <p class="section__body type-body text-muted">I also built out the select chair page, specifying desk options for users, while leaving the accessorize, summarize, and manage pages blank:</p>
+        <ul class="section__list type-body text-muted">
+          <li>A natural, light-colored wood desk</li>
+          <li>An ornate mahogany desk</li>
+          <li>A teak or walnut mid-century modern desk</li>
+          <li>A sitting/standing modern desk with a headphone holder</li>
+        </ul>
+        <p class="section__body type-body text-muted">I didn&rsquo;t love the visual output in the live preview section of the page, but the site structure was accurate. I decided to export the code as a zip file and import my project folder into Cursor to save Figma Make credits. You can view the <a href="https://griffin-desk-organizer-app.figma.site/" class="link" target="_blank" rel="noopener noreferrer">initial site structure on Figma</a>.</p>
+
+        <h3 class="type-subheading">Visual style development</h3>
+        <p class="section__body type-body text-muted">The primary challenge in developing the Dream Desk Visualizer was enabling users to interactively assemble a personalized office space across multiple layers (background, desk, chair, and computer), while maintaining a high-fidelity, photorealistic aesthetic. To move away from the flat, CSS-generated background, I uploaded an example image I generated in Gemini as inspiration for my boho-inspired theme. I proceeded to do this with the remaining three themes, and the result was much better-quality visuals for the background layer.</p>
+        <p class="section__body type-body text-muted">Unfortunately, continuing to stack images in the live preview proved to be challenging. I experimented with using PNG files with transparent backgrounds, but I encountered issues with jagged edges, lighting, and sizing relative to other objects on the screen. Even after manually tweaking the object sizes in chairAssets.ts to fine-tune the CSS width, it proved unsuccessful, as placement was also a significant factor (for example, chairs must be partially tucked under the desk).</p>
+        <div class="theme-gallery" data-gallery>
+          <p class="theme-gallery__hint type-caption">
+            <i data-lucide="move-horizontal" aria-hidden="true"></i>
+            Swipe or drag to browse
+          </p>
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 2.</span> Design iteration challenges</p>
+          <div class="theme-gallery__frame">
+            <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Design iteration images" aria-roledescription="carousel">
+              <div class="theme-gallery__track">
+                <figure class="theme-gallery__slide">
+                  <div class="theme-gallery__slide-media theme-gallery__slide-media--stack">
+                    <img src="assets/figma-gamer-ex.png" alt="Gamer theme with modern standing desk using Figma flat CSS-generated images">
+                    <img src="assets/figma-midcentury-ex.png" alt="Boho theme with light natural wood desk using Figma flat CSS-generated images">
                   </div>
-                  <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
-                    <i data-lucide="chevron-left" aria-hidden="true"></i>
-                  </button>
-                  <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
-                    <i data-lucide="chevron-right" aria-hidden="true"></i>
-                  </button>
-                </div>
-                <div class="theme-gallery__dots" role="tablist" aria-label="Design iteration slides"></div>
-          </div>
-          <div class="theme-card theme-card--night prose-card">
-            <div class="theme-card__body">
-              <p class="type-body">Ultimately, I discovered that relying on Cursor to generate pre-composed, full-scene composite images was the most time-consuming, but also the most successful approach.</p>
-            </div>
-          </div>
-          <div class="theme-card theme-card--night prose-card">
-            <div class="theme-card__body">
-              <h3 class="type-subheading">AI-assisted development</h3>
-              <p class="type-body">In Cursor, I started by checking for necessary dependencies and installing Node.js and npm.</p>
-            </div>
-          </div>
-          <div class="theme-gallery theme-gallery--compact" data-gallery>
-                <p class="theme-gallery__hint type-caption">
-                  <i data-lucide="move-horizontal" aria-hidden="true"></i>
-                  Swipe or drag to browse
-                </p>
-                <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 3.</span> Figma Make prompt</p>
-                <div class="theme-gallery__frame">
-                  <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Figma Make prompt screenshot" aria-roledescription="carousel">
-                    <div class="theme-gallery__track">
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/figma-make-prompt.png" alt="Prompt submitted to Figma Make to generate Dream Desk Visualizer office themes and page structure">
-                      </figure>
-                    </div>
+                  <figcaption class="theme-gallery__slide-caption type-body">Examples of the gamer theme with a modern standing desk and the boho theme with a light natural wood desk, both using Figma&rsquo;s flat, CSS-generated images.</figcaption>
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <div class="theme-gallery__slide-media">
+                    <img src="assets/missing-legs.png" alt="Layered desk asset with missing legs and floating furniture rendering errors">
                   </div>
-                  <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
-                    <i data-lucide="chevron-left" aria-hidden="true"></i>
-                  </button>
-                  <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
-                    <i data-lucide="chevron-right" aria-hidden="true"></i>
-                  </button>
-                </div>
+                  <figcaption class="theme-gallery__slide-caption type-body">Early attempts to layer isolated desk assets resulted in significant rendering errors, including missing legs and &lsquo;floating&rsquo; furniture.</figcaption>
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <div class="theme-gallery__slide-media">
+                    <img src="assets/desks_w_accessories.png" alt="Failed image layering with boho background bleeding into mid-century modern setup">
+                  </div>
+                  <figcaption class="theme-gallery__slide-caption type-body">Additionally, stacking images using the live preview was unsuccessful, as shown by the boho office background bleeding into the mid-century modern setup.</figcaption>
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <div class="theme-gallery__slide-media">
+                    <img src="assets/desk_w_acessories2.png" alt="Layered assets with poor chair blending and boho artifacts in gamer background">
+                  </div>
+                  <figcaption class="theme-gallery__slide-caption type-body">Another attempt to layer disparate assets, resulting in poor chair-to-floor blending and distracting artifact leakage from the boho accessory set into the gamer background.</figcaption>
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <div class="theme-gallery__slide-media">
+                    <img src="assets/giant-chair.png" alt="Oversized chair asset illustrating scaling and perspective failures">
+                  </div>
+                  <figcaption class="theme-gallery__slide-caption type-body">A clear example of the scaling and perspective issues encountered during the initial layering phase, where independent assets failed to maintain proper proportions relative to the workspace.</figcaption>
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <div class="theme-gallery__slide-media">
+                    <img src="assets/giant-screen.png" alt="Disproportionately large computer screen asset in workspace preview">
+                  </div>
+                  <figcaption class="theme-gallery__slide-caption type-body">Another instance of scaling failure where the computer asset&rsquo;s dimensions were disproportionately large, illustrating the lack of control over perspective when using independent transparent overlays.</figcaption>
+                </figure>
+              </div>
+            </div>
+            <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
+              <i data-lucide="chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
+              <i data-lucide="chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="theme-gallery__dots" role="tablist" aria-label="Design iteration slides"></div>
+        </div>
+
+        <p class="section__body type-body text-muted">Ultimately, I discovered that relying on Cursor to generate pre-composed, full-scene composite images was the most time-consuming, but also the most successful approach.</p>
+
+        <h3 class="type-subheading">AI-assisted development</h3>
+        <p class="section__body type-body text-muted">In Cursor, I started by checking for necessary dependencies and installing Node.js and npm.</p>
+        <div class="theme-gallery theme-gallery--compact" data-gallery>
+          <p class="theme-gallery__hint type-caption">
+            <i data-lucide="move-horizontal" aria-hidden="true"></i>
+            Swipe or drag to browse
+          </p>
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 3.</span> Figma Make prompt</p>
+          <div class="theme-gallery__frame">
+            <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Figma Make prompt screenshot" aria-roledescription="carousel">
+              <div class="theme-gallery__track">
+                <figure class="theme-gallery__slide">
+                  <img src="assets/figma-make-prompt.png" alt="Prompt submitted to Figma Make to generate Dream Desk Visualizer office themes and page structure">
+                </figure>
+              </div>
+            </div>
+            <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
+              <i data-lucide="chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
+              <i data-lucide="chevron-right" aria-hidden="true"></i>
+            </button>
           </div>
         </div>
       </div>

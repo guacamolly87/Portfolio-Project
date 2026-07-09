@@ -507,8 +507,8 @@
     }
 
     .case-study-visual--night .theme-gallery__figure-title,
-    #process .demo-panel .case-study-visual .theme-gallery__figure-title,
-    #process .demo-panel > .theme-gallery .theme-gallery__figure-title {
+    #process > .container .case-study-visual .theme-gallery__figure-title,
+    #process > .container > .theme-gallery .theme-gallery__figure-title {
       color: var(--color-violet-100);
     }
 
@@ -542,7 +542,9 @@
     @media (min-width: 768px) {
       .demo-panel > .prose-card,
       .demo-panel > .case-study-visual,
-      .demo-panel > .theme-gallery {
+      .demo-panel > .theme-gallery,
+      #process > .container > .case-study-visual,
+      #process > .container > .theme-gallery {
         max-width: var(--content-column-max);
         margin-inline: auto;
       }
@@ -754,8 +756,30 @@
 
     .theme-card--night .theme-gallery__hint,
     .case-study-visual--night .theme-gallery__hint,
-    #process .demo-panel > .theme-gallery .theme-gallery__hint {
+    #process > .container > .theme-gallery .theme-gallery__hint {
       color: rgba(209, 210, 224, 0.6);
+    }
+
+    #process > .container > .type-subheading {
+      margin-top: var(--space-7);
+      margin-bottom: var(--space-4);
+    }
+
+    #process > .container > .section__header + .type-subheading {
+      margin-top: 0;
+    }
+
+    #process > .container > .theme-gallery,
+    #process > .container > .case-study-visual {
+      margin-top: var(--space-5);
+    }
+
+    #process > .container > .section__list {
+      margin-top: var(--space-4);
+    }
+
+    #process > .container > .section__list + .section__body {
+      margin-top: var(--space-4);
     }
 
     .theme-gallery__hint [data-lucide] {
@@ -1073,225 +1097,202 @@
         <header class="section__header">
           <h2 class="type-display-md case-caps">Process</h2>
         </header>
-        <div class="demo-panel">
-          <div class="theme-card theme-card--night prose-card">
-            <div class="theme-card__body">
-              <h3 class="type-subheading">Establishing the web application structure &amp; basic elements</h3>
-              <p class="type-body">As a Memphis native and avid gardener of perennials, I am all too familiar with the unpleasant surprise of finding my thirsty hydrangeas wilting during the unforgiving summer months. I could easily empathize with this specific challenge, as I have personally spent many afternoons outside watering my plants after they have already started to protest, combating the humidity, swarming mosquitoes, and a leaking water hose that tends to spray everywhere.</p>
-              <p class="type-body">Because this was a two-week project, I decided to narrow my focus. I chose to focus on the habit of providing consistent care rather than the actual science behind plant care.</p>
-              <p class="type-body">I began by establishing a site map comprised of four main pages: home (/), new (/new), my plants (/my_plants), and the leaf library (/library). I used Vibe coding to build out these sections.</p>
+
+        <h3 class="type-subheading">Establishing the web application structure &amp; basic elements</h3>
+        <p class="section__body type-body text-muted">As a Memphis native and avid gardener of perennials, I am all too familiar with the unpleasant surprise of finding my thirsty hydrangeas wilting during the unforgiving summer months. I could easily empathize with this specific challenge, as I have personally spent many afternoons outside watering my plants after they have already started to protest, combating the humidity, swarming mosquitoes, and a leaking water hose that tends to spray everywhere.</p>
+        <p class="section__body type-body text-muted">Because this was a two-week project, I decided to narrow my focus. I chose to focus on the habit of providing consistent care rather than the actual science behind plant care.</p>
+        <p class="section__body type-body text-muted">I began by establishing a site map comprised of four main pages: home (/), new (/new), my plants (/my_plants), and the leaf library (/library). I used Vibe coding to build out these sections.</p>
+        <div class="case-study-visual case-study-visual--night">
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 1.</span> Application site map</p>
+          <figure class="theme-card__figure theme-card__figure--full-width">
+            <img src="assets/site-map-plant-watering.png" alt="Site map for the Glass Botanist app showing home, new plant, my plants, and leaf library pages">
+          </figure>
+        </div>
+
+        <p class="section__body type-body text-muted">Next, I created relevant subsections that define the functions of each page. I mapped various user flows, including the quick watering function on the home page (/) and the ability to edit and archive existing plants within their collection.</p>
+        <div class="theme-gallery theme-gallery--compact" data-gallery>
+          <p class="theme-gallery__hint type-caption">
+            <i data-lucide="move-horizontal" aria-hidden="true"></i>
+            Swipe or drag to browse
+          </p>
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 2.</span> Key user flows</p>
+          <div class="theme-gallery__frame">
+            <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="User flow diagrams" aria-roledescription="carousel">
+              <div class="theme-gallery__track">
+                <figure class="theme-gallery__slide" data-caption="User flow for editing and archiving plants within a collection on the My Plants page.">
+                  <img src="assets/manage-plants-user-flow.png" alt="User flow diagram for managing and archiving plants in a collection">
+                </figure>
+                <figure class="theme-gallery__slide" data-caption="User flow for the quick watering function on the home page, enabling fast care updates with minimal taps.">
+                  <img src="assets/quick-water_user-flow.png" alt="User flow diagram for the quick water feature on the home page">
+                </figure>
+              </div>
             </div>
+            <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
+              <i data-lucide="chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
+              <i data-lucide="chevron-right" aria-hidden="true"></i>
+            </button>
           </div>
-          <div class="case-study-visual case-study-visual--night">
-            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 1.</span> Application site map</p>
-            <figure class="theme-card__figure theme-card__figure--full-width">
-              <img src="assets/site-map-plant-watering.png" alt="Site map for the Glass Botanist app showing home, new plant, my plants, and leaf library pages">
-            </figure>
-          </div>
-          <div class="theme-card theme-card--night prose-card">
-            <div class="theme-card__body">
-              <p class="type-body">Next, I created relevant subsections that define the functions of each page. I mapped various user flows, including the quick watering function on the home page (/) and the ability to edit and archive existing plants within their collection.</p>
+          <p class="theme-gallery__caption type-body" aria-live="polite"></p>
+          <div class="theme-gallery__dots"></div>
+        </div>
+
+        <p class="section__body type-body text-muted">Additionally, in an attempt to narrow my scope, I decided that the Leaf Library would be an ideal place for the user to designate their plant into one of four main watering categories:</p>
+        <ul class="section__list type-body text-muted">
+          <li><strong>Desert dweller</strong> – low maintenance, prefers dry conditions; watering is needed every 14 – 17 days</li>
+          <li><strong>Standard houseplant</strong> – requires a consistent amount of moderate moisture; watering is needed every 7 days</li>
+          <li><strong>Thirsty tropical</strong> – prefers humid environments and damp soil; watering is needed every 3–5 days</li>
+          <li><strong>Hydration heavy</strong> – the soil should never be dry; water every 1–2 days</li>
+        </ul>
+        <p class="section__body type-body text-muted">Additionally, I decided to integrate a getPlantHealthStatus function that determines the plant's facial expression, setting the criteria as follows:</p>
+        <ul class="section__list type-body text-muted">
+          <li><strong>Happy</strong> – if the plant is within its recommended watering window</li>
+          <li><strong>Neutral</strong> – if the plant is at the end of its watering window</li>
+          <li><strong>Distressed</strong> – if the plant has exceeded its watering window</li>
+        </ul>
+
+        <h3 class="type-subheading">Visual style development</h3>
+        <p class="section__body type-body text-muted">Initially, I decided to use an earth-tone color scheme for all app pages (i.e., sage green, terracotta, warm browns, and creams). Unfortunately, I was unable to include the reactive faces based on plant health status because the happy, neutral, and distressed expressions would not to render correctly. The app could only show neutral and sad faces, so I left the feature out because it wasn't part of my initial MVP.</p>
+        <div class="case-study-visual case-study-visual--night">
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 3.</span> Initial launch home screen</p>
+          <figure class="theme-card__figure theme-card__figure--full-width">
+            <img src="assets/initial-launch-plant.png" alt="Initial home page for the Glass Botanist app at first launch with earth-tone color scheme">
+          </figure>
+        </div>
+
+        <p class="section__body type-body text-muted">However, I was able to continue to iterate later, refining my design and troubleshooting the getPlantHealthStatus function. I created a reusable skill, /inspire-design-system, to generate a DESIGN.md folder. I reviewed various web applications on Dribbble and Landbook, and ultimately prompted Cursor to use the following site, https://hellopebl.com/?ref=land-book.com, as design inspiration. The following test file was generated as shown below.</p>
+        <div class="theme-gallery theme-gallery--compact" data-gallery>
+          <p class="theme-gallery__hint type-caption">
+            <i data-lucide="move-horizontal" aria-hidden="true"></i>
+            Swipe or drag to browse
+          </p>
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 4.</span> Design system preview pages</p>
+          <div class="theme-gallery__frame">
+            <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Design system preview page images" aria-roledescription="carousel">
+              <div class="theme-gallery__track">
+                <figure class="theme-gallery__slide">
+                  <img src="assets/design1.png" alt="Coastal Enterprise Design System hero section with headline and call-to-action buttons">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/design2.png" alt="Design system color tokens and typography scale">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/design3.png" alt="Design system typography styles and spacing tokens">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/design4.png" alt="Design system buttons, tags, and content card components">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/design5.png" alt="Coastal Enterprise Design System hero section with partner logos">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/design6.png" alt="Design system color palette and typography tokens overview">
+                </figure>
+              </div>
             </div>
+            <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
+              <i data-lucide="chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
+              <i data-lucide="chevron-right" aria-hidden="true"></i>
+            </button>
           </div>
-          <div class="theme-gallery theme-gallery--compact" data-gallery>
-                <p class="theme-gallery__hint type-caption">
-                  <i data-lucide="move-horizontal" aria-hidden="true"></i>
-                  Swipe or drag to browse
-                </p>
-                <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 2.</span> Key user flows</p>
-                <div class="theme-gallery__frame">
-                  <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="User flow diagrams" aria-roledescription="carousel">
-                    <div class="theme-gallery__track">
-                      <figure class="theme-gallery__slide" data-caption="User flow for editing and archiving plants within a collection on the My Plants page.">
-                        <img src="assets/manage-plants-user-flow.png" alt="User flow diagram for managing and archiving plants in a collection">
-                      </figure>
-                      <figure class="theme-gallery__slide" data-caption="User flow for the quick watering function on the home page, enabling fast care updates with minimal taps.">
-                        <img src="assets/quick-water_user-flow.png" alt="User flow diagram for the quick water feature on the home page">
-                      </figure>
-                    </div>
-                  </div>
-                  <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
-                    <i data-lucide="chevron-left" aria-hidden="true"></i>
-                  </button>
-                  <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
-                    <i data-lucide="chevron-right" aria-hidden="true"></i>
-                  </button>
-                </div>
-                <p class="theme-gallery__caption type-body" aria-live="polite"></p>
-                <div class="theme-gallery__dots"></div>
-          </div>
-          <div class="theme-card theme-card--night prose-card">
-            <div class="theme-card__body">
-              <p class="type-body">Additionally, in an attempt to narrow my scope, I decided that the Leaf Library would be an ideal place for the user to designate their plant into one of four main watering categories:</p>
-              <ul class="section__list type-body">
-                <li><strong>Desert dweller</strong> – low maintenance, prefers dry conditions; watering is needed every 14 – 17 days</li>
-                <li><strong>Standard houseplant</strong> – requires a consistent amount of moderate moisture; watering is needed every 7 days</li>
-                <li><strong>Thirsty tropical</strong> – prefers humid environments and damp soil; watering is needed every 3–5 days</li>
-                <li><strong>Hydration heavy</strong> – the soil should never be dry; water every 1–2 days</li>
-              </ul>
-              <p class="type-body">Additionally, I decided to integrate a getPlantHealthStatus function that determines the plant's facial expression, setting the criteria as follows:</p>
-              <ul class="section__list type-body">
-                <li><strong>Happy</strong> – if the plant is within its recommended watering window</li>
-                <li><strong>Neutral</strong> – if the plant is at the end of its watering window</li>
-                <li><strong>Distressed</strong> – if the plant has exceeded its watering window</li>
-              </ul>
+          <div class="theme-gallery__dots"></div>
+        </div>
+
+        <p class="section__body type-body text-muted">I applied the new color palette and manually modified the plant icons because the new design clashed with the initial earth-tone color scheme. Please see the various iterations displayed below.</p>
+        <div class="theme-gallery theme-gallery--compact" data-gallery>
+          <p class="theme-gallery__hint type-caption">
+            <i data-lucide="move-horizontal" aria-hidden="true"></i>
+            Swipe or drag to browse
+          </p>
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 5.</span> Plant icon iterations</p>
+          <div class="theme-gallery__frame">
+            <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Plant icon iteration images" aria-roledescription="carousel">
+              <div class="theme-gallery__track">
+                <figure class="theme-gallery__slide">
+                  <img src="assets/plant1.png" alt="Early plant icon iteration for Glass Botanist">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/plant2.png" alt="Mid plant icon iteration for Glass Botanist">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/plant3.png" alt="Later plant icon iteration for Glass Botanist">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/plant4.png" alt="Final plant icon iteration for Glass Botanist">
+                </figure>
+              </div>
             </div>
+            <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
+              <i data-lucide="chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
+              <i data-lucide="chevron-right" aria-hidden="true"></i>
+            </button>
           </div>
-          <div class="theme-card theme-card--night prose-card">
-            <div class="theme-card__body">
-              <h3 class="type-subheading">Visual style development</h3>
-              <p class="type-body">Initially, I decided to use an earth-tone color scheme for all app pages (i.e., sage green, terracotta, warm browns, and creams). Unfortunately, I was unable to include the reactive faces based on plant health status because the happy, neutral, and distressed expressions would not to render correctly. The app could only show neutral and sad faces, so I left the feature out because it wasn't part of my initial MVP.</p>
+          <div class="theme-gallery__dots"></div>
+        </div>
+
+        <p class="section__body type-body text-muted">I was also able to restore the happy, neutral, and distressed faces that appeared on the pots at this time, ultimately discovering that the sad and happy mouths were too similar (Q28 24 vs Q28 25). Updating the PLANT_POT_EXPRESSIONS to happy (Q28 25) and sad (Q28 19) resolved the issue, at last. Additionally, I used Awaad to find a website with a liquid glass effect. I decided to apply this effect to my plant card containers.</p>
+        <h3 class="type-subheading">AI assisted development</h3>
+        <p class="section__body type-body text-muted">I used Cursor to generate a my /inspire-design-system skill and DESIGN.md file. I also built the entire application by outlining the site map and key user flows, as well as troubleshooting the reactive expressions, and various designs.</p>
+        <div class="theme-gallery theme-gallery--compact" data-gallery>
+          <p class="theme-gallery__hint type-caption">
+            <i data-lucide="move-horizontal" aria-hidden="true"></i>
+            Swipe or drag to browse
+          </p>
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 6.</span> Examples of AI assistance during the build process</p>
+          <div class="theme-gallery__frame">
+            <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="AI-assisted development prompt screenshots" aria-roledescription="carousel">
+              <div class="theme-gallery__track">
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt1.png" alt="Cursor prompt to create the global /inspire-design-system skill">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt2.png" alt="Cursor prompt defining preview phase constraints for DESIGN.md and preview.html">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt3.png" alt="Cursor /inspire-design-system prompt with helopebl.com design inspiration URL">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt4.png" alt="Cursor prompt to replace legacy CSS variables with the new Pacific palette">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt6.png" alt="Cursor prompt to refine card styling with white surfaces and subtle borders">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt7.png" alt="Cursor prompt to standardize plant icons with teal foliage and charcoal pots">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt8.png" alt="Cursor prompt to adjust plant icon spacing and increase foliage size">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt9.png" alt="Cursor prompt to add expressive pot faces based on watering status">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt10.png" alt="Cursor prompt to connect face rendering logic to plant status data in plant-icons.js">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt11.png" alt="Cursor prompt to apply sad CSS class to plant cards when status is overdue">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt12.png" alt="Cursor follow-up on plant-pot--sad class applied but SVG still showing happy face">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt13.png" alt="Cursor prompt to apply liquid glass effect to plant card backgrounds">
+                </figure>
+              </div>
             </div>
+            <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
+              <i data-lucide="chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
+              <i data-lucide="chevron-right" aria-hidden="true"></i>
+            </button>
           </div>
-          <div class="case-study-visual case-study-visual--night">
-            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 3.</span> Initial launch home screen</p>
-            <figure class="theme-card__figure theme-card__figure--full-width">
-              <img src="assets/initial-launch-plant.png" alt="Initial home page for the Glass Botanist app at first launch with earth-tone color scheme">
-            </figure>
-          </div>
-          <div class="theme-card theme-card--night prose-card">
-            <div class="theme-card__body">
-              <p class="type-body">However, I was able to continue to iterate later, refining my design and troubleshooting the getPlantHealthStatus function. I created a reusable skill, /inspire-design-system, to generate a DESIGN.md folder. I reviewed various web applications on Dribbble and Landbook, and ultimately prompted Cursor to use the following site, https://hellopebl.com/?ref=land-book.com, as design inspiration. The following test file was generated as shown below.</p>
-            </div>
-          </div>
-          <div class="theme-gallery theme-gallery--compact" data-gallery>
-                <p class="theme-gallery__hint type-caption">
-                  <i data-lucide="move-horizontal" aria-hidden="true"></i>
-                  Swipe or drag to browse
-                </p>
-                <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 4.</span> Design system preview pages</p>
-                <div class="theme-gallery__frame">
-                  <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Design system preview page images" aria-roledescription="carousel">
-                    <div class="theme-gallery__track">
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/design1.png" alt="Coastal Enterprise Design System hero section with headline and call-to-action buttons">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/design2.png" alt="Design system color tokens and typography scale">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/design3.png" alt="Design system typography styles and spacing tokens">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/design4.png" alt="Design system buttons, tags, and content card components">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/design5.png" alt="Coastal Enterprise Design System hero section with partner logos">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/design6.png" alt="Design system color palette and typography tokens overview">
-                      </figure>
-                    </div>
-                  </div>
-                  <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
-                    <i data-lucide="chevron-left" aria-hidden="true"></i>
-                  </button>
-                  <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
-                    <i data-lucide="chevron-right" aria-hidden="true"></i>
-                  </button>
-                </div>
-                <div class="theme-gallery__dots"></div>
-          </div>
-          <div class="theme-card theme-card--night prose-card">
-            <div class="theme-card__body">
-              <p class="type-body">I applied the new color palette and manually modified the plant icons because the new design clashed with the initial earth-tone color scheme. Please see the various iterations displayed below.</p>
-            </div>
-          </div>
-          <div class="theme-gallery theme-gallery--compact" data-gallery>
-                <p class="theme-gallery__hint type-caption">
-                  <i data-lucide="move-horizontal" aria-hidden="true"></i>
-                  Swipe or drag to browse
-                </p>
-                <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 5.</span> Plant icon iterations</p>
-                <div class="theme-gallery__frame">
-                  <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Plant icon iteration images" aria-roledescription="carousel">
-                    <div class="theme-gallery__track">
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/plant1.png" alt="Early plant icon iteration for Glass Botanist">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/plant2.png" alt="Mid plant icon iteration for Glass Botanist">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/plant3.png" alt="Later plant icon iteration for Glass Botanist">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/plant4.png" alt="Final plant icon iteration for Glass Botanist">
-                      </figure>
-                    </div>
-                  </div>
-                  <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
-                    <i data-lucide="chevron-left" aria-hidden="true"></i>
-                  </button>
-                  <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
-                    <i data-lucide="chevron-right" aria-hidden="true"></i>
-                  </button>
-                </div>
-                <div class="theme-gallery__dots"></div>
-          </div>
-          <div class="theme-card theme-card--night prose-card">
-            <div class="theme-card__body">
-              <p class="type-body">I was also able to restore the happy, neutral, and distressed faces that appeared on the pots at this time, ultimately discovering that the sad and happy mouths were too similar (Q28 24 vs Q28 25). Updating the PLANT_POT_EXPRESSIONS to happy (Q28 25) and sad (Q28 19) resolved the issue, at last. Additionally, I used Awaad to find a website with a liquid glass effect. I decided to apply this effect to my plant card containers.</p>
-              <h3 class="type-subheading">AI assisted development</h3>
-              <p class="type-body">I used Cursor to generate a my /inspire-design-system skill and DESIGN.md file. I also built the entire application by outlining the site map and key user flows, as well as troubleshooting the reactive expressions, and various designs.</p>
-            </div>
-          </div>
-          <div class="theme-gallery theme-gallery--compact" data-gallery>
-                <p class="theme-gallery__hint type-caption">
-                  <i data-lucide="move-horizontal" aria-hidden="true"></i>
-                  Swipe or drag to browse
-                </p>
-                <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 6.</span> Examples of AI assistance during the build process</p>
-                <div class="theme-gallery__frame">
-                  <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="AI-assisted development prompt screenshots" aria-roledescription="carousel">
-                    <div class="theme-gallery__track">
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt1.png" alt="Cursor prompt to create the global /inspire-design-system skill">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt2.png" alt="Cursor prompt defining preview phase constraints for DESIGN.md and preview.html">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt3.png" alt="Cursor /inspire-design-system prompt with helopebl.com design inspiration URL">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt4.png" alt="Cursor prompt to replace legacy CSS variables with the new Pacific palette">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt6.png" alt="Cursor prompt to refine card styling with white surfaces and subtle borders">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt7.png" alt="Cursor prompt to standardize plant icons with teal foliage and charcoal pots">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt8.png" alt="Cursor prompt to adjust plant icon spacing and increase foliage size">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt9.png" alt="Cursor prompt to add expressive pot faces based on watering status">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt10.png" alt="Cursor prompt to connect face rendering logic to plant status data in plant-icons.js">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt11.png" alt="Cursor prompt to apply sad CSS class to plant cards when status is overdue">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt12.png" alt="Cursor follow-up on plant-pot--sad class applied but SVG still showing happy face">
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <img src="assets/prompt13.png" alt="Cursor prompt to apply liquid glass effect to plant card backgrounds">
-                      </figure>
-                    </div>
-                  </div>
-                  <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
-                    <i data-lucide="chevron-left" aria-hidden="true"></i>
-                  </button>
-                  <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
-                    <i data-lucide="chevron-right" aria-hidden="true"></i>
-                  </button>
-                </div>
-                <p class="theme-gallery__caption type-body" aria-live="polite" hidden></p>
-          </div>
+          <p class="theme-gallery__caption type-body" aria-live="polite" hidden></p>
         </div>
       </div>
     </section>

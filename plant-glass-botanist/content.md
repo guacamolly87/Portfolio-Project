@@ -22,7 +22,6 @@ To address this, my goal became simplifying the cognitive burden of plant care b
 <!-- theme: lavender -->
 
 ## Process
-<!-- theme: night -->
 <!-- galleries: true -->
 
 ### Establishing the web application structure & basic elements
