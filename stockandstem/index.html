@@ -403,7 +403,6 @@
       margin-top: var(--space-6);
       aspect-ratio: 16 / 9;
       overflow: hidden;
-      width: 100%;
     }
 
     .project-hero__media img {
@@ -464,6 +463,19 @@
       gap: var(--space-5);
     }
 
+    /* Full-width content column — hero media, lilac cards, and visuals share aligned edges */
+    .project-hero__media,
+    .demo-panel,
+    .demo-panel > .prose-card,
+    .demo-panel > .case-study-visual,
+    .demo-panel > .theme-gallery,
+    #process > .container > .case-study-visual,
+    #process > .container > .theme-gallery {
+      width: 100%;
+      max-width: none;
+      margin-inline: 0;
+    }
+
     .prose-card {
       width: 100%;
     }
@@ -491,6 +503,7 @@
     .prose-card .theme-card__body > h3,
     .prose-card .theme-card__body > .feature-list,
     .prose-card .theme-card__body .feature-list > li {
+      max-width: none;
       width: 100%;
       text-align: left;
     }
@@ -1075,6 +1088,14 @@
         <header class="section__header">
           <h2 class="type-display-md case-caps">Process</h2>
         </header>
+        <h3 class="type-subheading">Establishing the web appliation structure & basic elements</h3>
+        <p class="section__body type-body text-muted">Before beginning the design process, I created a basic structure for the web application using Figma. This included establishing the main pages of the application and relevant sub-sections.</p>
+        <div class="case-study-visual case-study-visual--night">
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 1.</span> Application site map</p>
+          <figure class="theme-card__figure theme-card__figure--full-width">
+            <img src="assets/stock&stem-site_map.png" alt="Stock and Stem application site map showing Home, Grocery List, Recipes, Planner, and Progress pages with functional sub-sections">
+          </figure>
+        </div>
 
         <h3 class="type-subheading">Sketching</h3>
         <p class="section__body type-body text-muted">I used Crazy 8s as a low-stakes way to explore design ideas for the website's four main pages and to identify key user flows.</p>
@@ -1083,7 +1104,7 @@
             <i data-lucide="move-horizontal" aria-hidden="true"></i>
             Swipe or drag to browse
           </p>
-          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 1.</span> Examples of Sketches</p>
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 2.</span> Examples of Sketches</p>
           <div class="theme-gallery__frame">
             <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Sketching process images" aria-roledescription="carousel">
               <div class="theme-gallery__track">
@@ -1111,7 +1132,7 @@
             <i data-lucide="move-horizontal" aria-hidden="true"></i>
             Swipe or drag to browse
           </p>
-          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 2.</span> Examples of User Flows</p>
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 3.</span> Examples of User Flows</p>
           <div class="theme-gallery__frame">
             <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Key userflow images" aria-roledescription="carousel">
               <div class="theme-gallery__track">
@@ -1136,7 +1157,7 @@
         <h3 class="type-subheading">Visual Style Development</h3>
         <p class="section__body type-body text-muted">I created a moodboard centered on a cozy, retro-inspired aesthetic designed to foster a calm, stress-free kitchen environment. Inspired by the soft, nostalgic color palette of vintage kitchenware, specifically the cool mints and pale purples found in classic KitchenAid mixers, I utilized purple and teal accents to balance the pastels and evoke the warmth and comfort of a home-cooked meal.</p>
         <div class="case-study-visual case-study-visual--night">
-          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 3.</span> Mood Board</p>
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 4.</span> Mood Board</p>
           <figure class="theme-card__figure theme-card__figure--contain">
             <img src="assets/stock&stem2.png" alt="Stock and Stem moodboard with cozy retro-inspired aesthetic, deep purple and teal accents">
           </figure>
@@ -1151,7 +1172,7 @@
             <i data-lucide="move-horizontal" aria-hidden="true"></i>
             Swipe or drag to browse
           </p>
-          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 4.</span> Examples of AI Assistance During the Build Process</p>
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 5.</span> Examples of AI Assistance During the Build Process</p>
           <div class="theme-gallery__frame">
             <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="AI-assisted development images" aria-roledescription="carousel">
               <div class="theme-gallery__track">
@@ -1220,13 +1241,13 @@
             </div>
           </div>
           <div class="case-study-visual">
-            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 5.</span> Sample screens included from Stock &amp; Stem</p>
+            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 6.</span> Sample screens included from Stock &amp; Stem</p>
             <figure class="theme-card__figure theme-card__figure--full-width">
               <img src="assets/Prototype.png" alt="High-fidelity mobile prototype showing Home, Recipes, Grocery List, and Planner screens for Stock and Stem">
             </figure>
           </div>
           <div class="case-study-visual">
-            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 6.</span> Consolidated planner page</p>
+            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 7.</span> Consolidated planner page</p>
             <figure class="theme-card__figure theme-card__figure--full-width">
               <img src="assets/Planner-dashboard.png" alt="Stock and Stem Planner dashboard showing weekly calendar and daily meal schedule on a laptop">
             </figure>
@@ -1240,7 +1261,7 @@
             </div>
           </div>
           <div class="case-study-visual">
-            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 7.</span> Quick tag inventory system and grocery checklist</p>
+            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 8.</span> Quick tag inventory system and grocery checklist</p>
             <figure class="theme-card__figure theme-card__figure--full-width">
               <img src="assets/Inventory_shopping_list.png" alt="Stock and Stem inventory quick-tag grid on mobile and interactive grocery checklist with in-cart toggles on tablet">
             </figure>

@@ -268,6 +268,22 @@ Homepage intro copy uses a comfortable line length — **not** full container wi
 }
 ```
 
+**Full-width content column (project pages):** hero media, lavender cards, and solution/process visuals must share the same aligned edges at every breakpoint:
+
+```css
+.project-hero__media,
+.demo-panel,
+.demo-panel > .prose-card,
+.demo-panel > .case-study-visual,
+.demo-panel > .theme-gallery,
+#process > .container > .case-study-visual,
+#process > .container > .theme-gallery {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+}
+```
+
 **Lavender card padding (project pages, ≥ `bp.md`):**
 
 ```css
