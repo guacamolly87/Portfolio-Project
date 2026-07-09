@@ -35,6 +35,16 @@
       --font-display: "Barlow Condensed", sans-serif;
       --font-body: "Manrope", sans-serif;
 
+      /* Fluid type scale (rem) — scales with responsive root below */
+      --type-display-lg: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+      --type-display-md: clamp(2rem, 1.625rem + 1.5vw, 2.5rem);
+      --type-heading: clamp(1.5rem, 1.3rem + 0.75vw, 1.75rem);
+      --type-subheading: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);
+      --type-body: 1rem;
+      --type-body-sm: 0.875rem;
+      --type-label: 0.875rem;
+      --type-caption: 0.75rem;
+
       --space-1: 4px;
       --space-2: 8px;
       --space-3: 12px;
@@ -64,12 +74,16 @@
 
     *, *::before, *::after { box-sizing: border-box; }
 
+    html {
+      font-size: clamp(1rem, 0.9375rem + 0.35vw, 1.125rem);
+    }
+
     body {
       margin: 0;
       background: var(--color-bg-base);
       color: var(--color-text-primary);
       font-family: var(--font-body);
-      font-size: 16px;
+      font-size: var(--type-body);
       font-weight: 400;
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
@@ -86,7 +100,7 @@
       background: var(--color-bg-primary);
       color: var(--color-text-on-primary);
       font-family: var(--font-body);
-      font-size: 19px;
+      font-size: 1.1875rem;
       font-weight: 700;
       text-decoration: none;
       border-radius: var(--radius-md);
@@ -96,7 +110,7 @@
 
     .type-display-lg {
       font-family: var(--font-display);
-      font-size: 40px;
+      font-size: var(--type-display-lg);
       font-weight: 700;
       line-height: 1.1;
       margin: 0;
@@ -104,7 +118,7 @@
 
     .type-display-md {
       font-family: var(--font-display);
-      font-size: 32px;
+      font-size: var(--type-display-md);
       font-weight: 700;
       line-height: 1.1;
       margin: 0;
@@ -112,7 +126,7 @@
 
     .type-subheading {
       font-family: var(--font-display);
-      font-size: 20px;
+      font-size: var(--type-subheading);
       font-weight: 600;
       line-height: 1.3;
       margin: 0;
@@ -120,7 +134,7 @@
 
     .type-body {
       font-family: var(--font-body);
-      font-size: 16px;
+      font-size: var(--type-body);
       font-weight: 400;
       line-height: 1.5;
       margin: 0;
@@ -128,7 +142,7 @@
 
     .type-label {
       font-family: var(--font-body);
-      font-size: 14px;
+      font-size: var(--type-label);
       font-weight: 500;
       line-height: 1.3;
       margin: 0;
@@ -136,7 +150,7 @@
 
     .type-caption {
       font-family: var(--font-body);
-      font-size: 12px;
+      font-size: var(--type-caption);
       font-weight: 400;
       line-height: 1.5;
       margin: 0;
@@ -148,11 +162,6 @@
     }
 
     .text-muted { color: var(--color-text-muted); }
-
-    @media (min-width: 768px) {
-      .type-display-lg { font-size: 56px; }
-      .type-display-md { font-size: 40px; }
-    }
 
     .container {
       width: 100%;
@@ -203,7 +212,7 @@
     }
 
     .btn--default {
-      font-size: 16px;
+      font-size: var(--type-body);
       padding: var(--button-padding-default);
     }
 
@@ -323,7 +332,7 @@
       color: var(--color-text-muted);
       text-decoration: none;
       font-family: var(--font-body);
-      font-size: 14px;
+      font-size: var(--type-label);
       font-weight: 500;
       line-height: 1.3;
       border-bottom: 2px solid transparent;
@@ -493,7 +502,7 @@
 
     .theme-card__body {
       font-family: var(--font-body);
-      font-size: 16px;
+      font-size: var(--type-body);
       font-weight: 400;
       line-height: 1.5;
       margin: 0 0 var(--space-6);
@@ -514,6 +523,8 @@
     .theme-card__body .section__list + p { margin-top: var(--space-5); }
 
     .theme-card__body .feature-list + p { margin-top: var(--space-5); }
+
+    .theme-card__body .theme-gallery + p { margin-top: var(--space-5); }
 
     .theme-card__body .section__list {
       color: rgba(26, 25, 31, 0.75);
@@ -552,6 +563,11 @@
       aspect-ratio: 16 / 9;
       margin: 0;
       overflow: hidden;
+    }
+
+    .theme-card__body > .theme-card__figure,
+    .theme-card__body .feature-list .theme-card__figure {
+      margin-bottom: var(--space-6);
     }
 
     .theme-card__figure img {
@@ -599,7 +615,7 @@
       align-items: center;
       justify-content: center;
       font-family: var(--font-body);
-      font-size: 14px;
+      font-size: var(--type-label);
       margin: var(--space-4) 0 0;
       width: 100%;
     }
@@ -772,11 +788,22 @@
       min-height: 0;
     }
 
+    .theme-gallery__slide-media--stack {
+      flex-direction: column;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-3) 0;
+    }
+
+    .theme-gallery__slide-media--stack img {
+      width: 100%;
+      height: auto;
+    }
+
     .theme-gallery__slide-caption {
       margin: 0;
       padding: var(--space-3) var(--space-4) var(--space-4);
       font-family: var(--font-body);
-      font-size: 16px;
+      font-size: var(--type-body);
       font-weight: 400;
       line-height: 1.5;
       text-align: left;
@@ -793,7 +820,7 @@
 
     .theme-gallery__figure-title {
       font-family: var(--font-body);
-      font-size: 14px;
+      font-size: var(--type-label);
       font-weight: 700;
       line-height: 1.5;
       margin: var(--space-4) 0 var(--space-5);
@@ -1048,21 +1075,16 @@
                   <i data-lucide="move-horizontal" aria-hidden="true"></i>
                   Swipe or drag to browse
                 </p>
-                <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 2.</span> Design iterations</p>
+                <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 2.</span> Design iteration challenges</p>
                 <div class="theme-gallery__frame">
                   <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Design iteration images" aria-roledescription="carousel">
                     <div class="theme-gallery__track">
                       <figure class="theme-gallery__slide">
-                        <div class="theme-gallery__slide-media">
+                        <div class="theme-gallery__slide-media theme-gallery__slide-media--stack">
                           <img src="assets/figma-gamer-ex.png" alt="Gamer theme with modern standing desk using Figma flat CSS-generated images">
-                        </div>
-                        <figcaption class="theme-gallery__slide-caption type-body">An example of the gamer theme and modern standing desk using Figma&rsquo;s flat, CSS-generated images.</figcaption>
-                      </figure>
-                      <figure class="theme-gallery__slide">
-                        <div class="theme-gallery__slide-media">
                           <img src="assets/figma-midcentury-ex.png" alt="Boho theme with light natural wood desk using Figma flat CSS-generated images">
                         </div>
-                        <figcaption class="theme-gallery__slide-caption type-body">An example of the boho theme and light natural wood desk using Figma&rsquo;s flat, CSS-generated images.</figcaption>
+                        <figcaption class="theme-gallery__slide-caption type-body">Examples of the gamer theme with a modern standing desk and the boho theme with a light natural wood desk, both using Figma&rsquo;s flat, CSS-generated images.</figcaption>
                       </figure>
                       <figure class="theme-gallery__slide">
                         <div class="theme-gallery__slide-media">
@@ -1158,7 +1180,12 @@
                     <img src="assets/desktop-ipad.png" alt="Dream Desk Visualizer shown on desktop and iPad with boho and gamer theme setups">
                   </figure>
                 </li>
-                <li><strong>Improved confidence in decision making —</strong> Enjoy the peace of mind that comes with a realistic, risk-free preview, allowing you to assess the cohesion of your design choices before committing to significant financial investments.</li>
+                <li><strong>Improved confidence in decision making —</strong> Enjoy the peace of mind that comes with a realistic, risk-free preview, allowing you to assess the cohesion of your design choices before committing to significant financial investments.
+                  <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 6.</span> Manage, edit and share</p>
+                  <figure class="theme-card__figure theme-card__figure--full-width">
+                    <img src="assets/manage-edit-share.png" alt="Dream Desk Visualizer manage, edit and share screen with desk and chair cards and edit controls on mobile">
+                  </figure>
+                </li>
               </ul>
             </div>
           </div>

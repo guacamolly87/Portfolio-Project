@@ -216,21 +216,48 @@ Two alternate section treatments for hero blocks, feature panels, or case-study 
 
 **Families:** `font.family.display` = "Barlow Condensed"; `font.family.body` = "Manrope".
 **Weights:** regular 400 · medium 500 · semibold 600 · bold 700.
-**Sizes:** xs 12 · sm 14 · md 16 (base) · lg 20 · xl 28 · 2xl 40 · 3xl 56 (px).
+**Sizes:** fluid `rem` scale anchored to a responsive root (see **Responsive root** below). Reference targets at 16px browser default: xs 12 · sm 14 · md 16 (base) · lg 20 · xl 28 · 2xl 40 · 3xl 56.
 **Leading:** tight 1.1 · snug 1.3 · normal 1.5. **Tracking:** tight −0.01em · normal 0 · wide 0.04em.
+
+### Responsive root
+Set on `html` in every page — do **not** hard-code `px` on `body` or type presets:
+
+```css
+html {
+  font-size: clamp(1rem, 0.9375rem + 0.35vw, 1.125rem);
+}
+```
+
+This keeps body copy at 16px on narrow viewports and scales up to 18px on laptop/desktop widths, improving readability without oversized text on large monitors.
+
+### Type tokens (`:root`)
+Define once per page; all `.type-*` classes reference these variables:
+
+| Token | CSS variable | Scale |
+|-------|--------------|-------|
+| `type.display.lg` | `--type-display-lg: clamp(2.5rem, 2rem + 2vw, 3.5rem)` | 40px → 56px |
+| `type.display.md` | `--type-display-md: clamp(2rem, 1.625rem + 1.5vw, 2.5rem)` | 32px → 40px |
+| `type.heading` | `--type-heading: clamp(1.5rem, 1.3rem + 0.75vw, 1.75rem)` | 24px → 28px |
+| `type.subheading` | `--type-subheading: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem)` | 18px → 22px |
+| `type.body` | `--type-body: 1rem` | follows root |
+| `type.body.sm` | `--type-body-sm: 0.875rem` | 14px @ 16px root |
+| `type.label` | `--type-label: 0.875rem` | 14px @ 16px root |
+| `type.caption` | `--type-caption: 0.75rem` | 12px @ 16px root |
+
+**Rules:** use `var(--type-*)` on all typography classes, buttons, nav links, theme-card body copy, and gallery captions. Do **not** add breakpoint-only jumps (e.g. `56px` at `768px`) — `clamp()` handles fluid scaling. Nested components inherit the responsive root via `rem`.
 
 ### Role presets
 | Token | Family | Size | Weight | Case | Leading / Tracking |
 |-------|--------|------|--------|------|--------------------|
-| `type.display.lg` | display | 3xl (56) | bold | see case rules | tight / wide† |
-| `type.display.md` | display | 2xl (40) | bold | see case rules | tight / wide† |
-| `type.heading` | display | xl (28) | bold | sentence | snug / normal |
-| `type.subheading` | display | lg (20) | semibold | sentence | snug / normal |
-| `type.body` | body | md (16) | regular | sentence | normal |
-| `type.body.sm` | body | sm (14) | regular | sentence | normal |
-| `type.label` | body | sm (14) | medium | sentence | snug |
-| `type.button` | body | md (16) | semibold | sentence | snug |
-| `type.caption` | body | xs (12) | regular | sentence | normal |
+| `type.display.lg` | display | `var(--type-display-lg)` | bold | see case rules | tight / wide† |
+| `type.display.md` | display | `var(--type-display-md)` | bold | see case rules | tight / wide† |
+| `type.heading` | display | `var(--type-heading)` | bold | sentence | snug / normal |
+| `type.subheading` | display | `var(--type-subheading)` | semibold | sentence | snug / normal |
+| `type.body` | body | `var(--type-body)` | regular | sentence | normal |
+| `type.body.sm` | body | `var(--type-body-sm)` | regular | sentence | normal |
+| `type.label` | body | `var(--type-label)` | medium | sentence | snug |
+| `type.button` | body | `var(--type-body)` | semibold | sentence | snug |
+| `type.caption` | body | `var(--type-caption)` | regular | sentence | normal |
 
 †When `case.caps` applies, use wide tracking (0.04em). When `case.sentence` applies on H1/H2, use normal tracking.
 
@@ -409,7 +436,13 @@ Alternate editorial panels for hero blocks, feature callouts, and case-study int
   - `.theme-card__figure--full-width` — bleeds toward card edge, leaving `space.3` (12px) lavender/night frame visible; use for hero mockups and feature screenshots inside cards
   - `.theme-card__figure--contain` — no fixed aspect ratio; image centered at 68.4% width; use for mood boards and tall assets
 - **Split anatomy (showcase only):** lavender = content left + tall image right · night = tall image left + content right; placeholder spans ≈ `300px` height. Reserved for `test-2.html` theme demos — not for generated case-study pages.
-- **Spacing (grid):** body↔images `space.6` · images↔card bottom `16px` · image gap `16px` · paragraph stack inside body `space.4`
+- **Spacing (grid):** paragraph stack inside body `space.4` · image gap in `.theme-card__images` `16px` · images↔card bottom `16px`
+- **Image ↔ text spacing (project pages — required CSS):** theme-card body copy must never sit flush against figures or galleries. Copy these rules into every `{slug}/index.html`:
+  - **Figure label → figure:** `.theme-gallery__figure-title` uses `margin: space.4 0 space.5` (16px above label, 24px below label before image)
+  - **Figure → following text:** `.theme-card__body > .theme-card__figure` and `.theme-card__body .feature-list .theme-card__figure` use `margin-bottom: space.6` (32px)
+  - **Text → gallery:** `.theme-card__body .theme-gallery` uses `margin-top: space.4` (16px)
+  - **Gallery → following text:** `.theme-card__body .theme-gallery + p` uses `margin-top: space.5` (24px) — matches the gap a `type.subheading` already gets via its own `margin-top: space.5` when a gallery is followed by a new subsection
+  - **Feature bullet → inline figure:** `.feature-list li .theme-card__figure` uses `margin-top: space.4` (16px); when preceded by a figure label inside the same `<li>`, reset with `.feature-list li .theme-gallery__figure-title + .theme-card__figure { margin-top: 0 }`
 - **Wrapper:** on homepage/demo pages, inside `demo-panel` (`bg.surface` + `border.subtle`, `space.5` padding). On **project pages**, `demo-panel` is a pass-through wrapper (transparent, no border, no padding) — see **Project pages**.
 
 ### Theme Gallery
@@ -422,6 +455,7 @@ Horizontal image carousel inside theme cards (Process / Solution sections). Copy
 - **Full-width variant:** default `.theme-gallery` — slides span viewport width; images `object-fit: contain`
 - **Captions:** optional `data-caption` on `.theme-gallery__slide`; rendered in `.theme-gallery__caption` when present (user-flow galleries)
 - **Hint:** `.theme-gallery__hint` with Lucide `move-horizontal`; visible ≥ `bp.md`
+- **Spacing (project pages):** inherit **Image ↔ text spacing** rules from Theme Card. Inside the carousel: `.theme-gallery__dots` uses `margin-top: space.3` (12px below slide frame); slide captions (`.theme-gallery__slide-caption`) use `padding: space.3 space.4 space.4`. A gallery block is one unit — apply `margin-top` / `margin-bottom` to the `.theme-gallery` root and sibling selectors, not to inner viewport/slide elements.
 - **JS:** `document.querySelectorAll('[data-gallery]')` init — layout slides to viewport width, scroll-snap, drag on desktop, dot nav when `.theme-gallery__dots` exists
 
 ### Feature List
@@ -529,6 +563,7 @@ Nested project pages (`{slug}/index.html`) extend the homepage design system wit
 - `.theme-card__body`: `max-width: none`, `width: 100%`.
 - Card padding: `space.5` (< `bp.md`) / `30px` (≥ `bp.md`) on all sides — prevents text from touching the lavender or night card edge.
 - Subheadings within cards: `type.subheading` (sentence case), `margin-top: space.5`.
+- **Image ↔ text spacing:** include all Theme Card **Image ↔ text spacing** selectors in project-page CSS — do not rely on `p + p` alone; figures and galleries are not paragraphs and need explicit sibling margins.
 - Process galleries: copy full `.theme-gallery` CSS + init script from `stockandstem/index.html`.
 - Solution features: `.feature-list` with `<strong>Title —</strong>` lead-ins; nest `.theme-card__figure--full-width` inside `<li>` when a screenshot supports the bullet.
 
