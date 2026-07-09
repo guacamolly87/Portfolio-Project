@@ -47,7 +47,6 @@
 
       --leading-relaxed: 1.625;
       --prose-max-width: 70ch;
-      --content-column-max: 880px;
 
       --space-1: 4px;
       --space-2: 8px;
@@ -404,6 +403,7 @@
       margin-top: var(--space-6);
       aspect-ratio: 16 / 9;
       overflow: hidden;
+      width: 100%;
     }
 
     .project-hero__media img {
@@ -481,12 +481,8 @@
     .prose-card .theme-card__body {
       display: flex;
       flex-direction: column;
-    }
-
-    @media (min-width: 768px) {
-      .prose-card .theme-card__body {
-        align-items: center;
-      }
+      max-width: none;
+      width: 100%;
     }
 
     .prose-card .theme-card__body > p,
@@ -495,7 +491,7 @@
     .prose-card .theme-card__body > h3,
     .prose-card .theme-card__body > .feature-list,
     .prose-card .theme-card__body .feature-list > li {
-      max-width: var(--prose-max-width);
+      max-width: none;
       width: 100%;
       text-align: left;
     }
@@ -540,15 +536,6 @@
     }
 
     @media (min-width: 768px) {
-      .demo-panel > .prose-card,
-      .demo-panel > .case-study-visual,
-      .demo-panel > .theme-gallery,
-      #process > .container > .case-study-visual,
-      #process > .container > .theme-gallery {
-        max-width: var(--content-column-max);
-        margin-inline: auto;
-      }
-
       .theme-card.prose-card {
         padding: var(--space-5);
       }

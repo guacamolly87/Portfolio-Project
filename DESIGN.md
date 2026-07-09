@@ -231,55 +231,47 @@ html {
 This keeps body copy at 16px on narrow viewports and scales up to 20px on laptop/desktop widths, improving readability without oversized text on large monitors.
 
 ### Prose measure
-Long-form reading blocks use a comfortable line length — **not** full card/container width:
+Homepage intro copy uses a comfortable line length — **not** full container width:
 
 ```css
 :root {
   --leading-relaxed: 1.625;
   --prose-max-width: 70ch;
-  --content-column-max: 880px;
 }
 
 .prose-measure,
+.measure {
+  max-width: var(--prose-max-width);
+  text-align: left;
+}
+```
+
+**Project pages:** lavender `.prose-card` blocks span the **full container width** (same as `.project-hero__summary`, `.project-hero__media`, `.case-study-visual`, and `.theme-gallery`). Do **not** cap `.prose-card .theme-card__body` or its children at `--prose-max-width`; leave `max-width: none` and `width: 100%`.
+
+```css
+.prose-card .theme-card__body {
+  display: flex;
+  flex-direction: column;
+  max-width: none;
+  width: 100%;
+}
+
 .prose-card .theme-card__body > p,
 .prose-card .theme-card__body > ul,
 .prose-card .theme-card__body > .section__list,
 .prose-card .theme-card__body > h3,
 .prose-card .theme-card__body > .feature-list,
 .prose-card .theme-card__body .feature-list > li {
-  max-width: var(--prose-max-width);
+  max-width: none;
+  width: 100%;
   text-align: left;
-}
-
-@media (min-width: 768px) {
-  .prose-measure,
-  .prose-card .theme-card__body {
-    align-items: center;
-  }
-
-  .prose-card .theme-card__body > p,
-  .prose-card .theme-card__body > ul,
-  .prose-card .theme-card__body > .section__list,
-  .prose-card .theme-card__body > h3,
-  .prose-card .theme-card__body > .feature-list,
-  .prose-card .theme-card__body .feature-list > li {
-    margin-left: auto;
-    margin-right: auto;
-  }
 }
 ```
 
-**Content column (project pages, ≥ `bp.md`):**
+**Lavender card padding (project pages, ≥ `bp.md`):**
 
 ```css
 @media (min-width: 768px) {
-  .demo-panel > .prose-card,
-  .demo-panel > .case-study-visual,
-  .demo-panel > .theme-gallery {
-    max-width: var(--content-column-max);
-    margin-inline: auto;
-  }
-
   .theme-card.prose-card {
     padding: var(--space-5);
   }
@@ -293,9 +285,9 @@ Long-form reading blocks use a comfortable line length — **not** full card/con
 
 **Layout rules (project pages):**
 - **Section headers** (`.section__header` H2s like Challenge, Process) stay **left-aligned** as visual anchors — do not center.
-- **Contained sections** (Challenge, Solution) — wrap **prose only** in `.theme-card.prose-card` with `theme-card--lavender`. At `bp.md`+, cap `.prose-card` at `--content-column-max` (880px), center with `margin-inline: auto`, keep `space.5` padding, and restore the lilac fill (`#CAC8F3` with `ink.800` text). Set `max-width: var(--prose-max-width)` on `.prose-card .theme-card__body` (not on individual children) so subheadings and lists share one column.
+- **Contained sections** (Challenge, Solution) — wrap **prose only** in `.theme-card.prose-card` with `theme-card--lavender`. Cards span the full `.container` width at every breakpoint; keep `space.5` padding and the lilac fill (`#CAC8F3` with `ink.800` text). Body copy inside the card is also full width — no `--prose-max-width` cap.
 - **Uncontained sections** (Hero summary, **Process**, Deployment, Reflection) — use `.project-hero__summary`, `.section__body`, or `h3.type-subheading` + `.section__body` directly in `.container`; **no** theme card, **no** `max-width` cap, **left-aligned**. Do **not** use `theme-card--night` for Process — `theme.night` fill (`ink.900`) matches `bg.base`, so a night card adds no visual contrast.
-- **Visuals** — `.theme-gallery`, `.case-study-visual`, and standalone figures sit as **siblings** in `.container` (Process) or `.demo-panel` (Challenge/Solution), **outside** `.prose-card` wrappers. At `bp.md`+, cap them at `--content-column-max` (880px) and center with `margin-inline: auto`. Challenge/Solution lavender cards keep full-width lilac fills below `bp.md`.
+- **Visuals** — `.project-hero__media`, `.theme-gallery`, `.case-study-visual`, and lavender `.prose-card` blocks all share the same full container width for a balanced column.
 
 Figures, galleries, and feature-list items with screenshots stay full card width. Body copy uses `line-height: var(--leading-relaxed)` for a calm, airy rhythm.
 
@@ -354,7 +346,7 @@ Keep source HTML in sentence case; apply `case.caps` via CSS `text-transform` fo
 - **Heading mapping:** H1 → `type.display.lg` · H2 → `type.display.md` · H3 → `type.heading` · H4 → `type.subheading`. Do not skip levels.
 - All headings use Barlow Condensed with `case.caps` or `case.sentence` per table. All non-heading text uses Manrope.
 - **`type.label` vs `type.body.sm`:** `label` (medium) = form labels, column headers, metadata keys, contact anchors (weight 600 when anchoring). `body.sm` (regular) = helper text, card descriptions, secondary paragraphs.
-- **Measure:** body text max ≈ 70ch (`.prose-measure` / `--prose-max-width`) on homepage intro copy and project case-study prose blocks; theme-card figures and galleries may span full card width. Homepage `.measure` maps to the same `70ch` token.
+- **Measure:** body text max ≈ 70ch (`.prose-measure` / `--prose-max-width`) on **homepage** intro copy only. Project case-study lavender `.prose-card` blocks, hero media, galleries, and figures span full container width.
 - **Links:** `text.primary` + 1px underline at rest; underline thickens / shifts to `border.accent` on hover. Not violet-filled text.
 
 ---
@@ -622,7 +614,7 @@ Nested project pages (`{slug}/index.html`) extend the homepage design system wit
 
 **Project hero order:** title → tagline (optional) → summary → hero media (16:9, before meta) → meta row → external CTA (optional).
 
-**Body copy width:** Apply `--prose-max-width` (70ch) to `.prose-card .theme-card__body` only (see **Prose measure**). At `bp.md`+, cap `.prose-card`, `#process > .container > .case-study-visual`, `#process > .container > .theme-gallery`, and Challenge/Solution `.case-study-visual` / `.theme-gallery` siblings at `--content-column-max` (880px) and center with `margin-inline: auto`. Leave `.section__header` H2s, `.project-hero__summary`, and `.section__body` left-aligned and uncapped.
+**Body copy width:** Lavender `.prose-card` blocks, `.project-hero__media`, `.case-study-visual`, and `.theme-gallery` siblings span the full `.container` width at every breakpoint (`max-width: none` on `.prose-card .theme-card__body` and its children). Leave `.section__header` H2s, `.project-hero__summary`, and `.section__body` left-aligned and uncapped. Homepage intro copy still uses `--prose-max-width` (70ch) via `.measure` / `.prose-measure`.
 
 **`demo-panel` on project pages:** pass-through wrapper for **Challenge and Solution only** — `background: transparent`, no border, `padding: 0`, `display: flex`, `flex-direction: column`, `gap: space.5`. Holds alternating `.prose-card`, `.case-study-visual`, and `.theme-gallery` siblings. **Process does not use `demo-panel`.** (Contrast: homepage/demo `demo-panel` uses `bg.surface` + `border.subtle` + `space.5` padding.)
 
@@ -635,7 +627,7 @@ Nested project pages (`{slug}/index.html`) extend the homepage design system wit
 - Use **grid (single-column) layout only** — never use `.theme-card--split` or side-by-side text/image columns.
 - **Lavender only** on case-study pages (`theme-card--lavender`). Reserve `theme-card--night` for `test-2.html` theme showcases — not generated project pages.
 - Apply `type-body` to paragraphs and lists inside `.prose-card .theme-card__body`.
-- `.theme-card__body`: `max-width: var(--prose-max-width)`, `width: 100%`, `margin-inline: auto` on lavender prose cards.
+- `.theme-card__body`: `max-width: none`, `width: 100%` on lavender prose cards (full container span).
 - Card padding: `space.5` on all sides at every breakpoint for `.prose-card` on project pages. Lavender prose cards use `ink.800` body copy at 85% opacity (subheadings and feature titles at full `ink.800`) for contrast on the lilac fill.
 - Subheadings within cards: `type.subheading` (sentence case), `margin-top: space.5`.
 - **Process (uncontained):** `h3.type-subheading` + `p.section__body.type-body.text-muted` + optional `ul.section__list.type-body.text-muted` directly in `.container`; copy `#process > .container` spacing and gallery title/hint CSS from `stockandstem/index.html`.
