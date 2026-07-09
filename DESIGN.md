@@ -114,7 +114,7 @@ Violet is **never** used for hover states, body text, decorative fills, dividers
 | `color.text.primary` | `violet.100` @ 100% | Default text on dark (12.3:1 on base — AAA) |
 | `color.text.muted` | `violet.100` @ 100% | Secondary text, inactive nav/tab labels, contact values (12.3:1 on base — AAA) |
 | `color.text.disabled` | `violet.100` @ 40% | Disabled text, placeholders (2.8:1 — exempt from contrast requirements) |
-| `color.text.onPrimary` | `ink.900` | **Mandatory** label on violet fill (4.0:1). Primary buttons and accent badges. |
+| `color.text.onPrimary` | `#ffffff` | **Mandatory** label on violet fill (~5.0:1). Primary buttons and accent badges. |
 | `color.text.accent` | `violet.500` | Emphasis on **large text only** (≥24px or ≥18.67px bold; 4.0:1 on base) |
 
 ### Semantic — borders
@@ -132,7 +132,7 @@ Violet is **never** used for hover states, body text, decorative fills, dividers
 - **Borders:** `border.subtle` (low) vs `border.strong` (high)
 - **Controls:** secondary button variant (transparent + `border.strong`)
 
-> **Accessibility-First policy:** All text on `bg.primary` uses `text.onPrimary` (`ink.900`). Never use `violet.100` (#CAC8F3) on violet fills.
+> **Accessibility-First policy:** All text on `bg.primary` uses `text.onPrimary` (`#ffffff`). Never use `violet.100` (#CAC8F3) on violet fills.
 > **No semantic palette:** no red/green/amber. Status is conveyed by icon + text label + accent border for errors — never by hue.
 
 ### Color theme showcases
@@ -722,7 +722,7 @@ Verified contrast ratios (calculated per WCAG relative luminance). Status key: *
 | `text.primary` on `bg.surface` | 10.9:1 | Pass AAA | Cards, panels, inputs |
 | `text.muted` on `bg.base` | 12.3:1 | Pass AAA | Secondary copy, nav labels |
 | `text.muted` on `bg.surface` | 10.9:1 | Pass AAA | Helper text, captions |
-| `text.onPrimary` on `bg.primary` | 4.0:1 | Known constraint | Primary buttons — short labels only; see Accessibility |
+| `text.onPrimary` on `bg.primary` | 5.0:1 | Pass AA | Primary buttons, accent badges, skip link |
 | `text.accent` on `bg.base` | 4.0:1 | Pass (large) | Large emphasis only |
 | `ink.800` on `theme.lavender` | 10.9:1 | Pass AAA | Light lavender headers |
 | Lavender body (75% ink) on lavender | 5.8:1 | Pass AA | Theme card body copy |
@@ -749,12 +749,11 @@ Verified contrast ratios (calculated per WCAG relative luminance). Status key: *
 
 **Known constraints:**
 - `text.disabled` and placeholder text in inactive fields are exempt — do not use for essential instructions.
-- `text.onPrimary` on `violet.500` (4.0:1) does **not** meet 4.5:1 normal text AA. Primary buttons use `button.default` sizing (16px/semibold) for visual parity with secondary actions; keep labels short (≤3 words).
 - Theme placeholder labels use minimum AA opacities: lavender `ink.800` @ 70% · night `#D1D2E0` @ 55%.
 
 ### Policy summary
 
-- **Contrast:** `text.primary` and `text.muted` on base/surface ≈12:1 / ≈11:1 (AAA). `text.onPrimary` on `bg.primary` ≈4.0:1 — short primary-button labels only. `text.accent` violet on base ≈4.0:1 — large text only.
+- **Contrast:** `text.primary` and `text.muted` on base/surface ≈12:1 / ≈11:1 (AAA). `text.onPrimary` on `bg.primary` ≈5:1 (AA). `text.accent` violet on base ≈4.0:1 — large text only.
 - **Focus:** visible 2px `border.focus`, 2px offset on all interactives.
 - **Never rely on violet alone** for state — pair with indicator (underline, icon, text).
 - **No hue-coded status** — icon + text always.
@@ -787,7 +786,7 @@ Map tokens to CSS custom properties in implementation files:
   --color-text-primary: var(--color-violet-100);
   --color-text-muted: var(--color-violet-100);
   --color-text-disabled: rgba(202, 200, 243, 0.4);
-  --color-text-on-primary: var(--color-ink-900);
+  --color-text-on-primary: #ffffff;
   --color-border-subtle: rgba(202, 200, 243, 0.18);
   --color-border-strong: var(--color-violet-100);
   --color-border-accent: var(--color-violet-500);
@@ -856,7 +855,7 @@ Map tokens to CSS custom properties in implementation files:
 - Use `radius.none` on cards, inputs, badges; `radius.md` on buttons; `radius.full` on avatars only; **`8px` only on theme cards**.
 - Apply `case.caps` only to H1/H2 with ≤3 words; `case.sentence` on all H3/H4 and long H1/H2.
 - Use `button.padding.default` for standard buttons; `button.compact` in dense UI only.
-- Use `text.onPrimary` (`ink.900`) on all primary buttons and accent badges.
+- Use `text.onPrimary` (`#ffffff`) on all primary buttons and accent badges.
 - Render every Contact Item with icon + label + content.
 - Match card media to 16:9 with `object-position: left center`.
 - Use the dark-background logo (`assets/mgriffin-designs.png`) in nav on `bg.base`.
