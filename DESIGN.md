@@ -282,15 +282,18 @@ Long-form reading blocks use a comfortable line length — **not** full card/con
 
   .theme-card.prose-card {
     padding: var(--space-5);
-    background: transparent;
-    border: 1px solid var(--color-border-subtle);
+  }
+
+  .theme-card.prose-card.theme-card--lavender {
+    background: #CAC8F3;
+    color: #1A191F;
   }
 }
 ```
 
 **Layout rules (project pages):**
 - **Section headers** (`.section__header` H2s like Challenge, Process) stay **left-aligned** as visual anchors — do not center.
-- **Contained sections** (Challenge, Process, Solution/Outcome) — wrap **prose only** in `.theme-card.prose-card` (lavender for Challenge/Solution, night for Process). At `bp.md`+, cap `.prose-card` at `--content-column-max` (880px), center with `margin-inline: auto`, and use a **light treatment**: transparent fill, `border.subtle`, `space.5` padding (not the full lavender/night panel fills). Prose inside the card stays capped at `--prose-max-width` (70ch) and centered via `align-items: center` on `.theme-card__body`; text remains **left-aligned**.
+- **Contained sections** (Challenge, Process, Solution/Outcome) — wrap **prose only** in `.theme-card.prose-card` (lavender for Challenge/Solution, night for Process). At `bp.md`+, cap `.prose-card` at `--content-column-max` (880px), center with `margin-inline: auto`, keep `space.5` padding, and restore theme fills (`theme.lavender` lilac `#CAC8F3` with `ink.800` text; `theme.night` with `border.subtle`). Prose inside the card stays capped at `--prose-max-width` (70ch) and centered via `align-items: center` on `.theme-card__body`; text remains **left-aligned**.
 - **Uncontained sections** (Hero summary, Deployment, Reflection) — use `.project-hero__summary` or `.section__body` directly in `.container`; **no** theme card, **no** `max-width` cap, **left-aligned** as open visual anchors.
 - **Visuals** — `.theme-gallery`, `.case-study-visual`, and standalone figures sit as **siblings** inside `.demo-panel`, **outside** `.prose-card` wrappers. At `bp.md`+, cap them at the same `--content-column-max` and center with `margin-inline: auto` so images align vertically with prose cards. Below `bp.md`, prose cards keep full-width lavender/night fills.
 
@@ -632,7 +635,7 @@ Nested project pages (`{slug}/index.html`) extend the homepage design system wit
 - Use **grid (single-column) layout only** — never use `.theme-card--split` or side-by-side text/image columns.
 - Apply `type-body` to paragraphs, lists, and list items inside `.prose-card .theme-card__body`.
 - `.theme-card__body`: `max-width: none`, `width: 100%`, `margin: 0`.
-- Card padding: `space.5` on all sides at every breakpoint for `.prose-card` on project pages (≥ `bp.md` uses the light bordered treatment, not the 30px showcase padding). Non–prose-card theme showcases still use `space.5` (< `bp.md`) / `30px` (≥ `bp.md`).
+- Card padding: `space.5` on all sides at every breakpoint for `.prose-card` on project pages. Lavender prose cards use `ink.800` body copy at 85% opacity (subheadings and feature titles at full `ink.800`) for contrast on the lilac fill.
 - Subheadings within cards: `type.subheading` (sentence case), `margin-top: space.5`.
 - Process galleries: copy full `.theme-gallery` CSS + init script from `stockandstem/index.html`; style standalone `#process .demo-panel > .theme-gallery` hints and figure titles for the dark page background.
 - Solution features: `.feature-list` with `<strong>Title —</strong>` lead-ins in `.prose-card`; place supporting screenshots in a following `.case-study-visual` sibling.
