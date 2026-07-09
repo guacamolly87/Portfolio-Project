@@ -458,6 +458,62 @@
       border: none;
       border-radius: var(--radius-none);
       padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+    }
+
+    .prose-card {
+      width: 100%;
+    }
+
+    .case-study-visual {
+      width: 100%;
+    }
+
+    .case-study-visual .theme-card__figure--full-width {
+      --figure-card-inset: 0;
+      width: 100%;
+      margin-inline: 0;
+    }
+
+    .prose-card .theme-card__body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+      .prose-card .theme-card__body {
+        align-items: center;
+      }
+    }
+
+    .prose-card .theme-card__body > p,
+    .prose-card .theme-card__body > ul,
+    .prose-card .theme-card__body > .section__list,
+    .prose-card .theme-card__body > h3,
+    .prose-card .theme-card__body > .feature-list,
+    .prose-card .theme-card__body .feature-list > li {
+      max-width: var(--prose-max-width);
+      width: 100%;
+      text-align: left;
+    }
+
+    .project-hero__summary,
+    .section__body {
+      max-width: none;
+      text-align: left;
+    }
+
+    .case-study-visual--night .theme-gallery__figure-title,
+    #process .demo-panel .case-study-visual .theme-gallery__figure-title,
+    #process .demo-panel > .theme-gallery .theme-gallery__figure-title {
+      color: var(--color-violet-100);
+    }
+
+    #final-concept .demo-panel .case-study-visual .theme-gallery__figure-title,
+    #solution .demo-panel .case-study-visual .theme-gallery__figure-title {
+      color: var(--color-violet-100);
     }
 
     .theme-card {
@@ -490,32 +546,6 @@
       margin: 0;
       max-width: none;
       width: 100%;
-    }
-
-    .prose-measure,
-    .theme-card__body > p,
-    .theme-card__body > ul,
-    .theme-card__body > h3,
-    .theme-card__body > .theme-gallery__figure-title,
-    .theme-card__body .feature-list > li:not(:has(.theme-card__figure)),
-    .section__body,
-    .project-hero__summary {
-      max-width: var(--prose-max-width);
-      text-align: left;
-    }
-
-    @media (min-width: 768px) {
-      .prose-measure,
-      .theme-card__body > p,
-      .theme-card__body > ul,
-      .theme-card__body > h3,
-      .theme-card__body > .theme-gallery__figure-title,
-      .theme-card__body .feature-list > li:not(:has(.theme-card__figure)),
-      .section__body,
-      .project-hero__summary {
-        margin-left: auto;
-        margin-right: auto;
-      }
     }
 
     .theme-card--lavender .theme-card__body {
@@ -681,7 +711,9 @@
       color: rgba(26, 25, 31, 0.6);
     }
 
-    .theme-card--night .theme-gallery__hint {
+    .theme-card--night .theme-gallery__hint,
+    .case-study-visual--night .theme-gallery__hint,
+    #process .demo-panel > .theme-gallery .theme-gallery__hint {
       color: rgba(209, 210, 224, 0.6);
     }
 
@@ -985,7 +1017,7 @@
           <h2 class="type-display-md case-caps">Challenge</h2>
         </header>
         <div class="demo-panel">
-          <div class="theme-card theme-card--lavender">
+          <div class="theme-card theme-card--lavender prose-card">
             <div class="theme-card__body">
               <p class="type-body">Anyone who manages cooking for a busy household knows it is a delicate balance to juggle tight schedules and budgets. A weeknight stir-fry, a meal-prep Sunday, and a last-minute dinner guest all compete for the same bag of spinach. Existing tools tend to be disparate, with many users relying on bookmarked recipes, hand-written notes, and a quick glance at an ever-changing inventory. Furthermore, monitoring perishable groceries introduces a layer of micro-logistics that generic to-do apps ignore. Ingredients expire on different schedules, partial packages get opened mid-week, and fridge space is finite.</p>
               <p class="type-body">When building the application, I targeted three core friction points in the typical home cooking workflow:</p>
@@ -1007,11 +1039,13 @@
           <h2 class="type-display-md case-caps">Process</h2>
         </header>
         <div class="demo-panel">
-          <div class="theme-card theme-card--night">
+          <div class="theme-card theme-card--night prose-card">
             <div class="theme-card__body">
               <h3 class="type-subheading">Sketching</h3>
               <p class="type-body">I used Crazy 8s as a low-stakes way to explore design ideas for the website's four main pages and to identify key user flows.</p>
-              <div class="theme-gallery" data-gallery>
+            </div>
+          </div>
+          <div class="theme-gallery" data-gallery>
                 <p class="theme-gallery__hint type-caption">
                   <i data-lucide="move-horizontal" aria-hidden="true"></i>
                   Swipe or drag to browse
@@ -1036,9 +1070,13 @@
                   </button>
                 </div>
               </div>
+          <div class="theme-card theme-card--night prose-card">
+            <div class="theme-card__body">
               <h3 class="type-subheading">Developing Key Userflows</h3>
               <p class="type-body">The key userflows focused on the core functionality of the app including assigning and retrieving recipes for meals, generating grocery lists, updating inventory, and tracking the progress of meal preparation.</p>
-              <div class="theme-gallery theme-gallery--compact" data-gallery>
+            </div>
+          </div>
+          <div class="theme-gallery theme-gallery--compact" data-gallery>
                 <p class="theme-gallery__hint type-caption">
                   <i data-lucide="move-horizontal" aria-hidden="true"></i>
                   Swipe or drag to browse
@@ -1065,17 +1103,27 @@
                 <p class="theme-gallery__caption type-body" aria-live="polite"></p>
               </div>
 
+          <div class="theme-card theme-card--night prose-card">
+            <div class="theme-card__body">
               <h3 class="type-subheading">Visual Style Development</h3>
               <p class="type-body">I created a moodboard centered on a cozy, retro-inspired aesthetic designed to foster a calm, stress-free kitchen environment. Inspired by the soft, nostalgic color palette of vintage kitchenware, specifically the cool mints and pale purples found in classic KitchenAid mixers, I utilized purple and teal accents to balance the pastels and evoke the warmth and comfort of a home-cooked meal.</p>
-              <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 3.</span> Mood Board</p>
-              <figure class="theme-card__figure theme-card__figure--contain">
-                <img src="assets/stock&stem2.png" alt="Stock and Stem moodboard with cozy retro-inspired aesthetic, deep purple and teal accents">
-              </figure>
+            </div>
+          </div>
+          <div class="case-study-visual case-study-visual--night">
+            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 3.</span> Mood Board</p>
+            <figure class="theme-card__figure theme-card__figure--contain">
+              <img src="assets/stock&stem2.png" alt="Stock and Stem moodboard with cozy retro-inspired aesthetic, deep purple and teal accents">
+            </figure>
+          </div>
+          <div class="theme-card theme-card--night prose-card">
+            <div class="theme-card__body">
               <h3 class="type-subheading">Design Iterations</h3>
               <p class="type-body">Design iterations included consolidating the daily planning workflows into a single calendar view, creating a quick-tagged inventory system, and sorting the grocery list by category with toggles that allow users to quickly mark items off their shopping list.</p>
               <h3 class="type-subheading">AI-Assisted Development</h3>
               <p class="type-body">I used Cursor to generate code, set up Supabase and Unsplash API integrations for images, and generate placeholder content for the app, as well as the project documentation. Please view the gallery below to view sample prompts.</p>
-              <div class="theme-gallery theme-gallery--compact" data-gallery>
+            </div>
+          </div>
+          <div class="theme-gallery theme-gallery--compact" data-gallery>
                 <p class="theme-gallery__hint type-caption">
                   <i data-lucide="move-horizontal" aria-hidden="true"></i>
                   Swipe or drag to browse
@@ -1130,8 +1178,6 @@
                   </button>
                 </div>
                 <p class="theme-gallery__caption type-body" aria-live="polite" hidden></p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -1143,27 +1189,43 @@
           <h2 class="type-display-md case-caps">Solution</h2>
         </header>
         <div class="demo-panel">
-          <div class="theme-card theme-card--lavender">
+          <div class="theme-card theme-card--lavender prose-card">
             <div class="theme-card__body">
               <h3 class="type-subheading">Key features</h3>
-              <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 5.</span> Sample screens included from Stock &amp; Stem</p>
-              <figure class="theme-card__figure theme-card__figure--full-width">
-                <img src="assets/Prototype.png" alt="High-fidelity mobile prototype showing Home, Recipes, Grocery List, and Planner screens for Stock and Stem">
-              </figure>
               <ul class="feature-list type-body">
-                <li><strong>Centralized calendar dashboard —</strong> A unified, day-by-day planner that handles meal assignment, schedule adjustments, and grocery generation from a single, cohesive view, eliminating the need to jump between disconnected screens.
-                  <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 6.</span> Consolidated planner page</p>
-                  <figure class="theme-card__figure theme-card__figure--full-width">
-                    <img src="assets/Planner-dashboard.png" alt="Stock and Stem Planner dashboard showing weekly calendar and daily meal schedule on a laptop">
-                  </figure>
-                </li>
+                <li><strong>Centralized calendar dashboard —</strong> A unified, day-by-day planner that handles meal assignment, schedule adjustments, and grocery generation from a single, cohesive view, eliminating the need to jump between disconnected screens.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="case-study-visual">
+            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 5.</span> Sample screens included from Stock &amp; Stem</p>
+            <figure class="theme-card__figure theme-card__figure--full-width">
+              <img src="assets/Prototype.png" alt="High-fidelity mobile prototype showing Home, Recipes, Grocery List, and Planner screens for Stock and Stem">
+            </figure>
+          </div>
+          <div class="case-study-visual">
+            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 6.</span> Consolidated planner page</p>
+            <figure class="theme-card__figure theme-card__figure--full-width">
+              <img src="assets/Planner-dashboard.png" alt="Stock and Stem Planner dashboard showing weekly calendar and daily meal schedule on a laptop">
+            </figure>
+          </div>
+          <div class="theme-card theme-card--lavender prose-card">
+            <div class="theme-card__body">
+              <ul class="feature-list type-body">
                 <li><strong>Quick-tag pantry inventory —</strong> An inventory system pre-populated with common pantry staples. Users can effortlessly tag items they already own to instantly update their inventory.</li>
-                <li><strong>Interactive grocery checklists —</strong> High-utility, actionable shopping lists featuring intuitive toggle interactions that let users cleanly strike items off as they shop or audit their kitchen.
-                  <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 7.</span> Quick tag inventory system and grocery checklist</p>
-                  <figure class="theme-card__figure theme-card__figure--full-width">
-                    <img src="assets/Inventory_shopping_list.png" alt="Stock and Stem inventory quick-tag grid on mobile and interactive grocery checklist with in-cart toggles on tablet">
-                  </figure>
-                </li>
+                <li><strong>Interactive grocery checklists —</strong> High-utility, actionable shopping lists featuring intuitive toggle interactions that let users cleanly strike items off as they shop or audit their kitchen.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="case-study-visual">
+            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 7.</span> Quick tag inventory system and grocery checklist</p>
+            <figure class="theme-card__figure theme-card__figure--full-width">
+              <img src="assets/Inventory_shopping_list.png" alt="Stock and Stem inventory quick-tag grid on mobile and interactive grocery checklist with in-cart toggles on tablet">
+            </figure>
+          </div>
+          <div class="theme-card theme-card--lavender prose-card">
+            <div class="theme-card__body">
+              <ul class="feature-list type-body">
                 <li><strong>Smart meal-time allocation —</strong> Dedicated, clean layout blocks for Breakfast, Lunch, Dinner, and Snacks that display precise timing and meal states, ensuring the entire day is glanceable in under three seconds.</li>
               </ul>
               <p class="type-body">The interface stays on dark surfaces with lavender editorial panels for feature callouts matching the portfolio design system, so dense information remains readable in a bright kitchen.</p>

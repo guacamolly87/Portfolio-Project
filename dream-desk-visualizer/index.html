@@ -479,6 +479,62 @@
       border: none;
       border-radius: var(--radius-none);
       padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+    }
+
+    .prose-card {
+      width: 100%;
+    }
+
+    .case-study-visual {
+      width: 100%;
+    }
+
+    .case-study-visual .theme-card__figure--full-width {
+      --figure-card-inset: 0;
+      width: 100%;
+      margin-inline: 0;
+    }
+
+    .prose-card .theme-card__body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+      .prose-card .theme-card__body {
+        align-items: center;
+      }
+    }
+
+    .prose-card .theme-card__body > p,
+    .prose-card .theme-card__body > ul,
+    .prose-card .theme-card__body > .section__list,
+    .prose-card .theme-card__body > h3,
+    .prose-card .theme-card__body > .feature-list,
+    .prose-card .theme-card__body .feature-list > li {
+      max-width: var(--prose-max-width);
+      width: 100%;
+      text-align: left;
+    }
+
+    .project-hero__summary,
+    .section__body {
+      max-width: none;
+      text-align: left;
+    }
+
+    .case-study-visual--night .theme-gallery__figure-title,
+    #process .demo-panel .case-study-visual .theme-gallery__figure-title,
+    #process .demo-panel > .theme-gallery .theme-gallery__figure-title {
+      color: var(--color-violet-100);
+    }
+
+    #final-concept .demo-panel .case-study-visual .theme-gallery__figure-title,
+    #solution .demo-panel .case-study-visual .theme-gallery__figure-title {
+      color: var(--color-violet-100);
     }
 
     .theme-card {
@@ -511,32 +567,6 @@
       margin: 0;
       max-width: none;
       width: 100%;
-    }
-
-    .prose-measure,
-    .theme-card__body > p,
-    .theme-card__body > ul,
-    .theme-card__body > h3,
-    .theme-card__body > .theme-gallery__figure-title,
-    .theme-card__body .feature-list > li:not(:has(.theme-card__figure)),
-    .section__body,
-    .project-hero__summary {
-      max-width: var(--prose-max-width);
-      text-align: left;
-    }
-
-    @media (min-width: 768px) {
-      .prose-measure,
-      .theme-card__body > p,
-      .theme-card__body > ul,
-      .theme-card__body > h3,
-      .theme-card__body > .theme-gallery__figure-title,
-      .theme-card__body .feature-list > li:not(:has(.theme-card__figure)),
-      .section__body,
-      .project-hero__summary {
-        margin-left: auto;
-        margin-right: auto;
-      }
     }
 
     .theme-card--lavender .theme-card__body {
@@ -709,7 +739,9 @@
       color: rgba(26, 25, 31, 0.6);
     }
 
-    .theme-card--night .theme-gallery__hint {
+    .theme-card--night .theme-gallery__hint,
+    .case-study-visual--night .theme-gallery__hint,
+    #process .demo-panel > .theme-gallery .theme-gallery__hint {
       color: rgba(209, 210, 224, 0.6);
     }
 
@@ -1052,7 +1084,7 @@
           <h2 class="type-display-md case-caps">Challenge</h2>
         </header>
         <div class="demo-panel">
-          <div class="theme-card theme-card--lavender">
+          <div class="theme-card theme-card--lavender prose-card">
             <div class="theme-card__body">
               <p class="type-body">Individuals often feel overwhelmed when designing a personalized workspace, struggling to bridge the gap between imagination and reality when selecting furniture, accessories, and decor. The Dream Desk Visualizer was developed to address the following challenges:</p>
               <ul class="section__list type-body">
@@ -1072,14 +1104,20 @@
           <h2 class="type-display-md case-caps">Process</h2>
         </header>
         <div class="demo-panel">
-          <div class="theme-card theme-card--night">
+          <div class="theme-card theme-card--night prose-card">
             <div class="theme-card__body">
               <h3 class="type-subheading">Establishing the web application structure &amp; basic elements</h3>
               <p class="type-body">I began by creating a site map to establish the main architecture, global state dependencies, and bidirectional navigation, which allowed me to prioritize technical planning alongside UI design.</p>
-              <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 1.</span> Application site map</p>
-              <figure class="theme-card__figure theme-card__figure--full-width">
-                <img src="assets/dream-desk_site_map.png" alt="Dream Desk Visualizer application site map showing page architecture and navigation flow">
-              </figure>
+            </div>
+          </div>
+          <div class="case-study-visual case-study-visual--night">
+            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 1.</span> Application site map</p>
+            <figure class="theme-card__figure theme-card__figure--full-width">
+              <img src="assets/dream-desk_site_map.png" alt="Dream Desk Visualizer application site map showing page architecture and navigation flow">
+            </figure>
+          </div>
+          <div class="theme-card theme-card--night prose-card">
+            <div class="theme-card__body">
               <p class="type-body">Next, I submitted a detailed prompt to Figma Make and developed four main office background themes:</p>
               <ul class="section__list type-body">
                 <li><strong>Boho:</strong> includes rattan shelves, natural materials, textiles, macramé, fairy lights, and warm earth tones.</li>
@@ -1095,11 +1133,16 @@
                 <li>A sitting/standing modern desk with a headphone holder</li>
               </ul>
               <p class="type-body">I didn&rsquo;t love the visual output in the live preview section of the page, but the site structure was accurate. I decided to export the code as a zip file and import my project folder into Cursor to save Figma Make credits. You can view the <a href="https://griffin-desk-organizer-app.figma.site/" class="link" target="_blank" rel="noopener noreferrer">initial site structure on Figma</a>.</p>
-
+            </div>
+          </div>
+          <div class="theme-card theme-card--night prose-card">
+            <div class="theme-card__body">
               <h3 class="type-subheading">Visual style development</h3>
               <p class="type-body">The primary challenge in developing the Dream Desk Visualizer was enabling users to interactively assemble a personalized office space across multiple layers (background, desk, chair, and computer), while maintaining a high-fidelity, photorealistic aesthetic. To move away from the flat, CSS-generated background, I uploaded an example image I generated in Gemini as inspiration for my boho-inspired theme. I proceeded to do this with the remaining three themes, and the result was much better-quality visuals for the background layer.</p>
               <p class="type-body">Unfortunately, continuing to stack images in the live preview proved to be challenging. I experimented with using PNG files with transparent backgrounds, but I encountered issues with jagged edges, lighting, and sizing relative to other objects on the screen. Even after manually tweaking the object sizes in chairAssets.ts to fine-tune the CSS width, it proved unsuccessful, as placement was also a significant factor (for example, chairs must be partially tucked under the desk).</p>
-              <div class="theme-gallery" data-gallery>
+            </div>
+          </div>
+          <div class="theme-gallery" data-gallery>
                 <p class="theme-gallery__hint type-caption">
                   <i data-lucide="move-horizontal" aria-hidden="true"></i>
                   Swipe or drag to browse
@@ -1155,12 +1198,19 @@
                   </button>
                 </div>
                 <div class="theme-gallery__dots" role="tablist" aria-label="Design iteration slides"></div>
-              </div>
+          </div>
+          <div class="theme-card theme-card--night prose-card">
+            <div class="theme-card__body">
               <p class="type-body">Ultimately, I discovered that relying on Cursor to generate pre-composed, full-scene composite images was the most time-consuming, but also the most successful approach.</p>
-
+            </div>
+          </div>
+          <div class="theme-card theme-card--night prose-card">
+            <div class="theme-card__body">
               <h3 class="type-subheading">AI-assisted development</h3>
               <p class="type-body">In Cursor, I started by checking for necessary dependencies and installing Node.js and npm.</p>
-              <div class="theme-gallery theme-gallery--compact" data-gallery>
+            </div>
+          </div>
+          <div class="theme-gallery theme-gallery--compact" data-gallery>
                 <p class="theme-gallery__hint type-caption">
                   <i data-lucide="move-horizontal" aria-hidden="true"></i>
                   Swipe or drag to browse
@@ -1181,8 +1231,6 @@
                     <i data-lucide="chevron-right" aria-hidden="true"></i>
                   </button>
                 </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -1194,29 +1242,45 @@
           <h2 class="type-display-md case-caps">Solution</h2>
         </header>
         <div class="demo-panel">
-          <div class="theme-card theme-card--lavender">
+          <div class="theme-card theme-card--lavender prose-card">
             <div class="theme-card__body">
               <h3 class="type-subheading">Key features</h3>
-              <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 4.</span> Photorealistic office setup</p>
-              <figure class="theme-card__figure theme-card__figure--full-width">
-                <img src="assets/dreamdesk-phones.png" alt="Dream Desk Visualizer promotional graphic with phone mockups showing style selection, chair details, and office space preview screens">
-              </figure>
               <ul class="feature-list type-body">
                 <li><strong>Photorealistic integration —</strong> Experience seamlessly integrated, full-scene images that avoid rendering errors such as jagged edges, difficulty blending, and unsightly artifacts.</li>
-                <li><strong>Artful combination —</strong> Effortlessly mix and match pieces from diverse themes, ensuring that furniture, textures, and accessories blend harmoniously, regardless of the combination.
-                  <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 5.</span> High-quality examples of mixing and matching design elements</p>
-                  <figure class="theme-card__figure theme-card__figure--full-width">
-                    <img src="assets/desktop-ipad.png" alt="Dream Desk Visualizer shown on desktop and iPad with boho and gamer theme setups">
-                  </figure>
-                </li>
-                <li><strong>Improved confidence in decision making —</strong> Enjoy the peace of mind that comes with a realistic, risk-free preview, allowing you to assess the cohesion of your design choices before committing to significant financial investments.
-                  <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 6.</span> Manage, edit and share</p>
-                  <figure class="theme-card__figure theme-card__figure--full-width">
-                    <img src="assets/dream-desk-manage.png" alt="Dream Desk Visualizer manage, edit and share screen with desk and chair cards and edit controls on mobile">
-                  </figure>
-                </li>
               </ul>
             </div>
+          </div>
+          <div class="case-study-visual">
+            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 4.</span> Photorealistic office setup</p>
+            <figure class="theme-card__figure theme-card__figure--full-width">
+              <img src="assets/dreamdesk-phones.png" alt="Dream Desk Visualizer promotional graphic with phone mockups showing style selection, chair details, and office space preview screens">
+            </figure>
+          </div>
+          <div class="theme-card theme-card--lavender prose-card">
+            <div class="theme-card__body">
+              <ul class="feature-list type-body">
+                <li><strong>Artful combination —</strong> Effortlessly mix and match pieces from diverse themes, ensuring that furniture, textures, and accessories blend harmoniously, regardless of the combination.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="case-study-visual">
+            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 5.</span> High-quality examples of mixing and matching design elements</p>
+            <figure class="theme-card__figure theme-card__figure--full-width">
+              <img src="assets/desktop-ipad.png" alt="Dream Desk Visualizer shown on desktop and iPad with boho and gamer theme setups">
+            </figure>
+          </div>
+          <div class="theme-card theme-card--lavender prose-card">
+            <div class="theme-card__body">
+              <ul class="feature-list type-body">
+                <li><strong>Improved confidence in decision making —</strong> Enjoy the peace of mind that comes with a realistic, risk-free preview, allowing you to assess the cohesion of your design choices before committing to significant financial investments.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="case-study-visual">
+            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 6.</span> Manage, edit and share</p>
+            <figure class="theme-card__figure theme-card__figure--full-width">
+              <img src="assets/dream-desk-manage.png" alt="Dream Desk Visualizer manage, edit and share screen with desk and chair cards and edit controls on mobile">
+            </figure>
           </div>
         </div>
       </div>

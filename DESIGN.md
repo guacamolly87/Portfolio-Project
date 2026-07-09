@@ -240,26 +240,28 @@ Long-form reading blocks use a comfortable line length — **not** full card/con
 }
 
 .prose-measure,
-.theme-card__body > p,
-.theme-card__body > ul,
-.theme-card__body > h3,
-.theme-card__body > .theme-gallery__figure-title,
-.theme-card__body .feature-list > li:not(:has(.theme-card__figure)),
-.section__body,
-.project-hero__summary {
+.prose-card .theme-card__body > p,
+.prose-card .theme-card__body > ul,
+.prose-card .theme-card__body > .section__list,
+.prose-card .theme-card__body > h3,
+.prose-card .theme-card__body > .feature-list,
+.prose-card .theme-card__body .feature-list > li {
   max-width: var(--prose-max-width);
   text-align: left;
 }
 
 @media (min-width: 768px) {
   .prose-measure,
-  .theme-card__body > p,
-  .theme-card__body > ul,
-  .theme-card__body > h3,
-  .theme-card__body > .theme-gallery__figure-title,
-  .theme-card__body .feature-list > li:not(:has(.theme-card__figure)),
-  .section__body,
-  .project-hero__summary {
+  .prose-card .theme-card__body {
+    align-items: center;
+  }
+
+  .prose-card .theme-card__body > p,
+  .prose-card .theme-card__body > ul,
+  .prose-card .theme-card__body > .section__list,
+  .prose-card .theme-card__body > h3,
+  .prose-card .theme-card__body > .feature-list,
+  .prose-card .theme-card__body .feature-list > li {
     margin-left: auto;
     margin-right: auto;
   }
@@ -268,8 +270,9 @@ Long-form reading blocks use a comfortable line length — **not** full card/con
 
 **Layout rules (project pages):**
 - **Section headers** (`.section__header` H2s like Challenge, Process) stay **left-aligned** as visual anchors — do not center.
-- **Prose blocks** (selectors above) are **centered** within the theme card or section container at `bp.md`+, with **left-aligned** text inside.
-- **Visuals** — `.theme-card__figure`, `.theme-gallery`, `.theme-card__images`, and `.feature-list` items that contain figures — stay **full card width**; no `max-width` or horizontal centering.
+- **Contained sections** (Challenge, Process, Solution/Outcome) — wrap **prose only** in `.theme-card.prose-card` (lavender for Challenge/Solution, night for Process). At `bp.md`+, center the prose block inside the card (`align-items: center` on `.theme-card__body`) while keeping text **left-aligned**.
+- **Uncontained sections** (Hero summary, Deployment, Reflection) — use `.project-hero__summary` or `.section__body` directly in `.container`; **no** theme card, **no** `max-width` cap, **left-aligned** as open visual anchors.
+- **Visuals** — `.theme-gallery`, `.case-study-visual`, and standalone figures sit as **siblings** inside `.demo-panel`, **outside** `.prose-card` wrappers. They span full container width; no `max-width` or horizontal centering on media.
 
 Figures, galleries, and feature-list items with screenshots stay full card width. Body copy uses `line-height: var(--leading-relaxed)` for a calm, airy rhythm.
 
@@ -584,11 +587,11 @@ Nested project pages (`{slug}/index.html`) extend the homepage design system wit
 |---------|---------|---------|----------------|
 | Nav | — | `bg.base` | Navigation; Work link active; wordmark links to `../index.html` |
 | Project hero | H1 | `bg.base` | `type.display.lg` + `case.caps`, tagline (`type.subheading`), summary (`type.body text-muted`), 16:9 `.project-hero__media`, meta row (`dl.project-meta`), optional `btn--default btn--primary` when `externalUrl` set |
-| Challenge | H2 | `theme.lavender` | Single-column theme card: body paragraphs + optional `section__list` |
-| Process | H2 | `theme.night` | Single-column theme card: `type.subheading` blocks, `.theme-gallery` carousels, mood board (`.theme-card__figure--contain`) |
-| Solution | H2 | `theme.lavender` | Single-column theme card: `feature-list` with optional per-item `.theme-card__figure--full-width`; prototype figure above list |
-| Deployment | H2 | `bg.base` | `section__body` paragraphs; optional repeat of external CTA (`project-hero__actions` + `btn--default btn--primary`) |
-| Reflection | H2 | `bg.base` | `section__body` paragraphs — full container width |
+| Challenge | H2 | `theme.lavender` | `.prose-card` theme card: body paragraphs + optional `section__list` |
+| Process | H2 | `theme.night` | Alternating `.prose-card` blocks + full-width `.theme-gallery` / `.case-study-visual` siblings inside `.demo-panel` |
+| Solution | H2 | `theme.lavender` | Alternating `.prose-card` (feature-list, subheadings) + `.case-study-visual` figures; no figures inside prose cards |
+| Deployment | H2 | `bg.base` | `section__body` paragraphs (uncontained); optional repeat of external CTA (`project-hero__actions` + `btn--default btn--primary`) |
+| Reflection | H2 | `bg.base` | `section__body` paragraphs (uncontained) — full container width, left-aligned |
 | Back link | — | `bg.base` | `btn btn--default btn--secondary` → `../index.html#work` |
 | Footer | — | `bg.base` | `type.caption text-muted` |
 
@@ -596,21 +599,25 @@ Nested project pages (`{slug}/index.html`) extend the homepage design system wit
 
 **Project hero order:** title → tagline (optional) → summary → hero media (16:9, before meta) → meta row → external CTA (optional).
 
-**Body copy width:** Apply `--prose-max-width` (70ch) to long-form prose — `.section__body`, `.project-hero__summary`, and direct text children inside `.theme-card__body` (see **Prose measure**). Center prose blocks at `bp.md`+ with `margin-inline: auto`; keep text `text-align: left`. Leave `.section__header` H2s left-aligned. Do **not** cap or center figures, galleries, or feature-list items that include full-width screenshots.
+**Body copy width:** Apply `--prose-max-width` (70ch) to prose inside `.prose-card` only (see **Prose measure**). Center prose blocks at `bp.md`+ with `align-items: center` on `.theme-card__body`; keep text `text-align: left`. Leave `.section__header` H2s, `.project-hero__summary`, and `.section__body` left-aligned and uncapped. Do **not** cap or center figures, galleries, or `.case-study-visual` blocks.
 
-**`demo-panel` on project pages:** pass-through wrapper only — `background: transparent`, no border, `padding: 0`. The theme card inside spans the full container width. (Contrast: homepage/demo `demo-panel` uses `bg.surface` + `border.subtle` + `space.5` padding.)
+**`demo-panel` on project pages:** pass-through wrapper — `background: transparent`, no border, `padding: 0`, `display: flex`, `flex-direction: column`, `gap: space.5`. Holds alternating `.prose-card`, `.case-study-visual`, and `.theme-gallery` siblings. (Contrast: homepage/demo `demo-panel` uses `bg.surface` + `border.subtle` + `space.5` padding.)
+
+**Contained vs uncontained layout:**
+- **`.prose-card`** — theme card with prose only (paragraphs, lists, subheadings, feature bullets). Add `theme-card--lavender` or `theme-card--night` as appropriate. Never nest figures or galleries inside.
+- **`.case-study-visual`** — full-width figure wrapper outside prose cards; use for standalone screenshots with `.theme-gallery__figure-title` + `.theme-card__figure--full-width`. On Process sections, add `.case-study-visual--night` when figure labels need violet-100 on the dark page background.
+- **`.theme-gallery`** — carousel sibling inside `.demo-panel`, not inside `.prose-card`.
 
 **Theme cards on project pages:**
-- Use **grid (single-column) layout only** — body stacked above media. Never use `.theme-card--split` or side-by-side text/image columns.
-- Apply `type-body` to paragraphs, lists, and list items inside `.theme-card__body`.
+- Use **grid (single-column) layout only** — never use `.theme-card--split` or side-by-side text/image columns.
+- Apply `type-body` to paragraphs, lists, and list items inside `.prose-card .theme-card__body`.
 - `.theme-card__body`: `max-width: none`, `width: 100%`, `margin: 0`.
-- Card padding: `space.5` (< `bp.md`) / `30px` (≥ `bp.md`) on all sides — prevents text from touching the lavender or night card edge.
+- Card padding: `space.5` (< `bp.md`) / `30px` (≥ `bp.md`) on all sides.
 - Subheadings within cards: `type.subheading` (sentence case), `margin-top: space.5`.
-- **Image ↔ text spacing:** include all Theme Card **Image ↔ text spacing** selectors in project-page CSS — do not rely on `p + p` alone; figures and galleries are not paragraphs and need explicit sibling margins.
-- Process galleries: copy full `.theme-gallery` CSS + init script from `stockandstem/index.html`.
-- Solution features: `.feature-list` with `<strong>Title —</strong>` lead-ins; nest `.theme-card__figure--full-width` inside `<li>` when a screenshot supports the bullet.
+- Process galleries: copy full `.theme-gallery` CSS + init script from `stockandstem/index.html`; style standalone `#process .demo-panel > .theme-gallery` hints and figure titles for the dark page background.
+- Solution features: `.feature-list` with `<strong>Title —</strong>` lead-ins in `.prose-card`; place supporting screenshots in a following `.case-study-visual` sibling.
 
-**Dark sections** (Deployment, Reflection): body copy as `<p class="section__body type-body text-muted">` directly in `.container` — no theme card, no `.measure`.
+**Dark sections** (Deployment, Reflection): body copy as `<p class="section__body type-body text-muted">` directly in `.container` — no theme card, no `.measure`, left-aligned.
 
 **Buttons on project pages:** always pair size with variant — `btn btn--default btn--primary` or `btn btn--default btn--secondary`. Primary and secondary share `button.default` sizing (16px/semibold); primary differs by violet fill only. External app links use `target="_blank"` `rel="noopener noreferrer"`.
 

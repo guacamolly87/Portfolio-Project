@@ -458,6 +458,62 @@
       border: none;
       border-radius: var(--radius-none);
       padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+    }
+
+    .prose-card {
+      width: 100%;
+    }
+
+    .case-study-visual {
+      width: 100%;
+    }
+
+    .case-study-visual .theme-card__figure--full-width {
+      --figure-card-inset: 0;
+      width: 100%;
+      margin-inline: 0;
+    }
+
+    .prose-card .theme-card__body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+      .prose-card .theme-card__body {
+        align-items: center;
+      }
+    }
+
+    .prose-card .theme-card__body > p,
+    .prose-card .theme-card__body > ul,
+    .prose-card .theme-card__body > .section__list,
+    .prose-card .theme-card__body > h3,
+    .prose-card .theme-card__body > .feature-list,
+    .prose-card .theme-card__body .feature-list > li {
+      max-width: var(--prose-max-width);
+      width: 100%;
+      text-align: left;
+    }
+
+    .project-hero__summary,
+    .section__body {
+      max-width: none;
+      text-align: left;
+    }
+
+    .case-study-visual--night .theme-gallery__figure-title,
+    #process .demo-panel .case-study-visual .theme-gallery__figure-title,
+    #process .demo-panel > .theme-gallery .theme-gallery__figure-title {
+      color: var(--color-violet-100);
+    }
+
+    #final-concept .demo-panel .case-study-visual .theme-gallery__figure-title,
+    #solution .demo-panel .case-study-visual .theme-gallery__figure-title {
+      color: var(--color-violet-100);
     }
 
     .theme-card {
@@ -490,32 +546,6 @@
       margin: 0;
       max-width: none;
       width: 100%;
-    }
-
-    .prose-measure,
-    .theme-card__body > p,
-    .theme-card__body > ul,
-    .theme-card__body > h3,
-    .theme-card__body > .theme-gallery__figure-title,
-    .theme-card__body .feature-list > li:not(:has(.theme-card__figure)),
-    .section__body,
-    .project-hero__summary {
-      max-width: var(--prose-max-width);
-      text-align: left;
-    }
-
-    @media (min-width: 768px) {
-      .prose-measure,
-      .theme-card__body > p,
-      .theme-card__body > ul,
-      .theme-card__body > h3,
-      .theme-card__body > .theme-gallery__figure-title,
-      .theme-card__body .feature-list > li:not(:has(.theme-card__figure)),
-      .section__body,
-      .project-hero__summary {
-        margin-left: auto;
-        margin-right: auto;
-      }
     }
 
     .theme-card--lavender .theme-card__body {
@@ -687,7 +717,9 @@
       color: rgba(26, 25, 31, 0.6);
     }
 
-    .theme-card--night .theme-gallery__hint {
+    .theme-card--night .theme-gallery__hint,
+    .case-study-visual--night .theme-gallery__hint,
+    #process .demo-panel > .theme-gallery .theme-gallery__hint {
       color: rgba(209, 210, 224, 0.6);
     }
 
@@ -991,7 +1023,7 @@
           <h2 class="type-display-md case-caps">Challenge</h2>
         </header>
         <div class="demo-panel">
-          <div class="theme-card theme-card--lavender">
+          <div class="theme-card theme-card--lavender prose-card">
             <div class="theme-card__body">
               <p class="type-body">Many plant owners only recognize the need for care after their plants exhibit clear signs of distress. Seasonal changes can affect plant health, including variations in temperature, sunlight levels, and humidity. Further compounding this issue is that the needs of one plant can vary significantly from the needs of another.</p>
               <p class="type-body">To address this, my goal became simplifying the cognitive burden of plant care by transforming the mundane chore of watering plants into an intuitive process that uses visual cues to encourage consistent routines.</p>
@@ -1007,18 +1039,26 @@
           <h2 class="type-display-md case-caps">Process</h2>
         </header>
         <div class="demo-panel">
-          <div class="theme-card theme-card--night">
+          <div class="theme-card theme-card--night prose-card">
             <div class="theme-card__body">
               <h3 class="type-subheading">Establishing the web application structure &amp; basic elements</h3>
               <p class="type-body">As a Memphis native and avid gardener of perennials, I am all too familiar with the unpleasant surprise of finding my thirsty hydrangeas wilting during the unforgiving summer months. I could easily empathize with this specific challenge, as I have personally spent many afternoons outside watering my plants after they have already started to protest, combating the humidity, swarming mosquitoes, and a leaking water hose that tends to spray everywhere.</p>
               <p class="type-body">Because this was a two-week project, I decided to narrow my focus. I chose to focus on the habit of providing consistent care rather than the actual science behind plant care.</p>
               <p class="type-body">I began by establishing a site map comprised of four main pages: home (/), new (/new), my plants (/my_plants), and the leaf library (/library). I used Vibe coding to build out these sections.</p>
-              <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 1.</span> Application site map</p>
-              <figure class="theme-card__figure theme-card__figure--full-width">
-                <img src="assets/site-map-plant-watering.png" alt="Site map for the Glass Botanist app showing home, new plant, my plants, and leaf library pages">
-              </figure>
+            </div>
+          </div>
+          <div class="case-study-visual case-study-visual--night">
+            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 1.</span> Application site map</p>
+            <figure class="theme-card__figure theme-card__figure--full-width">
+              <img src="assets/site-map-plant-watering.png" alt="Site map for the Glass Botanist app showing home, new plant, my plants, and leaf library pages">
+            </figure>
+          </div>
+          <div class="theme-card theme-card--night prose-card">
+            <div class="theme-card__body">
               <p class="type-body">Next, I created relevant subsections that define the functions of each page. I mapped various user flows, including the quick watering function on the home page (/) and the ability to edit and archive existing plants within their collection.</p>
-              <div class="theme-gallery theme-gallery--compact" data-gallery>
+            </div>
+          </div>
+          <div class="theme-gallery theme-gallery--compact" data-gallery>
                 <p class="theme-gallery__hint type-caption">
                   <i data-lucide="move-horizontal" aria-hidden="true"></i>
                   Swipe or drag to browse
@@ -1044,7 +1084,9 @@
                 </div>
                 <p class="theme-gallery__caption type-body" aria-live="polite"></p>
                 <div class="theme-gallery__dots"></div>
-              </div>
+          </div>
+          <div class="theme-card theme-card--night prose-card">
+            <div class="theme-card__body">
               <p class="type-body">Additionally, in an attempt to narrow my scope, I decided that the Leaf Library would be an ideal place for the user to designate their plant into one of four main watering categories:</p>
               <ul class="section__list type-body">
                 <li><strong>Desert dweller</strong> – low maintenance, prefers dry conditions; watering is needed every 14 – 17 days</li>
@@ -1058,15 +1100,26 @@
                 <li><strong>Neutral</strong> – if the plant is at the end of its watering window</li>
                 <li><strong>Distressed</strong> – if the plant has exceeded its watering window</li>
               </ul>
-
+            </div>
+          </div>
+          <div class="theme-card theme-card--night prose-card">
+            <div class="theme-card__body">
               <h3 class="type-subheading">Visual style development</h3>
               <p class="type-body">Initially, I decided to use an earth-tone color scheme for all app pages (i.e., sage green, terracotta, warm browns, and creams). Unfortunately, I was unable to include the reactive faces based on plant health status because the happy, neutral, and distressed expressions would not to render correctly. The app could only show neutral and sad faces, so I left the feature out because it wasn't part of my initial MVP.</p>
-              <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 3.</span> Initial launch home screen</p>
-              <figure class="theme-card__figure theme-card__figure--full-width">
-                <img src="assets/initial-launch-plant.png" alt="Initial home page for the Glass Botanist app at first launch with earth-tone color scheme">
-              </figure>
+            </div>
+          </div>
+          <div class="case-study-visual case-study-visual--night">
+            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 3.</span> Initial launch home screen</p>
+            <figure class="theme-card__figure theme-card__figure--full-width">
+              <img src="assets/initial-launch-plant.png" alt="Initial home page for the Glass Botanist app at first launch with earth-tone color scheme">
+            </figure>
+          </div>
+          <div class="theme-card theme-card--night prose-card">
+            <div class="theme-card__body">
               <p class="type-body">However, I was able to continue to iterate later, refining my design and troubleshooting the getPlantHealthStatus function. I created a reusable skill, /inspire-design-system, to generate a DESIGN.md folder. I reviewed various web applications on Dribbble and Landbook, and ultimately prompted Cursor to use the following site, https://hellopebl.com/?ref=land-book.com, as design inspiration. The following test file was generated as shown below.</p>
-              <div class="theme-gallery theme-gallery--compact" data-gallery>
+            </div>
+          </div>
+          <div class="theme-gallery theme-gallery--compact" data-gallery>
                 <p class="theme-gallery__hint type-caption">
                   <i data-lucide="move-horizontal" aria-hidden="true"></i>
                   Swipe or drag to browse
@@ -1103,9 +1156,13 @@
                   </button>
                 </div>
                 <div class="theme-gallery__dots"></div>
-              </div>
+          </div>
+          <div class="theme-card theme-card--night prose-card">
+            <div class="theme-card__body">
               <p class="type-body">I applied the new color palette and manually modified the plant icons because the new design clashed with the initial earth-tone color scheme. Please see the various iterations displayed below.</p>
-              <div class="theme-gallery theme-gallery--compact" data-gallery>
+            </div>
+          </div>
+          <div class="theme-gallery theme-gallery--compact" data-gallery>
                 <p class="theme-gallery__hint type-caption">
                   <i data-lucide="move-horizontal" aria-hidden="true"></i>
                   Swipe or drag to browse
@@ -1136,12 +1193,15 @@
                   </button>
                 </div>
                 <div class="theme-gallery__dots"></div>
-              </div>
+          </div>
+          <div class="theme-card theme-card--night prose-card">
+            <div class="theme-card__body">
               <p class="type-body">I was also able to restore the happy, neutral, and distressed faces that appeared on the pots at this time, ultimately discovering that the sad and happy mouths were too similar (Q28 24 vs Q28 25). Updating the PLANT_POT_EXPRESSIONS to happy (Q28 25) and sad (Q28 19) resolved the issue, at last. Additionally, I used Awaad to find a website with a liquid glass effect. I decided to apply this effect to my plant card containers.</p>
-
               <h3 class="type-subheading">AI assisted development</h3>
               <p class="type-body">I used Cursor to generate a my /inspire-design-system skill and DESIGN.md file. I also built the entire application by outlining the site map and key user flows, as well as troubleshooting the reactive expressions, and various designs.</p>
-              <div class="theme-gallery theme-gallery--compact" data-gallery>
+            </div>
+          </div>
+          <div class="theme-gallery theme-gallery--compact" data-gallery>
                 <p class="theme-gallery__hint type-caption">
                   <i data-lucide="move-horizontal" aria-hidden="true"></i>
                   Swipe or drag to browse
@@ -1196,8 +1256,6 @@
                   </button>
                 </div>
                 <p class="theme-gallery__caption type-body" aria-live="polite" hidden></p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -1209,23 +1267,31 @@
           <h2 class="type-display-md case-caps">Solution</h2>
         </header>
         <div class="demo-panel">
-          <div class="theme-card theme-card--lavender">
+          <div class="theme-card theme-card--lavender prose-card">
             <div class="theme-card__body">
               <h3 class="type-subheading">How might we help new plant owners create consistent care habits by integrating gamified feedback?</h3>
-              <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 7.</span> Key screens across the app</p>
-              <figure class="theme-card__figure theme-card__figure--full-width">
-                <img src="assets/glass-botanist-phones.png" alt="Glass Botanist app screens on iPhone showing My Plants, New Plant, and Home pages">
-              </figure>
+            </div>
+          </div>
+          <div class="case-study-visual">
+            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 7.</span> Key screens across the app</p>
+            <figure class="theme-card__figure theme-card__figure--full-width">
+              <img src="assets/glass-botanist-phones.png" alt="Glass Botanist app screens on iPhone showing My Plants, New Plant, and Home pages">
+            </figure>
+          </div>
+          <div class="theme-card theme-card--lavender prose-card">
+            <div class="theme-card__body">
               <p class="type-body">My app bridges the gap through a two-part solution:</p>
               <ul class="feature-list type-body">
                 <li><strong>Educational clarity —</strong> The app categorizes plants into four distinct watering tiers (Desert Dweller, Standard Houseplant, Thirsty Tropical, and Hydration Heavy), which helps remove the guesswork from care schedules.</li>
                 <li><strong>Gamification —</strong> The app provides immediate, relatable emotional feedback through dynamic facial expressions (happy/neutral/distressed) to help users engage in an intuitive, interactive experience that promotes long-term plant care.</li>
               </ul>
-              <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 8.</span> Finished app on iPad and iPhone</p>
-              <figure class="theme-card__figure theme-card__figure--full-width">
-                <img src="assets/glass-botanist-ipad.png" alt="Finished Glass Botanist app displayed on iPad and iPhone with liquid glass plant cards">
-              </figure>
             </div>
+          </div>
+          <div class="case-study-visual">
+            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 8.</span> Finished app on iPad and iPhone</p>
+            <figure class="theme-card__figure theme-card__figure--full-width">
+              <img src="assets/glass-botanist-ipad.png" alt="Finished Glass Botanist app displayed on iPad and iPhone with liquid glass plant cards">
+            </figure>
           </div>
         </div>
       </div>
