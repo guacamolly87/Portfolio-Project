@@ -249,6 +249,7 @@ Homepage intro copy uses a comfortable line length — **not** full container wi
 **Project pages:** lavender `.prose-card` blocks span the **full container width** (same as `.project-hero__summary`, `.project-hero__media`, `.case-study-visual`, and `.theme-gallery`). Do **not** cap `.prose-card .theme-card__body` or its children at `--prose-max-width`; leave `max-width: none` and `width: 100%`.
 
 ```css
+/* Prose-card content flow — copy into every project page */
 .prose-card .theme-card__body {
   display: flex;
   flex-direction: column;
@@ -265,6 +266,22 @@ Homepage intro copy uses a comfortable line length — **not** full container wi
   max-width: none;
   width: 100%;
   text-align: left;
+}
+
+.prose-card .theme-card__body > .theme-gallery__figure-title {
+  margin-bottom: var(--space-4);
+}
+
+.prose-card .theme-card__body > .theme-gallery__figure-title + .theme-card__figure {
+  margin-top: 0;
+}
+
+.prose-card .theme-card__body > .theme-card__figure + :is(.feature-list, .section__list, p.type-body) {
+  margin-top: var(--space-6);
+}
+
+.prose-card .theme-card__body > :is(.feature-list, p.type-body) + .theme-gallery__figure-title {
+  margin-top: var(--space-6);
 }
 ```
 
@@ -515,8 +532,11 @@ Alternate editorial panels for hero blocks, feature callouts, and case-study int
 - **Split anatomy (showcase only):** lavender = content left + tall image right · night = tall image left + content right; placeholder spans ≈ `300px` height. Reserved for `test-2.html` theme demos — not for generated case-study pages.
 - **Spacing (grid):** paragraph stack inside body `space.4` · image gap in `.theme-card__images` `16px` · images↔card bottom `16px` · `.theme-card__body` uses `margin: 0` — card padding alone controls inset on all sides; do not add extra `margin-bottom` on the body wrapper
 - **Image ↔ text spacing (project pages — required CSS):** theme-card body copy must never sit flush against figures or galleries. Copy these rules into every `{slug}/index.html`:
-  - **Figure label → figure:** `.theme-gallery__figure-title` uses `margin: space.4 0 space.5` (16px above label, 24px below label before image)
-  - **Figure → following text:** `.theme-card__body > .theme-card__figure` and `.theme-card__body .feature-list .theme-card__figure` use `margin-bottom: space.6` (32px)
+  - **Figure label → figure:** `.theme-gallery__figure-title` uses `margin-bottom: space.4` inside `.prose-card` (16px below label before image); uncontained Process visuals keep `margin: space.4 0 space.5`
+  - **Figure → following text:** `.prose-card .theme-card__body > .theme-card__figure + :is(.feature-list, .section__list, p.type-body)` uses `margin-top: space.6` (32px) — **one gap only**; do not also add `margin-bottom` on the figure (matches hero `.project-hero__media` → `.project-meta` rhythm)
+  - **Text block → next figure label:** `.prose-card .theme-card__body > :is(.feature-list, p.type-body) + .theme-gallery__figure-title` uses `margin-top: space.6` (32px)
+  - **First figure label in card:** `.theme-card__body > .type-subheading:first-child + .theme-gallery__figure-title` uses `margin-top: 0`
+  - **Figure label directly above figure:** `.prose-card .theme-card__body > .theme-gallery__figure-title + .theme-card__figure` uses `margin-top: 0`
   - **Text → gallery:** `.theme-card__body .theme-gallery` uses `margin-top: space.4` (16px)
   - **Gallery → following text:** `.theme-card__body .theme-gallery + p` uses `margin-top: space.5` (24px) — matches the gap a `type.subheading` already gets via its own `margin-top: space.5` when a gallery is followed by a new subsection
   - **Feature bullet → inline figure:** `.feature-list li .theme-card__figure` uses `margin-top: space.4` (16px); when preceded by a figure label inside the same `<li>`, reset with `.feature-list li .theme-gallery__figure-title + .theme-card__figure { margin-top: 0 }`
@@ -525,23 +545,106 @@ Alternate editorial panels for hero blocks, feature callouts, and case-study int
 ### Theme Gallery
 Horizontal image carousel inside theme cards (Process / Solution sections). Copy CSS and JS from `stockandstem/index.html`.
 
-- **Classes:** `.theme-gallery` · `.theme-gallery--compact` · `.theme-gallery__hint` · `.theme-gallery__figure-title` · `.theme-gallery__figure-label` · `.theme-gallery__frame` · `.theme-gallery__viewport` · `.theme-gallery__track` · `.theme-gallery__slide` · `.theme-gallery__btn` · `.theme-gallery__caption` · `.theme-gallery__dots`
-- **Markup:** root `[data-gallery]` · viewport `tabindex="0"` `role="region"` `aria-roledescription="carousel"` · prev/next chevron buttons · optional `aria-live` caption
+- **Classes:** `.theme-gallery` · `.theme-gallery--compact` · `.theme-gallery__hint` · `.theme-gallery__figure-title` · `.theme-gallery__figure-label` · `.theme-gallery__frame` · `.theme-gallery__viewport` · `.theme-gallery__track` · `.theme-gallery__slide` · `.theme-gallery__btn` · `.theme-gallery__btn--prev` · `.theme-gallery__btn--next` · `.theme-gallery__caption` · `.theme-gallery__dots`
+- **Markup:** root `[data-gallery]` · viewport `tabindex="0"` `role="region"` `aria-roledescription="carousel"` · prev/next chevron buttons flanking the viewport inside `.theme-gallery__frame` · optional `aria-live` caption
 - **Figure labels:** `<p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure N.</span> Title</p>` before each gallery
-- **Compact variant:** `.theme-gallery--compact` — frame `max-width: 84%`, centered; slides `aspect-ratio: 16/9`, images `object-fit: contain`. Use for user flows, prompt screenshots, and dense process artifacts.
+- **Compact variant:** `.theme-gallery--compact` — viewport `max-width: 84%`, centered inside the frame; slides `aspect-ratio: 16/9`, images `object-fit: contain`. Use for user flows, prompt screenshots, and dense process artifacts.
 - **Full-width variant:** default `.theme-gallery` — slides span viewport width; images `object-fit: contain`
+- **Navigation layout (required):** prev/next buttons sit **outside** the slide viewport so they never cover readable content (prompt text, diagrams). `.theme-gallery__frame` is a 3-column CSS grid (`auto minmax(0, 1fr) auto`) with `gap: space.3`; buttons are `position: static` in columns 1 and 3; viewport is column 2. Buttons are 40×40px, `radius.md`, Lucide chevrons at 1.25rem.
+- **Navigation colors (by surface):**
+  - **Dark page background** (`.container > .theme-gallery`, `#process` galleries, `.case-study-visual--night`): fill `violet.100` (`#CAC8F3`), icon `ink.900`, border `violet.500`; hover → white fill, `ink.900` icon
+  - **Lavender theme card** (`.theme-card--lavender .theme-gallery__btn`): fill `ink.800`, icon `violet.100`, border `ink.800` @ 35%; hover → `ink.800` @ 95%
+  - **Fallback** (other contexts): fill `violet.500`, icon `#ffffff`; hover → `bg.primary.hover`
 - **Captions:** optional `data-caption` on `.theme-gallery__slide`; rendered in `.theme-gallery__caption` when present (user-flow galleries)
 - **Hint:** `.theme-gallery__hint` with Lucide `move-horizontal`; visible ≥ `bp.md`
 - **Spacing (project pages):** inherit **Image ↔ text spacing** rules from Theme Card. Inside the carousel: `.theme-gallery__dots` uses `margin-top: space.3` (12px below slide frame); slide captions (`.theme-gallery__slide-caption`) use `padding: space.3 space.4 space.4`. A gallery block is one unit — apply `margin-top` / `margin-bottom` to the `.theme-gallery` root and sibling selectors, not to inner viewport/slide elements.
 - **JS:** `document.querySelectorAll('[data-gallery]')` init — layout slides to viewport width, scroll-snap, drag on desktop, dot nav when `.theme-gallery__dots` exists
+
+**Required gallery frame + button CSS (copy into every project page):**
+
+```css
+.theme-gallery__frame {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.theme-gallery__viewport {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.theme-gallery--compact .theme-gallery__frame {
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+.theme-gallery--compact .theme-gallery__viewport {
+  max-width: 84%;
+  margin-inline: auto;
+}
+
+.theme-gallery__btn {
+  display: inline-flex;
+  position: static;
+  grid-row: 1;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(202, 200, 243, 0.45);
+  background: var(--color-violet-500);
+  color: #ffffff;
+  cursor: pointer;
+  transition: var(--transition-default);
+}
+
+.theme-gallery__btn--prev { grid-column: 1; }
+.theme-gallery__btn--next { grid-column: 3; }
+
+.theme-card--lavender .theme-gallery__btn {
+  background: #1A191F;
+  color: #CAC8F3;
+  border-color: rgba(26, 25, 31, 0.35);
+}
+
+.container > .theme-gallery .theme-gallery__btn,
+.case-study-visual--night .theme-gallery__btn {
+  background: var(--color-violet-100);
+  color: var(--color-ink-900);
+  border-color: var(--color-violet-500);
+}
+
+.theme-gallery__btn:hover {
+  background: var(--color-bg-primary-hover);
+  color: #ffffff;
+}
+
+.theme-card--lavender .theme-gallery__btn:hover {
+  background: rgba(26, 25, 31, 0.95);
+  color: #CAC8F3;
+}
+
+.container > .theme-gallery .theme-gallery__btn:hover,
+.case-study-visual--night .theme-gallery__btn:hover {
+  background: #ffffff;
+  color: var(--color-ink-900);
+  border-color: var(--color-violet-500);
+}
+```
+
+**Do not** absolutely position prev/next buttons over the viewport — they obscure prompt screenshots and diagram labels.
 
 ### Feature List
 Bulleted feature callouts inside lavender Solution theme cards.
 
 - **Classes:** `.feature-list` on `<ul>`; items are plain `<li>` with `<strong>Feature name —</strong>` lead-in
 - **Inline figures:** nest `.theme-card__figure.theme-card__figure--full-width` inside a `<li>` after copy; `margin-top: space.4` on figure
-- **Spacing:** list `margin-top: space.5`; `li + li` gap `space.4`
-- **Rules:** no list markers; full-width figures per feature when a screenshot supports the bullet; optional hero prototype figure above the list
+- **Solution section figures:** place `.theme-gallery__figure-title` + `.theme-card__figure--full-width` as direct children of `.theme-card__body` (siblings of `.feature-list`), interleaved with feature bullets — all inside **one** `.prose-card`. Use the **content-flow** spacing rules from Theme Card (figure → text and text → figure label both at `space.6`; never stack figure `margin-bottom` with sibling `margin-top`)
+- **Rules:** no list markers; full-width figures per feature when a screenshot supports the bullet; optional hero prototype figure above the first feature list
 
 ### Navigation
 - **Style:** `bg.base`, `border.subtle` bottom divider, sticky `z.sticky`. Items `type.label`; wordmark = Brand mark logo image (see Brand mark).
@@ -620,7 +723,7 @@ Nested project pages (`{slug}/index.html`) extend the homepage design system wit
 | Project hero | H1 | `bg.base` | `type.display.lg` + `case.caps`, tagline (`type.subheading`), summary (`type.body text-muted`), 16:9 `.project-hero__media`, meta row (`dl.project-meta`), optional `btn--default btn--primary` when `externalUrl` set |
 | Challenge | H2 | `theme.lavender` | `.prose-card` theme card: body paragraphs + optional `section__list` |
 | Process | H2 | `bg.base` | `h3.type-subheading` + `section__body` paragraphs and lists (uncontained); `.theme-gallery` / `.case-study-visual` siblings in `.container` — **no** `demo-panel`, **no** night theme card |
-| Solution | H2 | `theme.lavender` | Alternating `.prose-card` (feature-list, subheadings) + `.case-study-visual` figures; no figures inside prose cards |
+| Solution | H2 | `theme.lavender` | **One** `.prose-card` containing all Solution copy, `.feature-list` bullets, and supporting figures — no alternating dark `.case-study-visual` siblings |
 | Deployment | H2 | `bg.base` | `section__body` paragraphs (uncontained); optional repeat of external CTA (`project-hero__actions` + `btn--default btn--primary`) |
 | Reflection | H2 | `bg.base` | `section__body` paragraphs (uncontained) — full container width, left-aligned |
 | Back link | — | `bg.base` | `btn btn--default btn--secondary` → `../index.html#work` |
@@ -632,12 +735,12 @@ Nested project pages (`{slug}/index.html`) extend the homepage design system wit
 
 **Body copy width:** Lavender `.prose-card` blocks, `.project-hero__media`, `.case-study-visual`, and `.theme-gallery` siblings span the full `.container` width at every breakpoint (`max-width: none` on `.prose-card .theme-card__body` and its children). Leave `.section__header` H2s, `.project-hero__summary`, and `.section__body` left-aligned and uncapped. Homepage intro copy still uses `--prose-max-width` (70ch) via `.measure` / `.prose-measure`.
 
-**`demo-panel` on project pages:** pass-through wrapper for **Challenge and Solution only** — `background: transparent`, no border, `padding: 0`, `display: flex`, `flex-direction: column`, `gap: space.5`. Holds alternating `.prose-card`, `.case-study-visual`, and `.theme-gallery` siblings. **Process does not use `demo-panel`.** (Contrast: homepage/demo `demo-panel` uses `bg.surface` + `border.subtle` + `space.5` padding.)
+**`demo-panel` on project pages:** pass-through wrapper for **Challenge and Solution only** — `background: transparent`, no border, `padding: 0`, `display: flex`, `flex-direction: column`, `gap: space.5`. Challenge uses one `.prose-card`. **Solution uses one `.prose-card`** that contains the entire section (subheadings, feature lists, figure labels, and screenshots). **Process does not use `demo-panel`.** (Contrast: homepage/demo `demo-panel` uses `bg.surface` + `border.subtle` + `space.5` padding.)
 
 **Contained vs uncontained layout:**
-- **`.prose-card`** — lavender theme card with prose only (Challenge, Solution). Never nest figures or galleries inside. Do **not** use for Process.
-- **`.case-study-visual`** — full-width figure wrapper outside prose cards; use for standalone screenshots with `.theme-gallery__figure-title` + `.theme-card__figure--full-width`. On Process sections, add `.case-study-visual--night` when figure labels need violet-100 on the dark page background.
-- **`.theme-gallery`** — carousel sibling in `.container` (Process) or `.demo-panel` (Solution), not inside `.prose-card`.
+- **`.prose-card`** — lavender theme card. **Challenge:** prose only (paragraphs, lists). **Solution:** all section content including `.theme-gallery__figure-title` + `.theme-card__figure--full-width` screenshots inside `.theme-card__body`. Do **not** use for Process.
+- **`.case-study-visual`** — full-width figure wrapper on the **dark page background** (Process only). Use with `.case-study-visual--night` when figure labels need `violet.100` on `bg.base`. **Do not use in Solution** — place figures inside the lavender `.prose-card` instead.
+- **`.theme-gallery`** — carousel in `.container` (Process) only; not inside `.prose-card`.
 
 **Theme cards on project pages:**
 - Use **grid (single-column) layout only** — never use `.theme-card--split` or side-by-side text/image columns.
@@ -648,7 +751,7 @@ Nested project pages (`{slug}/index.html`) extend the homepage design system wit
 - Subheadings within cards: `type.subheading` (sentence case), `margin-top: space.5`.
 - **Process (uncontained):** `h3.type-subheading` + `p.section__body.type-body.text-muted` + optional `ul.section__list.type-body.text-muted` directly in `.container`; copy `#process > .container` spacing and gallery title/hint CSS from `stockandstem/index.html`.
 - Process galleries: copy full `.theme-gallery` CSS + init script from `stockandstem/index.html`; style `#process > .container > .theme-gallery` hints, figure titles, and slide captions for the dark page background.
-- Solution features: `.feature-list` with `<strong>Title —</strong>` lead-ins in `.prose-card`; place supporting screenshots in a following `.case-study-visual` sibling.
+- Solution features: `.feature-list` with `<strong>Title —</strong>` lead-ins inside the single lavender `.prose-card`. Interleave `.theme-gallery__figure-title` + `.theme-card__figure--full-width` between feature groups (or after the section subheading) so all Solution content stays in one lilac panel.
 
 **Dark sections** (Process, Deployment, Reflection): body copy as `<p class="section__body type-body text-muted">` (and `h3.type-subheading` for Process subsections) directly in `.container` — no theme card, no `.measure`, left-aligned.
 

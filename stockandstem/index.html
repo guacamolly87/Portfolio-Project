@@ -453,6 +453,28 @@
       margin-top: var(--space-4);
     }
 
+    .theme-card__body > .theme-gallery__figure-title:first-child,
+    .theme-card__body > .type-subheading:first-child + .theme-gallery__figure-title {
+      margin-top: 0;
+    }
+
+    .prose-card .theme-card__body > .theme-gallery__figure-title {
+      margin-bottom: var(--space-4);
+    }
+
+    .prose-card .theme-card__body > .theme-gallery__figure-title + .theme-card__figure {
+      margin-top: 0;
+    }
+
+    /* Content flow — one gap between blocks (matches hero media → meta at space.6) */
+    .prose-card .theme-card__body > .theme-card__figure + :is(.feature-list, .section__list, p.type-body) {
+      margin-top: var(--space-6);
+    }
+
+    .prose-card .theme-card__body > :is(.feature-list, p.type-body) + .theme-gallery__figure-title {
+      margin-top: var(--space-6);
+    }
+
     .demo-panel {
       background: transparent;
       border: none;
@@ -612,6 +634,10 @@
       margin-bottom: var(--space-3);
     }
 
+    .theme-card__body > .type-subheading:first-child {
+      margin-top: 0;
+    }
+
     .theme-card--night .theme-card__body .type-subheading {
       color: #D1D2E0;
     }
@@ -716,9 +742,14 @@
     }
 
     .theme-gallery--compact .theme-gallery__frame {
-      max-width: 84%;
+      max-width: 100%;
       margin-left: auto;
       margin-right: auto;
+    }
+
+    .theme-gallery--compact .theme-gallery__viewport {
+      max-width: 84%;
+      margin-inline: auto;
     }
 
     .theme-gallery--compact .theme-gallery__slide {
@@ -733,7 +764,15 @@
     }
 
     .theme-gallery__frame {
-      position: relative;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .theme-gallery__viewport {
+      grid-column: 2;
+      grid-row: 1;
     }
 
     .theme-gallery__hint {
@@ -899,35 +938,54 @@
 
     .theme-gallery__btn {
       display: inline-flex;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 2;
+      position: static;
+      grid-row: 1;
       align-items: center;
       justify-content: center;
       width: 40px;
       height: 40px;
       padding: 0;
       border-radius: var(--radius-md);
-      border: 1px solid var(--color-border-strong);
-      background: rgba(11, 10, 16, 0.82);
-      color: var(--color-text-primary);
+      border: 1px solid rgba(202, 200, 243, 0.45);
+      background: var(--color-violet-500);
+      color: #ffffff;
       cursor: pointer;
       transition: var(--transition-default);
     }
 
+    .theme-gallery__btn--prev { grid-column: 1; }
+    .theme-gallery__btn--next { grid-column: 3; }
+
     .theme-card--lavender .theme-gallery__btn {
-      background: rgba(26, 25, 31, 0.82);
+      background: #1A191F;
       color: #CAC8F3;
       border-color: rgba(26, 25, 31, 0.35);
     }
 
+    #process > .container > .theme-gallery .theme-gallery__btn,
+    .container > .theme-gallery .theme-gallery__btn,
+    .case-study-visual--night .theme-gallery__btn {
+      background: var(--color-violet-100);
+      color: var(--color-ink-900);
+      border-color: var(--color-violet-500);
+    }
+
     .theme-gallery__btn:hover {
-      background: rgba(11, 10, 16, 0.95);
+      background: var(--color-bg-primary-hover);
+      color: #ffffff;
     }
 
     .theme-card--lavender .theme-gallery__btn:hover {
       background: rgba(26, 25, 31, 0.95);
+      color: #CAC8F3;
+    }
+
+    #process > .container > .theme-gallery .theme-gallery__btn:hover,
+    .container > .theme-gallery .theme-gallery__btn:hover,
+    .case-study-visual--night .theme-gallery__btn:hover {
+      background: #ffffff;
+      color: var(--color-ink-900);
+      border-color: var(--color-violet-500);
     }
 
     .theme-gallery__btn:focus-visible {
@@ -939,9 +997,6 @@
       width: 1.25rem;
       height: 1.25rem;
     }
-
-    .theme-gallery__btn--prev { left: var(--space-3); }
-    .theme-gallery__btn--next { right: var(--space-3); }
 
     .theme-gallery__dots {
       display: flex;
@@ -1164,7 +1219,13 @@
         </div>
 
         <h3 class="type-subheading">Visual Style Development</h3>
-        <p class="section__body type-body text-muted">I created a moodboard centered on a cozy, retro-inspired aesthetic designed to foster a calm, stress-free kitchen environment. Inspired by the soft, nostalgic color palette of vintage kitchenware, specifically the cool mints and pale purples found in classic KitchenAid mixers, I utilized purple and teal accents to balance the pastels and evoke the warmth and comfort of a home-cooked meal.</p>
+        <p class="section__body type-body text-muted">To create human-centered digital solutions while reducing cognitive load and decision fatigue, I implemented an AI-assisted design-to-code workflow.</p>
+        <ul class="section__body type-body text-muted">
+          <li><strong>Visual Synthesis:</strong> I uploaded my mood board to Cursor and prompted the agent to extract reusable visual patterns. Instead of looking at each image separately, I asked Cursor to identify tendencies in color palette, typography style, spacing density, layout structure, etc.</li>
+          <li><strong>Source of Truth:</strong> I formalized these patterns into a DESIGN.md file, establishing a central repository for components (buttons, inputs, cards, and modals) and accessibility rules.</li>
+          <li><strong>Tokenization:</strong> I translated the design system into tokens.json and tokens.css files, creating a developer-ready structure that enforced strict adherence to the visual language.</li>
+          <li><strong>Iterative Validation:</strong> By using my DESIGN.md as a constraint for generating test pages, I was able to rapidly audit and refine the UI, eliminating design drift in real-time.</li>
+        </ul>
         <div class="case-study-visual case-study-visual--night">
           <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 4.</span> Mood Board</p>
           <figure class="theme-card__figure theme-card__figure--contain">
@@ -1173,9 +1234,23 @@
         </div>
 
         <h3 class="type-subheading">Design Iterations</h3>
-        <p class="section__body type-body text-muted">Design iterations included consolidating the daily planning workflows into a single calendar view, creating a quick-tagged inventory system, and sorting the grocery list by category with toggles that allow users to quickly mark items off their shopping list.</p>
-        <h3 class="type-subheading">AI-Assisted Development</h3>
-        <p class="section__body type-body text-muted">I used Cursor to generate code, set up Supabase and Unsplash API integrations for images, and generate placeholder content for the app, as well as the project documentation. Please view the gallery below to view sample prompts.</p>
+        <p class="section__body type-body text-muted">To evolve Stock &amp; Stem into a more intuitive experience, I focused on refining the information architecture and streamlining user interactions based on usability:</p>
+        <ul class="section__body type-body text-muted">
+          <li><strong>Consolidated Planning:</strong> I integrated redundant subsections (like #select_or_change and #manage_sched) into a single, cohesive calendar-based view, significantly reducing the need for scrolling.</li>
+          <li><strong>Quick-Tagged Inventory:</strong> I transitioned the inventory list to a tabbed interface, allowing users to scan their pantry more efficiently than in the original checklist format.</li>
+          <li><strong>Actionable Grocery Management:</strong> I implemented a category-sorted, accordion-style grocery list that lets users strike items as "owned," which automatically updates their shopping list.</li>
+          <li><strong>Enhanced Visual Cues:</strong> I introduced consistent iconography (e.g., chef hats for recipes, pencils for scheduling) and refined the layout into responsive two-column grids, making the UI more scannable and accessible on smaller screens.</li>
+          <li><strong>Categorized Store View:</strong> I utilized an intuitive card-based system to organize grocery items into distinct categories (e.g., Produce, Dairy, Meat &amp; Seafood), allowing users to easily navigate their shopping list section by section.</li>
+        </ul>
+        <h3 class="type-subheading">AI-Assisted Development: Backend &amp; Data Integration</h3>
+        <p class="section__body type-body text-muted">Beyond just designing the interface, I used AI to build the app's full functionality and data structure. This includes using Cursor to accomplish the following tasks such as:</p>
+        <ul class="section__body type-body text-muted">
+          <li><strong>Integrating Unsplash APIs:</strong> I centralized image management by creating a custom &lt;RecipeImage/&gt; component. This component dynamically fetches high-quality visuals from the Unsplash API based on the recipe name, replacing static placeholders with recipe photographs.</li>
+          <li><strong>Authentication &amp; Data Security:</strong> I implemented protected routing, requiring users to authenticate with Supabase before accessing a dedicated 'Welcome' landing page.</li>
+          <li><strong>Intelligent Data Initialization:</strong> I integrated the Supabase schema to ensure new users are initialized with clean, empty states rather than hardcoded placeholder data. This design provides a more welcoming "first-run" experience, ensuring that the app triggers a "Get Started" prompt when the user's recipe library is empty.</li>
+          <li><strong>Unified Data Flow:</strong> By mapping recipe data to API-driven components, I ensured the app remained dynamic and responsive, automatically handling image loading states and fallbacks when API requests failed.</li>
+          <li><strong>User-Created Content:</strong> I designed the recipe entry flow to mirror the structure of standard recipes by placing the quantity before the ingredient, making manual content entry more intuitive and efficient for users.</li>
+        </ul>
         <div class="theme-gallery theme-gallery--compact" data-gallery>
           <p class="theme-gallery__hint type-caption">
             <i data-lucide="move-horizontal" aria-hidden="true"></i>
@@ -1185,12 +1260,6 @@
           <div class="theme-gallery__frame">
             <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="AI-assisted development images" aria-roledescription="carousel">
               <div class="theme-gallery__track">
-                <figure class="theme-gallery__slide">
-                  <img src="assets/prompt-1.png" alt="Cursor prompt to analyze mood board and extract reusable visual design patterns">
-                </figure>
-                <figure class="theme-gallery__slide">
-                  <img src="assets/prompt-2.png" alt="Cursor prompt to create DESIGN.md implementation guide from design system draft">
-                </figure>
                 <figure class="theme-gallery__slide">
                   <img src="assets/prompt-3.png" alt="Cursor prompt to implement Supabase backend setup and user login">
                 </figure>
@@ -1245,38 +1314,27 @@
             <div class="theme-card__body">
               <h3 class="type-subheading">Key features</h3>
               <ul class="feature-list type-body">
+                <li><strong>Accessible &amp; Resilient Interface —</strong> Designed for use in varied environments, the app features a responsive layout that maintains readability on both desktop and mobile devices. The UI intelligently handles data gaps with graceful loading states and fallbacks, ensuring the experience remains polished and "cozy" regardless of connection quality or content availability.</li>
+              </ul>
+              <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 6.</span> Sample screens included from Stock &amp; Stem</p>
+              <figure class="theme-card__figure theme-card__figure--full-width">
+                <img src="assets/Prototype.png" alt="High-fidelity mobile prototype showing Home, Recipes, Grocery List, and Planner screens for Stock and Stem">
+              </figure>
+              <ul class="feature-list type-body">
                 <li><strong>Centralized calendar dashboard —</strong> A unified, day-by-day planner that handles meal assignment, schedule adjustments, and grocery generation from a single, cohesive view, eliminating the need to jump between disconnected screens.</li>
               </ul>
-            </div>
-          </div>
-          <div class="case-study-visual">
-            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 6.</span> Sample screens included from Stock &amp; Stem</p>
-            <figure class="theme-card__figure theme-card__figure--full-width">
-              <img src="assets/Prototype.png" alt="High-fidelity mobile prototype showing Home, Recipes, Grocery List, and Planner screens for Stock and Stem">
-            </figure>
-          </div>
-          <div class="case-study-visual">
-            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 7.</span> Consolidated planner page</p>
-            <figure class="theme-card__figure theme-card__figure--full-width">
-              <img src="assets/Planner-dashboard.png" alt="Stock and Stem Planner dashboard showing weekly calendar and daily meal schedule on a laptop">
-            </figure>
-          </div>
-          <div class="theme-card theme-card--lavender prose-card">
-            <div class="theme-card__body">
+              <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 7.</span> Consolidated planner page</p>
+              <figure class="theme-card__figure theme-card__figure--full-width">
+                <img src="assets/Planner-dashboard.png" alt="Stock and Stem Planner dashboard showing weekly calendar and daily meal schedule on a laptop">
+              </figure>
               <ul class="feature-list type-body">
                 <li><strong>Quick-tag pantry inventory —</strong> An inventory system pre-populated with common pantry staples. Users can effortlessly tag items they already own to instantly update their inventory.</li>
                 <li><strong>Interactive grocery checklists —</strong> High-utility, actionable shopping lists featuring intuitive toggle interactions that let users cleanly strike items off as they shop or audit their kitchen.</li>
               </ul>
-            </div>
-          </div>
-          <div class="case-study-visual">
-            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 8.</span> Quick tag inventory system and grocery checklist</p>
-            <figure class="theme-card__figure theme-card__figure--full-width">
-              <img src="assets/Inventory_shopping_list.png" alt="Stock and Stem inventory quick-tag grid on mobile and interactive grocery checklist with in-cart toggles on tablet">
-            </figure>
-          </div>
-          <div class="theme-card theme-card--lavender prose-card">
-            <div class="theme-card__body">
+              <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 8.</span> Quick tag inventory system and grocery checklist</p>
+              <figure class="theme-card__figure theme-card__figure--full-width">
+                <img src="assets/Inventory_shopping_list.png" alt="Stock and Stem inventory quick-tag grid on mobile and interactive grocery checklist with in-cart toggles on tablet">
+              </figure>
               <ul class="feature-list type-body">
                 <li><strong>Smart meal-time allocation —</strong> Dedicated, clean layout blocks for Breakfast, Lunch, Dinner, and Snacks that display precise timing and meal states, ensuring the entire day is glanceable in under three seconds.</li>
               </ul>

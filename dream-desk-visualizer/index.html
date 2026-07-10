@@ -474,6 +474,28 @@
       margin-top: var(--space-4);
     }
 
+    .theme-card__body > .theme-gallery__figure-title:first-child,
+    .theme-card__body > .type-subheading:first-child + .theme-gallery__figure-title {
+      margin-top: 0;
+    }
+
+    .prose-card .theme-card__body > .theme-gallery__figure-title {
+      margin-bottom: var(--space-4);
+    }
+
+    .prose-card .theme-card__body > .theme-gallery__figure-title + .theme-card__figure {
+      margin-top: 0;
+    }
+
+    /* Content flow — one gap between blocks (matches hero media → meta at space.6) */
+    .prose-card .theme-card__body > .theme-card__figure + :is(.feature-list, .section__list, p.type-body) {
+      margin-top: var(--space-6);
+    }
+
+    .prose-card .theme-card__body > :is(.feature-list, p.type-body) + .theme-gallery__figure-title {
+      margin-top: var(--space-6);
+    }
+
     .demo-panel {
       background: transparent;
       border: none;
@@ -635,6 +657,10 @@
       margin-bottom: var(--space-3);
     }
 
+    .theme-card__body > .type-subheading:first-child {
+      margin-top: 0;
+    }
+
     .theme-card--night .theme-card__body .type-subheading {
       color: #D1D2E0;
     }
@@ -744,9 +770,14 @@
     }
 
     .theme-gallery--compact .theme-gallery__frame {
-      max-width: 84%;
+      max-width: 100%;
       margin-left: auto;
       margin-right: auto;
+    }
+
+    .theme-gallery--compact .theme-gallery__viewport {
+      max-width: 84%;
+      margin-inline: auto;
     }
 
     .theme-gallery--compact .theme-gallery__slide {
@@ -761,7 +792,15 @@
     }
 
     .theme-gallery__frame {
-      position: relative;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .theme-gallery__viewport {
+      grid-column: 2;
+      grid-row: 1;
     }
 
     .theme-gallery__hint {
@@ -986,35 +1025,52 @@
 
     .theme-gallery__btn {
       display: inline-flex;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 2;
+      position: static;
+      grid-row: 1;
       align-items: center;
       justify-content: center;
       width: 40px;
       height: 40px;
       padding: 0;
       border-radius: var(--radius-md);
-      border: 1px solid var(--color-border-strong);
-      background: rgba(11, 10, 16, 0.82);
-      color: var(--color-text-primary);
+      border: 1px solid rgba(202, 200, 243, 0.45);
+      background: var(--color-violet-500);
+      color: #ffffff;
       cursor: pointer;
       transition: var(--transition-default);
     }
 
+    .theme-gallery__btn--prev { grid-column: 1; }
+    .theme-gallery__btn--next { grid-column: 3; }
+
     .theme-card--lavender .theme-gallery__btn {
-      background: rgba(26, 25, 31, 0.82);
+      background: #1A191F;
       color: #CAC8F3;
       border-color: rgba(26, 25, 31, 0.35);
     }
 
+    .container > .theme-gallery .theme-gallery__btn,
+    .case-study-visual--night .theme-gallery__btn {
+      background: var(--color-violet-100);
+      color: var(--color-ink-900);
+      border-color: var(--color-violet-500);
+    }
+
     .theme-gallery__btn:hover {
-      background: rgba(11, 10, 16, 0.95);
+      background: var(--color-bg-primary-hover);
+      color: #ffffff;
     }
 
     .theme-card--lavender .theme-gallery__btn:hover {
       background: rgba(26, 25, 31, 0.95);
+      color: #CAC8F3;
+    }
+
+    .container > .theme-gallery .theme-gallery__btn:hover,
+    .case-study-visual--night .theme-gallery__btn:hover {
+      background: #ffffff;
+      color: var(--color-ink-900);
+      border-color: var(--color-violet-500);
     }
 
     .theme-gallery__btn:focus-visible {
@@ -1026,9 +1082,6 @@
       width: 1.25rem;
       height: 1.25rem;
     }
-
-    .theme-gallery__btn--prev { left: var(--space-3); }
-    .theme-gallery__btn--next { right: var(--space-3); }
 
     .theme-gallery__dots {
       display: flex;
@@ -1301,39 +1354,25 @@
               <ul class="feature-list type-body">
                 <li><strong>Photorealistic integration —</strong> Experience seamlessly integrated, full-scene images that avoid rendering errors such as jagged edges, difficulty blending, and unsightly artifacts.</li>
               </ul>
-            </div>
-          </div>
-          <div class="case-study-visual">
-            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 4.</span> Photorealistic office setup</p>
-            <figure class="theme-card__figure theme-card__figure--full-width">
-              <img src="assets/dreamdesk-phones.png" alt="Dream Desk Visualizer promotional graphic with phone mockups showing style selection, chair details, and office space preview screens">
-            </figure>
-          </div>
-          <div class="theme-card theme-card--lavender prose-card">
-            <div class="theme-card__body">
+              <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 4.</span> Photorealistic office setup</p>
+              <figure class="theme-card__figure theme-card__figure--full-width">
+                <img src="assets/dreamdesk-phones.png" alt="Dream Desk Visualizer promotional graphic with phone mockups showing style selection, chair details, and office space preview screens">
+              </figure>
               <ul class="feature-list type-body">
                 <li><strong>Artful combination —</strong> Effortlessly mix and match pieces from diverse themes, ensuring that furniture, textures, and accessories blend harmoniously, regardless of the combination.</li>
               </ul>
-            </div>
-          </div>
-          <div class="case-study-visual">
-            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 5.</span> High-quality examples of mixing and matching design elements</p>
-            <figure class="theme-card__figure theme-card__figure--full-width">
-              <img src="assets/desktop-ipad.png" alt="Dream Desk Visualizer shown on desktop and iPad with boho and gamer theme setups">
-            </figure>
-          </div>
-          <div class="theme-card theme-card--lavender prose-card">
-            <div class="theme-card__body">
+              <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 5.</span> High-quality examples of mixing and matching design elements</p>
+              <figure class="theme-card__figure theme-card__figure--full-width">
+                <img src="assets/desktop-ipad.png" alt="Dream Desk Visualizer shown on desktop and iPad with boho and gamer theme setups">
+              </figure>
               <ul class="feature-list type-body">
                 <li><strong>Improved confidence in decision making —</strong> Enjoy the peace of mind that comes with a realistic, risk-free preview, allowing you to assess the cohesion of your design choices before committing to significant financial investments.</li>
               </ul>
+              <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 6.</span> Manage, edit and share</p>
+              <figure class="theme-card__figure theme-card__figure--full-width">
+                <img src="assets/dream-desk-manage.png" alt="Dream Desk Visualizer manage, edit and share screen with desk and chair cards and edit controls on mobile">
+              </figure>
             </div>
-          </div>
-          <div class="case-study-visual">
-            <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 6.</span> Manage, edit and share</p>
-            <figure class="theme-card__figure theme-card__figure--full-width">
-              <img src="assets/dream-desk-manage.png" alt="Dream Desk Visualizer manage, edit and share screen with desk and chair cards and edit controls on mobile">
-            </figure>
           </div>
         </div>
       </div>
