@@ -98,23 +98,29 @@ Insert scrollable gallery with:
 - `prompt10.png` — Cursor prompt to connect face rendering logic to plant status data in plant-icons.js
 - `prompt11.png` — Cursor prompt to apply sad CSS class to plant cards when status is overdue
 - `prompt12.png` — Cursor follow-up on plant-pot--sad class applied but SVG still showing happy face
-- `prompt13.png` — Cursor prompt to apply liquid glass effect to plant card backgrounds
+- `prompt13new.png` — Cursor prompt to apply liquid glass effect to plant card backgrounds
+- `prompt14.png` — Cursor prompt to make dashboard and plant-grid containers transparent for liquid background glass effect
+- `prompt15.png` — Cursor prompt to remove solid backgrounds on New Plant form and Plant Detail pages
+- `prompt16.png` — Cursor prompt to update liquid-blob animation colors to Pacific theme palette
 
 ## Solution
 <!-- theme: lavender -->
 
 **How might we help new plant owners create consistent care habits by integrating gamified feedback?**
 
+My app bridges the gap through a two-part design strategy that transforms plant care from a "chore to remember" into an intuitive, interactive experience:
+
+1. **Educational clarity —** The app categorizes plants into four distinct watering tiers (Desert Dweller, Standard Houseplant, Thirsty Tropical, and Hydration Heavy), which helps remove the guesswork from care schedules.
+
 **Figure 7.** Key screens across the app
 Insert: `glass-botanist-phones.png`
 
-My app bridges the gap through a two-part solution:
-
-1. **Educational clarity —** The app categorizes plants into four distinct watering tiers (Desert Dweller, Standard Houseplant, Thirsty Tropical, and Hydration Heavy), which helps remove the guesswork from care schedules.
 2. **Gamification —** The app provides immediate, relatable emotional feedback through dynamic facial expressions (happy/neutral/distressed) to help users engage in an intuitive, interactive experience that promotes long-term plant care.
 
 **Figure 8.** Finished app on iPad and iPhone
 Insert: `glass-botanist-ipad.png`
+
+This approach lowers the cognitive burden of plant maintenance, ensuring that the interface adapts to the user's reality in real-time, making consistent care an effortless part of their daily routine.
 
 ## Deployment
 The Glass Botanist translates the anxiety of plant care into a low-friction, intuitive interface. Dynamic status modeling replaces reactive guesswork, allowing the user to interpret plant maintenance using clear, glanceable health indicators.
@@ -154,7 +160,10 @@ Available assets in `assets/`:
 - `prompt10.png` — Cursor prompt to connect face rendering to plant status data
 - `prompt11.png` — Cursor prompt to apply sad CSS class when status is overdue
 - `prompt12.png` — Cursor follow-up on plant-pot--sad class rendering issue
-- `prompt13.png` — Cursor prompt to apply liquid glass effect to plant cards
+- `prompt13new.png` — Cursor prompt to apply liquid glass effect to plant cards
+- `prompt14.png` — Cursor prompt to make dashboard and plant-grid containers transparent
+- `prompt15.png` — Cursor prompt to remove solid backgrounds on New Plant and Plant Detail pages
+- `prompt16.png` — Cursor prompt to update liquid-blob colors to Pacific theme palette
 - `glass-botanist-phones.png` — key screens on iPhone (My Plants, New Plant, Home)
 - `glass-botanist-ipad.png` — finished app on iPad and iPhone
 - `leaf-library-lg.png` — leaf library screen

@@ -536,6 +536,16 @@
       text-align: left;
     }
 
+    .section__body a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .section__body a:hover {
+      text-decoration-thickness: 2px;
+    }
+
     .case-study-visual--night .theme-gallery__figure-title,
     #process > .container .case-study-visual .theme-gallery__figure-title,
     #process > .container > .theme-gallery .theme-gallery__figure-title {
@@ -662,12 +672,6 @@
       margin: 0;
       overflow: hidden;
     }
-
-    .theme-card__body > .theme-card__figure,
-    .theme-card__body .feature-list .theme-card__figure {
-      margin-bottom: var(--space-6);
-    }
-
     .theme-card__figure img {
       width: 100%;
       height: 100%;
@@ -769,6 +773,20 @@
       object-fit: contain;
     }
 
+    @media (min-width: 768px) {
+      .theme-gallery--compact .theme-gallery__slide {
+        background: var(--color-ink-900);
+      }
+
+      /* Trim subpixel slide peek and screenshot edge padding on desktop */
+      .theme-gallery--compact .theme-gallery__slide img {
+        width: calc(100% + 4px);
+        max-width: none;
+        margin-left: -2px;
+        object-position: center center;
+      }
+    }
+
     .theme-gallery__frame {
       display: grid;
       grid-template-columns: auto minmax(0, 1fr) auto;
@@ -807,9 +825,28 @@
       margin-top: 0;
     }
 
-    #process > .container > .theme-gallery,
-    #process > .container > .case-study-visual {
-      margin-top: var(--space-5);
+    /* Uncontained content flow — Process (matches hero media → meta at space.6) */
+    #process > .container > .section__body + .case-study-visual,
+    #process > .container > .section__body + .theme-gallery,
+    #process > .container > .section__list + .case-study-visual,
+    #process > .container > .section__list + .theme-gallery,
+    #process > .container > .type-subheading + .case-study-visual,
+    #process > .container > .type-subheading + .theme-gallery {
+      margin-top: var(--space-6);
+    }
+
+    #process > .container > .case-study-visual + .section__body,
+    #process > .container > .case-study-visual + .section__list,
+    #process > .container > .case-study-visual + .theme-gallery,
+    #process > .container > .theme-gallery + .section__body,
+    #process > .container > .theme-gallery + .section__list,
+    #process > .container > .theme-gallery + .case-study-visual {
+      margin-top: var(--space-6);
+    }
+
+    #process > .container > .case-study-visual + .type-subheading,
+    #process > .container > .theme-gallery + .type-subheading {
+      margin-top: var(--space-7);
     }
 
     #process > .container > .section__list {
@@ -1213,7 +1250,7 @@
           </figure>
         </div>
 
-        <p class="section__body type-body text-muted">However, I was able to continue to iterate later, refining my design and troubleshooting the getPlantHealthStatus function. I created a reusable skill, /inspire-design-system, to generate a DESIGN.md folder. I reviewed various web applications on Dribbble and Landbook, and ultimately prompted Cursor to use the following site, https://hellopebl.com/?ref=land-book.com, as design inspiration. The following test file was generated as shown below.</p>
+        <p class="section__body type-body text-muted">However, I was able to continue to iterate later, refining my design and troubleshooting the getPlantHealthStatus function. I created a reusable skill, /inspire-design-system, to generate a DESIGN.md folder. I reviewed various web applications on Dribbble and Landbook, and ultimately prompted Cursor to use the following <a href="https://hellopebl.com/?ref=land-book.com" target="_blank" rel="noopener noreferrer">site</a> as design inspiration. The following test file was generated as shown below.</p>
         <div class="theme-gallery theme-gallery--compact" data-gallery>
           <p class="theme-gallery__hint type-caption">
             <i data-lucide="move-horizontal" aria-hidden="true"></i>
@@ -1333,7 +1370,16 @@
                   <img src="assets/prompt12.png" alt="Cursor follow-up on plant-pot--sad class applied but SVG still showing happy face">
                 </figure>
                 <figure class="theme-gallery__slide">
-                  <img src="assets/prompt13.png" alt="Cursor prompt to apply liquid glass effect to plant card backgrounds">
+                  <img src="assets/prompt13new.png" alt="Cursor prompt to apply liquid glass effect to plant card backgrounds">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt14.png" alt="Cursor prompt to make dashboard and plant-grid containers transparent for liquid background glass effect">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt15.png" alt="Cursor prompt to remove solid backgrounds on New Plant form and Plant Detail pages">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt16.png" alt="Cursor prompt to update liquid-blob animation colors to Pacific theme palette">
                 </figure>
               </div>
             </div>
@@ -1358,19 +1404,22 @@
           <div class="theme-card theme-card--lavender prose-card">
             <div class="theme-card__body">
               <h3 class="type-subheading">How might we help new plant owners create consistent care habits by integrating gamified feedback?</h3>
+              <p class="type-body">My app bridges the gap through a two-part design strategy that transforms plant care from a "chore to remember" into an intuitive, interactive experience:</p>
+              <ul class="feature-list type-body">
+                <li><strong>Educational clarity —</strong> The app categorizes plants into four distinct watering tiers (Desert Dweller, Standard Houseplant, Thirsty Tropical, and Hydration Heavy), which helps remove the guesswork from care schedules.</li>
+              </ul>
               <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 7.</span> Key screens across the app</p>
               <figure class="theme-card__figure theme-card__figure--full-width">
                 <img src="assets/glass-botanist-phones.png" alt="Glass Botanist app screens on iPhone showing My Plants, New Plant, and Home pages">
               </figure>
-              <p class="type-body">My app bridges the gap through a two-part solution:</p>
               <ul class="feature-list type-body">
-                <li><strong>Educational clarity —</strong> The app categorizes plants into four distinct watering tiers (Desert Dweller, Standard Houseplant, Thirsty Tropical, and Hydration Heavy), which helps remove the guesswork from care schedules.</li>
                 <li><strong>Gamification —</strong> The app provides immediate, relatable emotional feedback through dynamic facial expressions (happy/neutral/distressed) to help users engage in an intuitive, interactive experience that promotes long-term plant care.</li>
               </ul>
               <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 8.</span> Finished app on iPad and iPhone</p>
               <figure class="theme-card__figure theme-card__figure--full-width">
                 <img src="assets/glass-botanist-ipad.png" alt="Finished Glass Botanist app displayed on iPad and iPhone with liquid glass plant cards">
               </figure>
+              <p class="type-body">This approach lowers the cognitive burden of plant maintenance, ensuring that the interface adapts to the user's reality in real-time, making consistent care an effortless part of their daily routine.</p>
             </div>
           </div>
         </div>
@@ -1456,10 +1505,12 @@
       if (!viewport || slides.length === 0) return;
 
       let activeIndex = 0;
+      let slideWidth = 0;
       let dragStartX = 0;
       let dragScrollLeft = 0;
       let isDragging = false;
       let touchStartX = 0;
+      let scrollSnapTimer;
 
       if (dotsContainer) {
         slides.forEach((_, index) => {
@@ -1477,14 +1528,14 @@
       const dots = dotsContainer ? Array.from(dotsContainer.querySelectorAll('.theme-gallery__dot')) : [];
 
       function layoutSlides() {
-        const width = Math.round(viewport.clientWidth);
-        if (width <= 0) return;
+        slideWidth = Math.round(viewport.clientWidth);
+        if (slideWidth <= 0) return;
         slides.forEach((slide) => {
-          slide.style.flex = `0 0 ${width}px`;
-          slide.style.width = `${width}px`;
+          slide.style.flex = `0 0 ${slideWidth}px`;
+          slide.style.width = `${slideWidth}px`;
         });
         if (track) {
-          track.style.width = `${width * slides.length}px`;
+          track.style.width = `${slideWidth * slides.length}px`;
         }
       }
 
@@ -1495,19 +1546,31 @@
       }
 
       function slideOffset(index) {
-        return index * viewport.clientWidth;
+        return index * slideWidth;
+      }
+
+      function snapToActiveSlide() {
+        if (isDragging || slideWidth <= 0) return;
+        const target = slideOffset(activeIndex);
+        if (Math.abs(viewport.scrollLeft - target) > 1) {
+          viewport.scrollLeft = target;
+        }
       }
 
       function goTo(index) {
         activeIndex = Math.max(0, Math.min(index, slides.length - 1));
-        viewport.scrollTo({
-          left: slideOffset(activeIndex),
-          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
-        });
+        const target = slideOffset(activeIndex);
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reducedMotion) {
+          viewport.scrollLeft = target;
+          updateState();
+          return;
+        }
+        viewport.scrollTo({ left: target, behavior: 'smooth' });
       }
 
       function updateState() {
-        const slideWidth = viewport.clientWidth || 1;
+        if (slideWidth <= 0) return;
         activeIndex = Math.round(viewport.scrollLeft / slideWidth);
         activeIndex = Math.max(0, Math.min(activeIndex, slides.length - 1));
 
@@ -1530,7 +1593,11 @@
       if (prevBtn) prevBtn.addEventListener('click', () => goTo(activeIndex - 1));
       if (nextBtn) nextBtn.addEventListener('click', () => goTo(activeIndex + 1));
 
-      viewport.addEventListener('scroll', updateState, { passive: true });
+      viewport.addEventListener('scroll', () => {
+        updateState();
+        clearTimeout(scrollSnapTimer);
+        scrollSnapTimer = setTimeout(snapToActiveSlide, 80);
+      }, { passive: true });
       window.addEventListener('resize', refreshGallery);
 
       viewport.addEventListener('keydown', (event) => {
@@ -1567,8 +1634,8 @@
         if (event.pointerId !== undefined && viewport.hasPointerCapture(event.pointerId)) {
           viewport.releasePointerCapture(event.pointerId);
         }
-        const slideWidth = viewport.clientWidth || 1;
-        goTo(Math.round(viewport.scrollLeft / slideWidth));
+        const targetIndex = slideWidth > 0 ? Math.round(viewport.scrollLeft / slideWidth) : activeIndex;
+        goTo(targetIndex);
       }
 
       viewport.addEventListener('pointerup', endDrag);

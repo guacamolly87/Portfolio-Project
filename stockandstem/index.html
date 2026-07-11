@@ -536,6 +536,16 @@
       text-align: left;
     }
 
+    .section__body a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .section__body a:hover {
+      text-decoration-thickness: 2px;
+    }
+
     .case-study-visual--night .theme-gallery__figure-title,
     #process > .container .case-study-visual .theme-gallery__figure-title,
     #process > .container > .theme-gallery .theme-gallery__figure-title {
@@ -763,6 +773,20 @@
       object-fit: contain;
     }
 
+    @media (min-width: 768px) {
+      .theme-gallery--compact .theme-gallery__slide {
+        background: var(--color-ink-900);
+      }
+
+      /* Trim subpixel slide peek and screenshot edge padding on desktop */
+      .theme-gallery--compact .theme-gallery__slide img {
+        width: calc(100% + 4px);
+        max-width: none;
+        margin-left: -2px;
+        object-position: center center;
+      }
+    }
+
     .theme-gallery__frame {
       display: grid;
       grid-template-columns: auto minmax(0, 1fr) auto;
@@ -801,9 +825,28 @@
       margin-top: 0;
     }
 
-    #process > .container > .theme-gallery,
-    #process > .container > .case-study-visual {
-      margin-top: var(--space-5);
+    /* Uncontained content flow — Process (matches hero media → meta at space.6) */
+    #process > .container > .section__body + .case-study-visual,
+    #process > .container > .section__body + .theme-gallery,
+    #process > .container > .section__list + .case-study-visual,
+    #process > .container > .section__list + .theme-gallery,
+    #process > .container > .type-subheading + .case-study-visual,
+    #process > .container > .type-subheading + .theme-gallery {
+      margin-top: var(--space-6);
+    }
+
+    #process > .container > .case-study-visual + .section__body,
+    #process > .container > .case-study-visual + .section__list,
+    #process > .container > .case-study-visual + .theme-gallery,
+    #process > .container > .theme-gallery + .section__body,
+    #process > .container > .theme-gallery + .section__list,
+    #process > .container > .theme-gallery + .case-study-visual {
+      margin-top: var(--space-6);
+    }
+
+    #process > .container > .case-study-visual + .type-subheading,
+    #process > .container > .theme-gallery + .type-subheading {
+      margin-top: var(--space-7);
     }
 
     .theme-gallery__hint [data-lucide] {
@@ -1127,7 +1170,7 @@
               <p class="type-body">Anyone who manages cooking for a busy household knows it is a delicate balance to juggle tight schedules and budgets. A weeknight stir-fry, a meal-prep Sunday, and a last-minute dinner guest all compete for the same bag of spinach. Existing tools tend to be disparate, with many users relying on bookmarked recipes, hand-written notes, and a quick glance at an ever-changing inventory. Furthermore, monitoring perishable groceries introduces a layer of micro-logistics that generic to-do apps ignore. Ingredients expire on different schedules, partial packages get opened mid-week, and fridge space is finite.</p>
               <p class="type-body">When building the application, I targeted three core friction points in the typical home cooking workflow:</p>
               <ul class="section__list type-body">
-                <li><strong>The Planning Fragmentation:</strong> Recipes live in bookmarks, grocery lists live in notes apps, and real-time pantry inventory is constantly changing.</li>
+                <li><strong>Planning Fragmentation:</strong> Recipes live in bookmarks, grocery lists live in notes apps, and real-time pantry inventory is constantly changing.</li>
                 <li><strong>Delayed Visibility:</strong> Discovering a missing ingredient usually happens when the pan is already hot.</li>
                 <li><strong>Mental Overlap:</strong> The app needs to bridge two distinct mental models: selecting recipes (inspiration) and managing inventory (logistics).</li>
               </ul>
@@ -1234,7 +1277,7 @@
         </div>
 
         <h3 class="type-subheading">Design Iterations</h3>
-        <p class="section__body type-body text-muted">To evolve Stock &amp; Stem into a more intuitive experience, I focused on refining the information architecture and streamlining user interactions based on usability:</p>
+        <p class="section__body type-body text-muted">To make Stock &amp; Stem into a more intuitive experience, I focused on refining the information architecture and streamlining user interactions based on usability. This included the following modifications:</p>
         <ul class="section__body type-body text-muted">
           <li><strong>Consolidated Planning:</strong> I integrated redundant subsections (like #select_or_change and #manage_sched) into a single, cohesive calendar-based view, significantly reducing the need for scrolling.</li>
           <li><strong>Quick-Tagged Inventory:</strong> I transitioned the inventory list to a tabbed interface, allowing users to scan their pantry more efficiently than in the original checklist format.</li>
@@ -1243,7 +1286,7 @@
           <li><strong>Categorized Store View:</strong> I utilized an intuitive card-based system to organize grocery items into distinct categories (e.g., Produce, Dairy, Meat &amp; Seafood), allowing users to easily navigate their shopping list section by section.</li>
         </ul>
         <h3 class="type-subheading">AI-Assisted Development: Backend &amp; Data Integration</h3>
-        <p class="section__body type-body text-muted">Beyond just designing the interface, I used AI to build the app's full functionality and data structure. This includes using Cursor to accomplish the following tasks such as:</p>
+        <p class="section__body type-body text-muted">Beyond just designing the interface, I used AI to build the app's full functionality and data structure. This includes using Cursor to accomplish the following tasks:</p>
         <ul class="section__body type-body text-muted">
           <li><strong>Integrating Unsplash APIs:</strong> I centralized image management by creating a custom &lt;RecipeImage/&gt; component. This component dynamically fetches high-quality visuals from the Unsplash API based on the recipe name, replacing static placeholders with recipe photographs.</li>
           <li><strong>Authentication &amp; Data Security:</strong> I implemented protected routing, requiring users to authenticate with Supabase before accessing a dedicated 'Welcome' landing page.</li>
@@ -1261,7 +1304,7 @@
             <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="AI-assisted development images" aria-roledescription="carousel">
               <div class="theme-gallery__track">
                 <figure class="theme-gallery__slide">
-                  <img src="assets/prompt-3.png" alt="Cursor prompt to implement Supabase backend setup and user login">
+                  <img src="assets/prompt-1new.png" alt="Cursor prompt to create the global /inspire-design-system skill">
                 </figure>
                 <figure class="theme-gallery__slide">
                   <img src="assets/prompt-4.png" alt="Cursor prompt to wire up useMealSlots and useRecipes hooks with persistence layer">
@@ -1289,6 +1332,9 @@
                 </figure>
                 <figure class="theme-gallery__slide">
                   <img src="assets/prompt-13.png" alt="Cursor prompt to implement protected route pattern with Supabase auth">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt-15.png" alt="Cursor prompt to initialize new users with empty records and add a Get Started empty state for recipes">
                 </figure>
               </div>
             </div>
@@ -1338,7 +1384,6 @@
               <ul class="feature-list type-body">
                 <li><strong>Smart meal-time allocation —</strong> Dedicated, clean layout blocks for Breakfast, Lunch, Dinner, and Snacks that display precise timing and meal states, ensuring the entire day is glanceable in under three seconds.</li>
               </ul>
-              <p class="type-body">The interface stays on dark surfaces with lavender editorial panels for feature callouts matching the portfolio design system, so dense information remains readable in a bright kitchen.</p>
             </div>
           </div>
         </div>
@@ -1365,7 +1410,7 @@
         <header class="section__header">
           <h2 class="type-display-md case-caps">Reflection</h2>
         </header>
-        <p class="section__body type-body text-muted">One of the most enjoyable aspects of developing this app was finding ways to reduce cognitive load while also offering users actionable motivation. Features like the weekly summary and consistency trackers were particularly effective in this regard. Additionally, consolidating the daily details taught me the value of aggressive layout simplification. In early site maps, I separated features into distinct sub-sections, but true user context demanded everything live on a single calendar. Moving forward, I plan to delve deeper into gamifying these tools to enhance user engagement. I also would like to explore shared household views that allow partners to share shopping lists and manage inventory together.</p>
+        <p class="section__body type-body text-muted">One of the most enjoyable aspects of developing this app was finding ways to reduce cognitive load while also offering users actionable motivation. Features like the weekly summary and consistency trackers were particularly effective in this regard. Additionally, consolidating the daily details taught me the value of aggressive layout simplification. In early site maps, I separated features into distinct sub-sections, but true user context demanded everything live on a single calendar. Moving forward, I plan to delve deeper into gamifying these tools to enhance user engagement. I also want to explore ways to streamline the onboarding experience, such as a browser-based tool that allows users to search for recipes online and pull them directly into their app library. Finally, I would like to explore shared household views that allow partners to share shopping lists and manage inventory together.</p>
       </div>
     </section>
 
@@ -1424,10 +1469,12 @@
       if (!viewport || slides.length === 0) return;
 
       let activeIndex = 0;
+      let slideWidth = 0;
       let dragStartX = 0;
       let dragScrollLeft = 0;
       let isDragging = false;
       let touchStartX = 0;
+      let scrollSnapTimer;
 
       if (dotsContainer) {
         slides.forEach((_, index) => {
@@ -1445,14 +1492,14 @@
       const dots = dotsContainer ? Array.from(dotsContainer.querySelectorAll('.theme-gallery__dot')) : [];
 
       function layoutSlides() {
-        const width = Math.round(viewport.clientWidth);
-        if (width <= 0) return;
+        slideWidth = Math.round(viewport.clientWidth);
+        if (slideWidth <= 0) return;
         slides.forEach((slide) => {
-          slide.style.flex = `0 0 ${width}px`;
-          slide.style.width = `${width}px`;
+          slide.style.flex = `0 0 ${slideWidth}px`;
+          slide.style.width = `${slideWidth}px`;
         });
         if (track) {
-          track.style.width = `${width * slides.length}px`;
+          track.style.width = `${slideWidth * slides.length}px`;
         }
       }
 
@@ -1463,19 +1510,31 @@
       }
 
       function slideOffset(index) {
-        return index * viewport.clientWidth;
+        return index * slideWidth;
+      }
+
+      function snapToActiveSlide() {
+        if (isDragging || slideWidth <= 0) return;
+        const target = slideOffset(activeIndex);
+        if (Math.abs(viewport.scrollLeft - target) > 1) {
+          viewport.scrollLeft = target;
+        }
       }
 
       function goTo(index) {
         activeIndex = Math.max(0, Math.min(index, slides.length - 1));
-        viewport.scrollTo({
-          left: slideOffset(activeIndex),
-          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
-        });
+        const target = slideOffset(activeIndex);
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reducedMotion) {
+          viewport.scrollLeft = target;
+          updateState();
+          return;
+        }
+        viewport.scrollTo({ left: target, behavior: 'smooth' });
       }
 
       function updateState() {
-        const slideWidth = viewport.clientWidth || 1;
+        if (slideWidth <= 0) return;
         activeIndex = Math.round(viewport.scrollLeft / slideWidth);
         activeIndex = Math.max(0, Math.min(activeIndex, slides.length - 1));
 
@@ -1498,7 +1557,11 @@
       if (prevBtn) prevBtn.addEventListener('click', () => goTo(activeIndex - 1));
       if (nextBtn) nextBtn.addEventListener('click', () => goTo(activeIndex + 1));
 
-      viewport.addEventListener('scroll', updateState, { passive: true });
+      viewport.addEventListener('scroll', () => {
+        updateState();
+        clearTimeout(scrollSnapTimer);
+        scrollSnapTimer = setTimeout(snapToActiveSlide, 80);
+      }, { passive: true });
       window.addEventListener('resize', refreshGallery);
 
       viewport.addEventListener('keydown', (event) => {
@@ -1535,8 +1598,8 @@
         if (event.pointerId !== undefined && viewport.hasPointerCapture(event.pointerId)) {
           viewport.releasePointerCapture(event.pointerId);
         }
-        const slideWidth = viewport.clientWidth || 1;
-        goTo(Math.round(viewport.scrollLeft / slideWidth));
+        const targetIndex = slideWidth > 0 ? Math.round(viewport.scrollLeft / slideWidth) : activeIndex;
+        goTo(targetIndex);
       }
 
       viewport.addEventListener('pointerup', endDrag);

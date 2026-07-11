@@ -533,13 +533,39 @@ Alternate editorial panels for hero blocks, feature callouts, and case-study int
 - **Spacing (grid):** paragraph stack inside body `space.4` · image gap in `.theme-card__images` `16px` · images↔card bottom `16px` · `.theme-card__body` uses `margin: 0` — card padding alone controls inset on all sides; do not add extra `margin-bottom` on the body wrapper
 - **Image ↔ text spacing (project pages — required CSS):** theme-card body copy must never sit flush against figures or galleries. Copy these rules into every `{slug}/index.html`:
   - **Figure label → figure:** `.theme-gallery__figure-title` uses `margin-bottom: space.4` inside `.prose-card` (16px below label before image); uncontained Process visuals keep `margin: space.4 0 space.5`
-  - **Figure → following text:** `.prose-card .theme-card__body > .theme-card__figure + :is(.feature-list, .section__list, p.type-body)` uses `margin-top: space.6` (32px) — **one gap only**; do not also add `margin-bottom` on the figure (matches hero `.project-hero__media` → `.project-meta` rhythm)
+  - **Figure → following text:** `.prose-card .theme-card__body > .theme-card__figure + :is(.feature-list, .section__list, p.type-body)` uses `margin-top: space.6` (32px) — **one gap only**; do **not** also add `margin-bottom` on `.theme-card__body > .theme-card__figure` (stacking doubles the gap to 64px)
   - **Text block → next figure label:** `.prose-card .theme-card__body > :is(.feature-list, p.type-body) + .theme-gallery__figure-title` uses `margin-top: space.6` (32px)
   - **First figure label in card:** `.theme-card__body > .type-subheading:first-child + .theme-gallery__figure-title` uses `margin-top: 0`
   - **Figure label directly above figure:** `.prose-card .theme-card__body > .theme-gallery__figure-title + .theme-card__figure` uses `margin-top: 0`
   - **Text → gallery:** `.theme-card__body .theme-gallery` uses `margin-top: space.4` (16px)
   - **Gallery → following text:** `.theme-card__body .theme-gallery + p` uses `margin-top: space.5` (24px) — matches the gap a `type.subheading` already gets via its own `margin-top: space.5` when a gallery is followed by a new subsection
   - **Feature bullet → inline figure:** `.feature-list li .theme-card__figure` uses `margin-top: space.4` (16px); when preceded by a figure label inside the same `<li>`, reset with `.feature-list li .theme-gallery__figure-title + .theme-card__figure { margin-top: 0 }`
+- **Process content flow (uncontained — required CSS):** copy into every `{slug}/index.html`. Use adjacent-sibling spacing at `space.6` (32px) between `.section__body`, `.section__list`, `.type-subheading`, `.case-study-visual`, and `.theme-gallery` inside `#process > .container` — same rhythm as hero `.project-hero__media` → `.project-meta`. New subsections after a visual use `space.7` on the following `.type-subheading`. **One gap only** — do not stack `margin-bottom` on visuals with `margin-top` on the next block.
+
+```css
+#process > .container > .section__body + .case-study-visual,
+#process > .container > .section__body + .theme-gallery,
+#process > .container > .section__list + .case-study-visual,
+#process > .container > .section__list + .theme-gallery,
+#process > .container > .type-subheading + .case-study-visual,
+#process > .container > .type-subheading + .theme-gallery {
+  margin-top: var(--space-6);
+}
+
+#process > .container > .case-study-visual + .section__body,
+#process > .container > .case-study-visual + .section__list,
+#process > .container > .case-study-visual + .theme-gallery,
+#process > .container > .theme-gallery + .section__body,
+#process > .container > .theme-gallery + .section__list,
+#process > .container > .theme-gallery + .case-study-visual {
+  margin-top: var(--space-6);
+}
+
+#process > .container > .case-study-visual + .type-subheading,
+#process > .container > .theme-gallery + .type-subheading {
+  margin-top: var(--space-7);
+}
+```
 - **Wrapper:** on homepage/demo pages, inside `demo-panel` (`bg.surface` + `border.subtle`, `space.5` padding). On **project pages**, `demo-panel` is a pass-through wrapper (transparent, no border, no padding) — see **Project pages**.
 
 ### Theme Gallery
@@ -548,7 +574,7 @@ Horizontal image carousel inside theme cards (Process / Solution sections). Copy
 - **Classes:** `.theme-gallery` · `.theme-gallery--compact` · `.theme-gallery__hint` · `.theme-gallery__figure-title` · `.theme-gallery__figure-label` · `.theme-gallery__frame` · `.theme-gallery__viewport` · `.theme-gallery__track` · `.theme-gallery__slide` · `.theme-gallery__btn` · `.theme-gallery__btn--prev` · `.theme-gallery__btn--next` · `.theme-gallery__caption` · `.theme-gallery__dots`
 - **Markup:** root `[data-gallery]` · viewport `tabindex="0"` `role="region"` `aria-roledescription="carousel"` · prev/next chevron buttons flanking the viewport inside `.theme-gallery__frame` · optional `aria-live` caption
 - **Figure labels:** `<p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure N.</span> Title</p>` before each gallery
-- **Compact variant:** `.theme-gallery--compact` — viewport `max-width: 84%`, centered inside the frame; slides `aspect-ratio: 16/9`, images `object-fit: contain`. Use for user flows, prompt screenshots, and dense process artifacts.
+- **Compact variant:** `.theme-gallery--compact` — viewport `max-width: 84%`, centered inside the frame; slides `aspect-ratio: 16/9`, images `object-fit: contain`. Use for user flows, prompt screenshots, and dense process artifacts. On desktop (≥ `bp.md`), slide fill matches `ink.900` and images use a 2px horizontal inset crop (`width: calc(100% + 4px); margin-left: -2px`) to hide subpixel slide peek and screenshot edge padding; gallery JS must use one rounded `slideWidth` for layout and scroll snapping.
 - **Full-width variant:** default `.theme-gallery` — slides span viewport width; images `object-fit: contain`
 - **Navigation layout (required):** prev/next buttons sit **outside** the slide viewport so they never cover readable content (prompt text, diagrams). `.theme-gallery__frame` is a 3-column CSS grid (`auto minmax(0, 1fr) auto`) with `gap: space.3`; buttons are `position: static` in columns 1 and 3; viewport is column 2. Buttons are 40×40px, `radius.md`, Lucide chevrons at 1.25rem.
 - **Navigation colors (by surface):**
@@ -749,7 +775,7 @@ Nested project pages (`{slug}/index.html`) extend the homepage design system wit
 - `.theme-card__body`: `max-width: none`, `width: 100%` on lavender prose cards (full container span).
 - Card padding: `space.5` on all sides at every breakpoint for `.prose-card` on project pages. Lavender prose cards use `ink.800` body copy at 85% opacity (subheadings and feature titles at full `ink.800`) for contrast on the lilac fill.
 - Subheadings within cards: `type.subheading` (sentence case), `margin-top: space.5`.
-- **Process (uncontained):** `h3.type-subheading` + `p.section__body.type-body.text-muted` + optional `ul.section__list.type-body.text-muted` directly in `.container`; copy `#process > .container` spacing and gallery title/hint CSS from `stockandstem/index.html`.
+- **Process (uncontained):** `h3.type-subheading` + `p.section__body.type-body.text-muted` + optional `ul.section__list.type-body.text-muted` directly in `.container`; copy `#process > .container` spacing, **Process content flow** adjacent-sibling rules, and gallery title/hint CSS from `stockandstem/index.html`.
 - Process galleries: copy full `.theme-gallery` CSS + init script from `stockandstem/index.html`; style `#process > .container > .theme-gallery` hints, figure titles, and slide captions for the dark page background.
 - Solution features: `.feature-list` with `<strong>Title —</strong>` lead-ins inside the single lavender `.prose-card`. Interleave `.theme-gallery__figure-title` + `.theme-card__figure--full-width` between feature groups (or after the section subheading) so all Solution content stays in one lilac panel.
 
