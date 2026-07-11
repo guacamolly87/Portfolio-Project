@@ -6,7 +6,7 @@ cardDescription: "Plant care application that simplifies maintenance by categori
 coverImage: "assets/cover-glass-botanist.svg"
 coverAlt: "Glass botanist project cover"
 summary: "The Glass Botanist is a centralized plant-care dashboard that tracks individual watering schedules based on specific plant categories to ensure optimal health. The app uses a visual health-status system to alert you to which plants need attention, helping you keep up through the use of timely reminders."
-heroImage: "assets/mockup_hero-plant-watering-app.svg"
+heroImage: "assets/mockup_hero-glass.png"
 heroAlt: "The key features of the Glass Botanist include: plant management (add, update, and archive your plants while tracking your watering dates), health tracking (happy, neutral, and sad faces indicate when your plant requires care), and the leaf library, which enables you to customize your plant's care based on its watering needs"
 externalUrl: "https://griffin-plant-glass-botanist.netlify.app/"
 role: "UX Designer & Full-Stack Developer"
@@ -87,7 +87,7 @@ I used Cursor to generate a my /inspire-design-system skill and DESIGN.md file. 
 
 **Figure 6.** Examples of AI assistance during the build process
 Insert scrollable gallery with:
-- `prompt1.png` — Cursor prompt to create the global /inspire-design-system skill
+- `prompt-1new.png` — Cursor prompt to create the global /inspire-design-system skill
 - `prompt2.png` — Cursor prompt defining preview phase constraints for DESIGN.md and preview.html
 - `prompt3.png` — Cursor /inspire-design-system prompt with helopebl.com design inspiration URL
 - `prompt4.png` — Cursor prompt to replace legacy CSS variables with the new Pacific palette
@@ -132,9 +132,11 @@ Add "Open published app" primary button (hero and deployment sections) that open
 ## Reflection
 My work on the Glass Botanist highlights the transition from creating purely functional tools to designing for human behavior. I discovered that the most effective interfaces not only solve problems but also lessen the cognitive load of everyday life. This is achieved through state-driven design that adapts to the user's reality in real time.
 
+In addition to individual plant tracking, the app provides a scalable framework. The categorization logic and visual health indicators can easily be expanded to include other care variables such as sunlight, fertilization, pruning, and repotting, ensuring that the design remains a robust, flexible tool that grows alongside the user's collection.
+
 Available assets in `assets/`:
 - `cover-glass-botanist.svg` — homepage card cover
-- `mockup_hero-plant-watering-app.svg` — hero mockup
+- `mockup_hero-glass.png` — hero mockup
 - `site-map-plant-watering.png` — application site map
 - `manage-plants-user-flow.png` — user flow for plant management and archiving
 - `quick-water_user-flow.png` — user flow for the quick water feature on the home page
@@ -149,7 +151,7 @@ Available assets in `assets/`:
 - `plant2.png` — mid plant icon iteration
 - `plant3.png` — later plant icon iteration
 - `plant4.png` — final plant icon iteration
-- `prompt1.png` — Cursor prompt to create the /inspire-design-system skill
+- `prompt-1new.png` — Cursor prompt to create the /inspire-design-system skill
 - `prompt2.png` — Cursor prompt defining preview phase constraints
 - `prompt3.png` — Cursor prompt with helopebl.com design inspiration URL
 - `prompt4.png` — Cursor prompt to replace legacy CSS variables with Pacific palette

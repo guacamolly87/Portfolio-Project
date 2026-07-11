@@ -6,7 +6,7 @@ cardDescription: "Craft your comfort. Visualize your dream workspace in seconds.
 coverImage: "assets/cover-dream-desk.svg"
 coverAlt: "The Dream Desk Visualizer interface showing a Mid-Century themed office background, chair, desk, and laptop."
 summary: "The Dream Desk Visualizer is an interior design application for your office space."
-heroImage: "assets/mockup-hero-dream_desk.svg"
+heroImage: "assets/mockup_hero-dream-desk-new.png"
 heroAlt: "The Dream Desk Visualizer allows users to personalize (select your dream background, desk, chair, and computer), share (save your custom image and send it to friends), and switch between light and dark modes."
 externalUrl: "https://griffin-dream-desk-visualizer.netlify.app/"
 role: "UX Designer & Full-Stack Developer"
@@ -102,7 +102,7 @@ The most critical lesson I learned was that using pre-composed full-scene compos
 
 Available assets in `assets/`:
 - `cover-dream-desk.svg` — homepage card cover
-- `mockup-hero-dream_desk.svg` — hero mockup
+- `mockup_hero-dream-desk-new.png` — hero mockup
 - `home-page-no_choices.png` — home page before selections
 - `home_page-dream-desk-data.png` — home page with data
 - `academic-setup.png` — academic desk setup
