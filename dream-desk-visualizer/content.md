@@ -72,15 +72,20 @@ Ultimately, I discovered that relying on Cursor to generate pre-composed, full-s
 ### AI-assisted development
 In Cursor, I started by checking for necessary dependencies and installing Node.js and npm. 
 
-**Figure 3.**
+**Figure 3. AI-assisted development prompts**
 Insert:
 `figma-make-prompt.png`
+`prompt-1.png`
+`prompt-2.png`
+`prompt-3.png`
+`prompt-4.png`
+`prompt-5.png`
 
 ## Solution
 
-### **Photorealistic Integration:** Experience seamlessly integrated, full-scene images that avoid rendering errors such as jagged edges, difficulty blending, and unsightly artifacts.
+### **Photorealistic Integration:** Experience high-fidelity, photorealistic integration. Seamless rendering eliminates common visual artifacts, such as jagged edges and unnatural scaling, ensuring your workspace setup looks polished and professional.
 
-### **Artful Combination:** Effortlessly mix and match pieces from diverse themes, ensuring that furniture, textures, and accessories blend harmoniously, regardless of the combination. 
+### **Artful Combination:** Effortlessly mix and match pieces from various themes, ensuring that furniture, textures, and accessories blend harmoniously, regardless of the combination. 
 
 ### **Improved Confidence in Decision Making:** Enjoy the peace of mind that comes with a realistic, risk-free preview, allowing you to assess the cohesion of your design choices before committing to significant financial investments.
 
@@ -89,7 +94,7 @@ Insert:
 
 ## Deployment
 
-Explore the completed Dream Desk Visualizer below, which leverages pre-composed images to maintain high-quality while keeping the load times minimal.
+Explore the completed Dream Desk Visualizer below, which uses pre-composed images to maintain high-quality while keeping the load times minimal.
 
 Add an "Open published app" primary button (hero and deployment sections) that opens in a new tab to griffin-dream-desk-visualizer.netlify.app
 
@@ -110,3 +115,5 @@ Available assets in `assets/`:
 - `boho-setup-step1.png` — boho setup step one
 - `gamer-setup.png` — gamer desk setup
 - `final_setup.png` — final exported setup
+- `figma-make-prompt.png` — Figma Make initial prompt
+- `prompt-1.png` through `prompt-5.png` — Cursor development prompts
