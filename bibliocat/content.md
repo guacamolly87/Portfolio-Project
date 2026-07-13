@@ -1,12 +1,12 @@
 ---
 title: "Bibliocat"
 slug: bibliocat
-tagline: "Down the rabbit hole of endless books."
+tagline: "Book search and discovery for titles, authors, and covers."
 cardDescription: "Book search and discovery for titles, authors, and covers."
 coverImage: "assets/biblio-cover-new.png"
 coverAlt: "Bibliocat project cover"
 summary: "Fall down the rabbit hole of literature with Bibliocat, a book discovery tool powered by Open Library API. Search by title, author, or subject to find your next great adventure."
-heroImage: "assets/mockup-bibliocat-search.png"
+heroImage: "assets/hero-mockup-new-biblio.png"
 heroAlt: "Bibliocat search results page showing a list of Dave Eggers books displayed under a 'Your Curious Collection' heading."
 externalUrl: "https://bibliocat.netlify.app/"
 role: "UX Designer & Full-Stack Developer"
@@ -38,7 +38,7 @@ Please insert “the-midnight-library.jpg”
 
 I envisioned a navy background with gold, orange, and teal accents. This was my first prompt for my second project attempt in Cursor.
 
-Please insert “prompt1.png”, “prompt2.png”, and “initial-home-page.png”
+Please insert “prompt1.png”, “prompt2.png”, and “homepage-early.png”
 Please auto-generate captions.
 
 I was much happier with the overall look of the web application. To ensure functionality, I tested various searches and noticed that users had to wait a few seconds for results to load. I decided to add a “loading” message and thought a cat silhouette prancing across the page would be fun, as if it were “searching the stacks.” While researching literary cat names, I discovered the Cheshire Cat from Alice’s Adventures in Wonderland, which felt like a perfect whimsical touch for my book-search app. 
