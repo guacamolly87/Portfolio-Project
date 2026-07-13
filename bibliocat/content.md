@@ -6,7 +6,7 @@ cardDescription: "Book search and discovery for titles, authors, and covers."
 coverImage: "assets/biblio-cover-new.png"
 coverAlt: "Bibliocat project cover"
 summary: "Fall down the rabbit hole of literature with Bibliocat, a book discovery tool powered by Open Library API. Search by title, author, or subject to find your next great adventure."
-heroImage: "assets/hero-mockup-new-biblio.png"
+heroImage: "assets/mockup-hero-new-biblio.png"
 heroAlt: "Bibliocat search results page showing a list of Dave Eggers books displayed under a 'Your Curious Collection' heading."
 externalUrl: "https://bibliocat.netlify.app/"
 role: "UX Designer & Full-Stack Developer"
@@ -49,7 +49,7 @@ I developed the following prompt and sent it to Cursor.
 
 Please insert “prompt3.png”
 
-These are design iterations of the loading status.
+The design iterations for the loading status are displayed below.
 
 Please insert “cat-themed loading” then “alice-themed-loading.png”, and finally “down-the-rabbit-hole.png” in a gallery box.
 
@@ -118,11 +118,13 @@ Bibliocat was created to streamline the book-finding process while fostering a w
 -	**Intuitive Discovery:** Designed as a bibliographic catalog, the app uses Open Library API to provide a cozy book-finding experience that prioritizes discoverability and seamless access.
 Insert image placeholder
 
--	**Quick Search Shortcuts** Unlock a seamless reading experience by simply clicking on the “surprise me,” “featured author,” or “fantasy” genre filters, allowing you to effortlessly discover your next favorite book.
--	**Responsive UI Feedback:** Bibliocat captivates users with enchanting Alice-in-Wonderland-themed animations during loading states, ensuring the interface remains engaging and interactive while API calls are underway.
-Insert image placeholder
-
 -	**Integrate Summary Retrieval:** By capturing the unique work key for each search result, the application dynamically retrieves and displays detailed book descriptions to significantly enhance the user’s experience
+
+Insert image placeholder
+-	**Responsive UI Feedback:** Bibliocat captivates users with enchanting Alice-in-Wonderland-themed animations during loading states, ensuring the interface remains engaging and interactive while API calls are underway.
+
+Insert image placeholder
+-	**Quick Search Shortcuts** Easily discover your next favorite book by clicking on the “Surprise Me,” “Featured Author,” or “Fantasy” genre filters for a smooth, intuitive reading journey.
 
 <!-- theme: lavender -->
 <!-- features: true -->
@@ -130,14 +132,14 @@ Insert image placeholder
 ## Deployment
 
 
-The deployment provides users with an immersive, responsive, Alice-in-Wonderland-themed search tool that integrates data from the Open Library API. The Bibliocat application is live on Netlify. 
+The deployment provides users with an immersive, responsive, *Alice in Wonderland* themed search tool that integrates data from the Open Library API. The Bibliocat application is live on Netlify. 
 
 Insert primary-button “Open published app”: https://bibliocat.netlify.app 
 
 
 ## Reflection
 
-I most enjoyed moving beyond basic API integration to add themed loading states and consistent branding, which can create a more welcoming environment online. Technical hurdles, including creating a looping CSS animation for the pawprints during the loading state, enhanced my ability to use AI as a collaborator to resolve challenges. While I’m happy with the current version, future iterations could include more filtering options, such as limiting results by subject and genre. Furthermore, to enhance the enchanted Alice in Wonderland theme, I’d like to explore adding more animate imagery. For example, replacing the static teapot and teacup in the error state with a dynamic animation of tea being poured into a cup. 
+I most enjoyed moving beyond basic API integration to add themed loading states and consistent branding, which can create a more welcoming environment online. Technical hurdles, including creating a looping CSS animation for the pawprints during the loading state, enhanced my ability to use AI as a collaborator to resolve challenges. While I’m happy with the current version, future iterations could include more filtering options, such as limiting results by subject and genre. Furthermore, to enhance the enchanted *Alice in Wonderland* theme, I’d like to explore adding more animate imagery. For example, replacing the static teapot and teacup in the error state with a dynamic animation of tea being poured into a cup. 
 
 Insert a secondary button: “Back to featured work”: https://molly-griffin.netlify.app/
 
