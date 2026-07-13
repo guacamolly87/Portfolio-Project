@@ -694,6 +694,10 @@
       object-position: center;
     }
 
+    .theme-card__figure--contain.theme-card__figure--larger img {
+      width: 78.66%;
+    }
+
     .theme-card__figure--full-width {
       --figure-card-inset: var(--space-3);
       width: calc(100% + 2 * (var(--space-5) - var(--figure-card-inset)));
@@ -760,6 +764,10 @@
     .theme-gallery--compact .theme-gallery__viewport {
       max-width: 84%;
       margin-inline: auto;
+    }
+
+    .theme-gallery--compact-lg .theme-gallery__viewport {
+      max-width: 96.6%;
     }
 
     .theme-gallery--compact .theme-gallery__slide {
@@ -1197,7 +1205,7 @@
 
         <h3 class="type-subheading">Developing Key Userflows</h3>
         <p class="section__body type-body text-muted">The key userflows focused on the core functionality of the app including assigning and retrieving recipes for meals, generating grocery lists, updating inventory, and tracking the progress of meal preparation.</p>
-        <div class="theme-gallery theme-gallery--compact" data-gallery>
+        <div class="theme-gallery theme-gallery--compact theme-gallery--compact-lg" data-gallery>
           <p class="theme-gallery__hint type-caption">
             <i data-lucide="move-horizontal" aria-hidden="true"></i>
             Swipe or drag to browse
@@ -1264,7 +1272,7 @@
         <h3 class="type-subheading">Visual Style Development</h3>
         <div class="case-study-visual case-study-visual--night">
           <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 4.</span> Design-to-Code Workflow</p>
-          <figure class="theme-card__figure theme-card__figure--contain">
+          <figure class="theme-card__figure theme-card__figure--contain theme-card__figure--larger">
             <img src="assets/design-to-code-workflow-new.png" alt="Design-to-code workflow diagram showing Research and Ideation, Visual Synthesis, Tokenization, System Formalization, and Iterative Validation">
           </figure>
         </div>

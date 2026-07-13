@@ -785,6 +785,10 @@
       margin-inline: auto;
     }
 
+    .theme-gallery--compact-lg .theme-gallery__viewport {
+      max-width: 105%;
+    }
+
     .theme-gallery--compact .theme-gallery__slide {
       aspect-ratio: 16 / 9;
       overflow: hidden;
@@ -1205,7 +1209,7 @@
       <div class="container">
         <h1 class="type-display-lg case-caps">Dream Desk Visualizer</h1>
         <p class="project-hero__tagline type-subheading">Craft Your Comfort</p>
-        <p class="project-hero__summary type-body text-muted">The Dream Desk Visualizer is an interior design application for your office space.</p>
+        <p class="project-hero__summary type-body text-muted">Precision in every pixel. Configure your ideal office space with photorealistic designs.</p>
         <figure class="project-hero__media">
           <img src="assets/mockup_hero-dream-desk-new.png" alt="The Dream Desk Visualizer allows users to personalize (select your dream background, desk, chair, and computer), share (save your custom image and send it to friends), and switch between light and dark modes.">
         </figure>
@@ -1344,14 +1348,13 @@
               <i data-lucide="chevron-right" aria-hidden="true"></i>
             </button>
           </div>
-          <div class="theme-gallery__dots" role="tablist" aria-label="Design iteration slides"></div>
         </div>
 
         <p class="section__body type-body text-muted">Ultimately, I discovered that relying on Cursor to generate pre-composed, full-scene composite images was the most time-consuming, but also the most successful approach.</p>
 
         <h3 class="type-subheading">AI-assisted development</h3>
         <p class="section__body type-body text-muted">In Cursor, I started by checking for necessary dependencies and installing Node.js and npm.</p>
-        <div class="theme-gallery theme-gallery--compact" data-gallery>
+        <div class="theme-gallery theme-gallery--compact theme-gallery--compact-lg" data-gallery>
           <p class="theme-gallery__hint type-caption">
             <i data-lucide="move-horizontal" aria-hidden="true"></i>
             Swipe or drag to browse
@@ -1377,6 +1380,42 @@
                 </figure>
                 <figure class="theme-gallery__slide">
                   <img src="assets/prompt-5.png" alt="Cursor prompt to regenerate chair assets as pre-composed scene images instead of transparent PNG overlays">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt6.png" alt="Cursor prompt to generate remaining pre-composed boho office images for mahogany, mid-century, and standing desks with four chair styles">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt7.png" alt="Cursor prompt specifying identical reference scenes with chairs tucked under desks and copying generated files into the boho desk folder">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt8.png" alt="Cursor prompt to fix missing desk legs on the select-desk page except for the ornate mahogany desk">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt9.png" alt="Cursor prompt to add computer options on the accessorize page with Modern Mac, Mid-Century Laptop, Classic Mac, and Gamer PC">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt10.png" alt="Cursor prompt to treat computer accessory images as transparent overlays sized and placed forward-facing on the desk">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt11.png" alt="Cursor prompt to delete flawed accessory PNGs and generate AI composite computer layers for each theme selection">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt12.png" alt="Cursor prompt continuing composite generation with forward-facing computers matching the surrounding desk environment">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt13.png" alt="Cursor prompt confirming prior composites look correct and asking to continue generating remaining desk and chair combinations">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt14.png" alt="Cursor prompt to regenerate boho mahogany desk composites where the Modern Mac was facing backwards">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt15.png" alt="Cursor prompt to sync accessories with a Python script, confirm the public folder is populated, and list key functions to test">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt16.png" alt="Cursor prompt to generate missing accessory images for the Gamer and Mid-century themes into the assets folder">
+                </figure>
+                <figure class="theme-gallery__slide">
+                  <img src="assets/prompt17.png" alt="Cursor prompt to combine Summarize and Manage into one final page with save, share, and loading indicator features">
                 </figure>
               </div>
             </div>
