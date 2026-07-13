@@ -71,7 +71,7 @@ The app prioritizes universally accessible and efficient user experiences. By me
 
 The user lands on a neutral landing page, with the most important action, the “Test Readability” button, highlighted in a bright blue. The default text color is #000000, with a background color of #FFFFFF. The “Sample text for readability” appears in the live preview section in a neutral, intuitive, static grey hue.
 
-![Figure 6. Neutral landing page](assets/color-contrast-home-page.png)
+![Figure 6. Neutral landing page](assets/color-contrast-ipad.png)
 
 ### Easier ways to select your codes
 
