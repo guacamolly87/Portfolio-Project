@@ -781,32 +781,28 @@
     }
 
     .theme-gallery--compact .theme-gallery__viewport {
-      max-width: 84%;
-      margin-inline: auto;
+      max-width: none;
+      width: 100%;
+      margin-inline: 0;
     }
 
     .theme-gallery--compact .theme-gallery__slide {
       aspect-ratio: 16 / 9;
       overflow: hidden;
+      background: var(--color-ink-900);
     }
 
     .theme-gallery--compact .theme-gallery__slide img {
       width: 100%;
       height: 100%;
       object-fit: contain;
+      object-position: center center;
     }
 
     @media (min-width: 768px) {
-      .theme-gallery--compact .theme-gallery__slide {
-        background: var(--color-ink-900);
-      }
-
-      /* Trim subpixel slide peek and screenshot edge padding on desktop */
+      /* Slight scale avoids subpixel neighbor-slide peek without cropping content */
       .theme-gallery--compact .theme-gallery__slide img {
-        width: calc(100% + 8px);
-        max-width: none;
-        margin-left: -4px;
-        object-position: center center;
+        transform: scale(1.01);
       }
     }
 
