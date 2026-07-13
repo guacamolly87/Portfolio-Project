@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bibliocat — mgriffin designs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --color-violet-500: #6A53FE;
+      --color-violet-100: #CAC8F3;
+      --color-ink-900: #0B0A10;
+      --color-ink-800: #1A191F;
+
+      --color-bg-base: var(--color-ink-900);
+      --color-bg-surface: var(--color-ink-800);
+      --color-bg-primary: var(--color-violet-500);
+      --color-bg-primary-hover: rgba(106, 83, 254, 0.9);
+      --color-bg-primary-active: rgba(106, 83, 254, 0.8);
+      --color-bg-secondary: transparent;
+      --color-bg-hover: rgba(202, 200, 243, 0.06);
+
+      --color-text-primary: var(--color-violet-100);
+      --color-text-muted: var(--color-violet-100);
+      --color-text-on-primary: #ffffff;
+
+      --color-border-subtle: rgba(202, 200, 243, 0.18);
+      --color-border-strong: var(--color-violet-100);
+      --color-border-accent: var(--color-violet-500);
+      --color-border-focus: var(--color-violet-100);
+
+      --font-display: "Barlow Condensed", sans-serif;
+      --font-body: "Manrope", sans-serif;
+
+      /* Fluid type scale (rem) — scales with responsive root below */
+      --type-display-lg: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+      --type-display-md: clamp(2rem, 1.625rem + 1.5vw, 2.5rem);
+      --type-heading: clamp(1.5rem, 1.3rem + 0.75vw, 1.75rem);
+      --type-subheading: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);
+      --type-body: 1rem;
+      --type-body-sm: 0.875rem;
+      --type-label: 0.875rem;
+      --type-caption: 0.75rem;
+
+      --leading-relaxed: 1.625;
+      --prose-max-width: 70ch;
+
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-7: 48px;
+      --space-8: 64px;
+
+      --radius-none: 0;
+      --radius-md: 12px;
+
+      --button-padding-default: 0.75em 1.5em;
+      --transition-default: all 150ms cubic-bezier(0.2, 0, 0, 1);
+
+      --z-dropdown: 1000;
+      --z-sticky: 1100;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      font-size: clamp(1rem, 0.9375rem + 0.35vw, 1.25rem);
+    }
+
+    body {
+      margin: 0;
+      background: var(--color-bg-base);
+      color: var(--color-text-primary);
+      font-family: var(--font-body);
+      font-size: var(--type-body);
+      font-weight: 400;
+      line-height: var(--leading-relaxed);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: var(--space-4);
+      z-index: 9999;
+      padding: var(--space-3) var(--space-4);
+      background: var(--color-bg-primary);
+      color: var(--color-text-on-primary);
+      font-family: var(--font-body);
+      font-size: 1.1875rem;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: var(--radius-md);
+    }
+
+    .skip-link:focus { top: var(--space-4); }
+
+    .type-display-lg {
+      font-family: var(--font-display);
+      font-size: var(--type-display-lg);
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0;
+    }
+
+    .type-display-md {
+      font-family: var(--font-display);
+      font-size: var(--type-display-md);
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0;
+    }
+
+    .type-subheading {
+      font-family: var(--font-display);
+      font-size: var(--type-subheading);
+      font-weight: 600;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .type-body {
+      font-family: var(--font-body);
+      font-size: var(--type-body);
+      font-weight: 400;
+      line-height: var(--leading-relaxed);
+      margin: 0;
+    }
+
+    .type-label {
+      font-family: var(--font-body);
+      font-size: var(--type-label);
+      font-weight: 500;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .type-caption {
+      font-family: var(--font-body);
+      font-size: var(--type-caption);
+      font-weight: 400;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .case-caps {
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .text-muted { color: var(--color-text-muted); }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: var(--space-4);
+      padding-right: var(--space-4);
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding-left: var(--space-6);
+        padding-right: var(--space-6);
+      }
+    }
+
+    .section {
+      padding-top: var(--space-5);
+      padding-bottom: var(--space-5);
+    }
+
+    @media (min-width: 768px) {
+      .section {
+        padding-top: var(--space-6);
+        padding-bottom: var(--space-6);
+      }
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--color-border-focus);
+      outline-offset: 2px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      font-family: var(--font-body);
+      font-weight: 600;
+      line-height: 1.3;
+      border-radius: var(--radius-md);
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition-default);
+      white-space: nowrap;
+    }
+
+    .btn--default {
+      font-size: var(--type-body);
+      padding: var(--button-padding-default);
+    }
+
+    .btn--secondary {
+      background: var(--color-bg-secondary);
+      color: var(--color-text-primary);
+      border-color: var(--color-border-strong);
+    }
+
+    .btn--secondary:hover { background: var(--color-bg-hover); }
+
+    .link {
+      color: var(--color-text-primary);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      transition: var(--transition-default);
+    }
+
+    .link:hover {
+      text-decoration-thickness: 2px;
+      text-decoration-color: var(--color-border-accent);
+    }
+
+    .theme-card--lavender .link {
+      color: #1A191F;
+    }
+
+    .theme-card--night .link {
+      color: #D1D2E0;
+    }
+
+    .btn--primary {
+      background: var(--color-bg-primary);
+      color: var(--color-text-on-primary);
+      border-color: transparent;
+    }
+
+    .btn--primary:hover { background: var(--color-bg-primary-hover); }
+    .btn--primary:active { background: var(--color-bg-primary-active); }
+
+    .btn [data-lucide] {
+      width: 1.125em;
+      height: 1.125em;
+      flex-shrink: 0;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: var(--z-sticky);
+      background: var(--color-bg-base);
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 56px;
+      gap: var(--space-4);
+    }
+
+    .nav__wordmark {
+      display: block;
+      text-decoration: none;
+      flex-shrink: 0;
+      line-height: 0;
+    }
+
+    .nav__wordmark img {
+      display: block;
+      height: 36px;
+      width: auto;
+    }
+
+    .nav__wordmark:focus-visible { outline-offset: 4px; }
+
+    .nav__toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      background: transparent;
+      border: none;
+      color: var(--color-text-primary);
+      cursor: pointer;
+    }
+
+    .nav__menu {
+      display: none;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: var(--space-1);
+    }
+
+    .nav__menu.is-open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--color-bg-surface);
+      border-bottom: 1px solid var(--color-border-subtle);
+      padding: var(--space-3) var(--space-4);
+      z-index: var(--z-dropdown);
+    }
+
+    .nav__link {
+      display: flex;
+      align-items: center;
+      padding: var(--space-3) var(--space-4);
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-family: var(--font-body);
+      font-size: var(--type-label);
+      font-weight: 500;
+      line-height: 1.3;
+      border-bottom: 2px solid transparent;
+      transition: var(--transition-default);
+      min-height: 44px;
+    }
+
+    .nav__link:hover {
+      color: var(--color-text-primary);
+      background: var(--color-bg-hover);
+    }
+
+    .nav__link--active {
+      color: var(--color-text-primary);
+      border-bottom-color: var(--color-border-accent);
+    }
+
+    @media (min-width: 768px) {
+      .nav__toggle { display: none; }
+
+      .nav__menu,
+      .nav__menu.is-open {
+        display: flex;
+        flex-direction: row;
+        position: static;
+        background: transparent;
+        border: none;
+        padding: 0;
+      }
+    }
+
+    .nav__wrapper { position: relative; }
+
+    .project-hero {
+      padding-top: var(--space-6);
+      padding-bottom: var(--space-5);
+    }
+
+    .project-hero__tagline {
+      margin-top: var(--space-3);
+      color: var(--color-text-muted);
+    }
+
+    .project-hero__summary {
+      margin-top: var(--space-5);
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-5);
+      margin-top: var(--space-6);
+    }
+
+    .project-meta__item {
+      min-width: 140px;
+    }
+
+    @media (min-width: 768px) {
+      .project-meta {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+        gap: var(--space-6) var(--space-8);
+        text-align: left;
+      }
+
+      .project-meta__item {
+        min-width: 0;
+      }
+    }
+
+    .project-meta__label {
+      font-weight: 600;
+      color: var(--color-text-primary);
+    }
+
+    .project-meta__value {
+      margin-top: var(--space-1);
+    }
+
+    .project-hero__actions {
+      margin-top: var(--space-5);
+    }
+
+    .project-hero__media {
+      margin-top: var(--space-6);
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+
+    .project-hero__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left center;
+    }
+
+    .section__header { margin-bottom: var(--space-6); }
+
+    .section__body + .section__body { margin-top: var(--space-4); }
+
+    .section__list {
+      margin: var(--space-4) 0 0;
+      padding-left: 1.25em;
+    }
+
+    .section__list li + li { margin-top: var(--space-3); }
+
+    .section__list--numbered {
+      list-style: decimal;
+      padding-left: 1.5em;
+    }
+
+    .feature-list {
+      margin: var(--space-5) 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .feature-list li + li { margin-top: var(--space-4); }
+
+    .feature-list li .theme-card__figure {
+      margin-top: var(--space-4);
+    }
+
+    .feature-list li .theme-gallery__figure-title + .theme-card__figure {
+      margin-top: 0;
+    }
+
+    .feature-list li .theme-gallery__figure-title {
+      margin-top: var(--space-4);
+      margin-bottom: var(--space-5);
+    }
+
+    .theme-card__body > .theme-gallery__figure-title {
+      margin-top: var(--space-4);
+    }
+
+    .theme-card__body > .theme-gallery__figure-title:first-child,
+    .theme-card__body > .type-subheading:first-child + .theme-gallery__figure-title {
+      margin-top: 0;
+    }
+
+    .prose-card .theme-card__body > .theme-gallery__figure-title {
+      margin-bottom: var(--space-4);
+    }
+
+    .prose-card .theme-card__body > .theme-gallery__figure-title + .theme-card__figure {
+      margin-top: 0;
+    }
+
+    /* Content flow — one gap between blocks (matches hero media → meta at space.6) */
+    .prose-card .theme-card__body > .theme-card__figure + :is(.feature-list, .section__list, p.type-body) {
+      margin-top: var(--space-6);
+    }
+
+    .prose-card .theme-card__body > :is(.feature-list, p.type-body) + .theme-gallery__figure-title {
+      margin-top: var(--space-6);
+    }
+
+    .demo-panel {
+      background: transparent;
+      border: none;
+      border-radius: var(--radius-none);
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+    }
+
+    /* Full-width content column — hero media, lilac cards, and visuals share aligned edges */
+    .project-hero__media,
+    .demo-panel,
+    .demo-panel > .prose-card,
+    .demo-panel > .case-study-visual,
+    .demo-panel > .theme-gallery,
+    #process > .container > .case-study-visual,
+    #process > .container > .theme-gallery {
+      width: 100%;
+      max-width: none;
+      margin-inline: 0;
+    }
+
+    .prose-card {
+      width: 100%;
+    }
+
+    .case-study-visual {
+      width: 100%;
+    }
+
+    .case-study-visual .theme-card__figure--full-width {
+      --figure-card-inset: 0;
+      width: 100%;
+      margin-inline: 0;
+    }
+
+    .prose-card .theme-card__body {
+      display: flex;
+      flex-direction: column;
+      max-width: none;
+      width: 100%;
+    }
+
+    .prose-card .theme-card__body > p,
+    .prose-card .theme-card__body > ul,
+    .prose-card .theme-card__body > .section__list,
+    .prose-card .theme-card__body > h3,
+    .prose-card .theme-card__body > .feature-list,
+    .prose-card .theme-card__body .feature-list > li {
+      max-width: none;
+      width: 100%;
+      text-align: left;
+    }
+
+    .project-hero__summary,
+    .section__body {
+      max-width: none;
+      text-align: left;
+    }
+
+    .section__body a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .section__body a:hover {
+      text-decoration-thickness: 2px;
+    }
+
+    .case-study-visual--night .theme-gallery__figure-title,
+    #process > .container .case-study-visual .theme-gallery__figure-title,
+    #process > .container > .theme-gallery .theme-gallery__figure-title {
+      color: var(--color-violet-100);
+    }
+
+    #final-concept .demo-panel .case-study-visual .theme-gallery__figure-title,
+    #solution .demo-panel .case-study-visual .theme-gallery__figure-title {
+      color: var(--color-violet-100);
+    }
+
+    .theme-card {
+      padding: var(--space-5);
+      border-radius: 8px;
+    }
+
+    @media (min-width: 768px) {
+      .theme-card {
+        padding: 30px;
+      }
+    }
+
+    .theme-card--lavender {
+      background: #CAC8F3;
+      color: #1A191F;
+    }
+
+    .theme-card--night {
+      background: #0B0A10;
+      color: #D1D2E0;
+      border: 1px solid var(--color-border-subtle);
+    }
+
+    @media (min-width: 768px) {
+      .theme-card.prose-card {
+        padding: var(--space-5);
+      }
+
+      .theme-card.prose-card.theme-card--lavender {
+        background: #CAC8F3;
+        color: #1A191F;
+      }
+
+      .theme-card.prose-card.theme-card--lavender .theme-card__body,
+      .theme-card.prose-card.theme-card--lavender .theme-card__body .section__list,
+      .theme-card.prose-card.theme-card--lavender .theme-card__body .feature-list li {
+        color: rgba(26, 25, 31, 0.85);
+      }
+
+      .theme-card.prose-card.theme-card--lavender .theme-card__body .type-subheading,
+      .theme-card.prose-card.theme-card--lavender .theme-card__body .feature-list strong {
+        color: #1A191F;
+      }
+
+      .theme-card.prose-card.theme-card--night {
+        background: #0B0A10;
+        border: 1px solid var(--color-border-subtle);
+      }
+    }
+
+    .theme-card__body {
+      font-family: var(--font-body);
+      font-size: var(--type-body);
+      font-weight: 400;
+      line-height: var(--leading-relaxed);
+      margin: 0;
+      max-width: none;
+      width: 100%;
+    }
+
+    .theme-card--lavender .theme-card__body {
+      color: rgba(26, 25, 31, 0.75);
+    }
+
+    .theme-card--night .theme-card__body {
+      color: rgba(209, 210, 224, 0.75);
+    }
+
+    .theme-card__body p + p { margin-top: var(--space-4); }
+
+    .theme-card__body .section__list + p { margin-top: var(--space-5); }
+
+    .theme-card__body .feature-list + p { margin-top: var(--space-5); }
+
+    .theme-card__body .theme-gallery + p { margin-top: var(--space-5); }
+
+    .theme-card__body .section__list {
+      color: rgba(26, 25, 31, 0.75);
+    }
+
+    .theme-card--night .theme-card__body .section__list {
+      color: rgba(209, 210, 224, 0.75);
+    }
+
+    .theme-card__body .type-subheading {
+      color: #1A191F;
+      margin-top: var(--space-5);
+      margin-bottom: var(--space-3);
+    }
+
+    .theme-card__body > .type-subheading:first-child {
+      margin-top: 0;
+    }
+
+    .theme-card--night .theme-card__body .type-subheading {
+      color: #D1D2E0;
+    }
+
+    .theme-card__body .feature-list li {
+      color: inherit;
+    }
+
+    .theme-card__images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 639px) {
+      .theme-card__images { grid-template-columns: 1fr; }
+    }
+
+    .theme-card__figure {
+      aspect-ratio: 16 / 9;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .theme-card__figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left center;
+    }
+
+    .theme-card__figure--contain {
+      aspect-ratio: auto;
+      overflow: visible;
+      display: flex;
+      justify-content: center;
+    }
+
+    .theme-card__figure--contain img {
+      width: 68.4%;
+      height: auto;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .theme-card__figure--full-width {
+      --figure-card-inset: var(--space-3);
+      width: calc(100% + 2 * (var(--space-5) - var(--figure-card-inset)));
+      margin-inline: calc(-1 * (var(--space-5) - var(--figure-card-inset)));
+    }
+
+    @media (min-width: 768px) {
+      .theme-card__figure--full-width {
+        width: calc(100% + 2 * (30px - var(--figure-card-inset)));
+        margin-inline: calc(-1 * (30px - var(--figure-card-inset)));
+      }
+    }
+
+    .theme-card__figure--full-width img {
+      object-fit: cover;
+      object-position: left center;
+    }
+
+    .theme-card__placeholder {
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-size: var(--type-label);
+      margin: var(--space-4) 0 0;
+      width: 100%;
+    }
+
+    .theme-card--lavender .theme-card__placeholder {
+      background: rgba(26, 25, 31, 0.08);
+      border: 1px dashed rgba(26, 25, 31, 0.25);
+      color: rgba(26, 25, 31, 0.70);
+    }
+
+    .theme-card--night .theme-card__placeholder {
+      background: rgba(209, 210, 224, 0.06);
+      border: 1px dashed rgba(209, 210, 224, 0.25);
+      color: rgba(209, 210, 224, 0.55);
+    }
+
+    .theme-card__body .theme-gallery {
+      margin-top: var(--space-4);
+    }
+
+    .theme-gallery__slide.theme-card__placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      aspect-ratio: 16 / 9;
+    }
+
+    .theme-gallery {
+      position: relative;
+    }
+
+    .theme-gallery--compact .theme-gallery__frame {
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .theme-gallery--compact .theme-gallery__viewport {
+      max-width: 84%;
+      margin-inline: auto;
+    }
+
+    .theme-gallery--compact .theme-gallery__slide {
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+
+    .theme-gallery--compact .theme-gallery__slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    @media (min-width: 768px) {
+      .theme-gallery--compact .theme-gallery__slide {
+        background: var(--color-ink-900);
+      }
+
+      /* Trim subpixel slide peek and screenshot edge padding on desktop */
+      .theme-gallery--compact .theme-gallery__slide img {
+        width: calc(100% + 4px);
+        max-width: none;
+        margin-left: -2px;
+        object-position: center center;
+      }
+    }
+
+    .theme-gallery__frame {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .theme-gallery__viewport {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .theme-gallery__hint {
+      display: none;
+      align-items: center;
+      gap: var(--space-2);
+      margin: 0 0 var(--space-3);
+    }
+
+    .theme-card--lavender .theme-gallery__hint {
+      color: rgba(26, 25, 31, 0.6);
+    }
+
+    .theme-card--night .theme-gallery__hint,
+    .case-study-visual--night .theme-gallery__hint,
+    #process > .container > .theme-gallery .theme-gallery__hint {
+      color: rgba(209, 210, 224, 0.6);
+    }
+
+    #process > .container > .type-subheading {
+      margin-top: var(--space-7);
+      margin-bottom: var(--space-4);
+    }
+
+    #process > .container > .section__header + .type-subheading {
+      margin-top: 0;
+    }
+
+    /* Uncontained content flow — Process (matches hero media → meta at space.6) */
+    #process > .container > .section__body + .case-study-visual,
+    #process > .container > .section__body + .theme-gallery,
+    #process > .container > .section__list + .case-study-visual,
+    #process > .container > .section__list + .theme-gallery,
+    #process > .container > .type-subheading + .case-study-visual,
+    #process > .container > .type-subheading + .theme-gallery {
+      margin-top: var(--space-6);
+    }
+
+    #process > .container > .case-study-visual + .section__body,
+    #process > .container > .case-study-visual + .section__list,
+    #process > .container > .case-study-visual + .theme-gallery,
+    #process > .container > .theme-gallery + .section__body,
+    #process > .container > .theme-gallery + .section__list,
+    #process > .container > .theme-gallery + .case-study-visual {
+      margin-top: var(--space-6);
+    }
+
+    #process > .container > .case-study-visual + .type-subheading,
+    #process > .container > .theme-gallery + .type-subheading {
+      margin-top: var(--space-7);
+    }
+
+    #process > .container > .case-study-visual .theme-card__figure--contain img {
+      width: 100%;
+    }
+
+    #process > .container > .case-study-visual .theme-card__figure--half img {
+      width: 28.125%;
+    }
+
+    #process > .container > .section__list {
+      margin-top: var(--space-4);
+    }
+
+    #process > .container > .section__list + .section__body {
+      margin-top: var(--space-4);
+    }
+
+    #process > .container > .theme-gallery .theme-gallery__slide-caption {
+      color: var(--color-text-muted);
+    }
+
+    .theme-gallery__hint [data-lucide] {
+      width: 1em;
+      height: 1em;
+      flex-shrink: 0;
+    }
+
+    @media (min-width: 768px) {
+      .theme-gallery__hint {
+        display: flex;
+      }
+    }
+
+    .theme-gallery__viewport {
+      position: relative;
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+      overscroll-behavior-x: contain;
+      scrollbar-width: none;
+    }
+
+    .theme-gallery__viewport::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .theme-gallery__viewport {
+        cursor: grab;
+      }
+
+      .theme-gallery__viewport.is-dragging {
+        cursor: grabbing;
+        scroll-behavior: auto;
+        user-select: none;
+      }
+
+      .theme-gallery__viewport::before,
+      .theme-gallery__viewport::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 40px;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0;
+        transition: opacity var(--transition-default);
+      }
+
+      .theme-gallery__viewport::before {
+        left: 0;
+        background: linear-gradient(to right, rgba(11, 10, 16, 0.45), transparent);
+      }
+
+      .theme-gallery__viewport::after {
+        right: 0;
+        background: linear-gradient(to left, rgba(11, 10, 16, 0.45), transparent);
+      }
+
+      .theme-card--lavender .theme-gallery__viewport::before {
+        background: linear-gradient(to right, rgba(202, 200, 243, 0.9), transparent);
+      }
+
+      .theme-card--lavender .theme-gallery__viewport::after {
+        background: linear-gradient(to left, rgba(202, 200, 243, 0.9), transparent);
+      }
+
+      .theme-gallery__viewport.can-scroll-prev::before,
+      .theme-gallery__viewport.can-scroll-next::after {
+        opacity: 1;
+      }
+    }
+
+    .theme-gallery__track {
+      display: flex;
+      flex-wrap: nowrap;
+      width: max-content;
+      min-width: 100%;
+    }
+
+    .theme-gallery__slide {
+      flex: 0 0 auto;
+      margin: 0;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      background: rgba(209, 210, 224, 0.04);
+    }
+
+    .theme-gallery__slide-media {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+
+    .theme-gallery__slide-media--stack {
+      flex-direction: column;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-3) 0;
+    }
+
+    .theme-gallery__slide-media--stack img {
+      width: 100%;
+      height: auto;
+    }
+
+    .theme-gallery__slide-caption {
+      margin: 0;
+      padding: var(--space-3) var(--space-4) var(--space-4);
+      font-family: var(--font-body);
+      font-size: var(--type-body);
+      font-weight: 400;
+      line-height: var(--leading-relaxed);
+      text-align: left;
+      flex-shrink: 0;
+    }
+
+    .theme-card--night .theme-gallery__slide-caption {
+      color: rgba(209, 210, 224, 0.75);
+    }
+
+    .theme-card--lavender .theme-gallery__slide-caption {
+      color: rgba(26, 25, 31, 0.75);
+    }
+
+    .theme-gallery__figure-title {
+      font-family: var(--font-body);
+      font-size: var(--type-label);
+      font-weight: 700;
+      line-height: 1.5;
+      margin: var(--space-4) 0 var(--space-5);
+      text-align: left;
+    }
+
+    .theme-card--night .theme-gallery__figure-title {
+      color: var(--color-violet-100);
+    }
+
+    .theme-card--lavender .theme-gallery__figure-title {
+      color: rgba(26, 25, 31, 0.75);
+    }
+
+    .theme-gallery__figure-label {
+      font-weight: 700;
+      color: inherit;
+    }
+
+    .theme-card--lavender .theme-gallery__slide {
+      background: rgba(26, 25, 31, 0.04);
+    }
+
+    .theme-gallery__slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      object-position: center;
+      pointer-events: none;
+    }
+
+    .theme-gallery__btn {
+      display: inline-flex;
+      position: static;
+      grid-row: 1;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(202, 200, 243, 0.45);
+      background: var(--color-violet-500);
+      color: #ffffff;
+      cursor: pointer;
+      transition: var(--transition-default);
+    }
+
+    .theme-gallery__btn--prev { grid-column: 1; }
+    .theme-gallery__btn--next { grid-column: 3; }
+
+    .theme-card--lavender .theme-gallery__btn {
+      background: #1A191F;
+      color: #CAC8F3;
+      border-color: rgba(26, 25, 31, 0.35);
+    }
+
+    .container > .theme-gallery .theme-gallery__btn,
+    .case-study-visual--night .theme-gallery__btn {
+      background: var(--color-violet-100);
+      color: var(--color-ink-900);
+      border-color: var(--color-violet-500);
+    }
+
+    .theme-gallery__btn:hover {
+      background: var(--color-bg-primary-hover);
+      color: #ffffff;
+    }
+
+    .theme-card--lavender .theme-gallery__btn:hover {
+      background: rgba(26, 25, 31, 0.95);
+      color: #CAC8F3;
+    }
+
+    .container > .theme-gallery .theme-gallery__btn:hover,
+    .case-study-visual--night .theme-gallery__btn:hover {
+      background: #ffffff;
+      color: var(--color-ink-900);
+      border-color: var(--color-violet-500);
+    }
+
+    .theme-gallery__btn:focus-visible {
+      outline: 2px solid var(--color-border-focus);
+      outline-offset: 2px;
+    }
+
+    .theme-gallery__btn [data-lucide] {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .theme-gallery__dots {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-2);
+      margin-top: var(--space-3);
+    }
+
+    .theme-gallery__caption {
+      margin: var(--space-3) 0 0;
+    }
+
+    .theme-card--night .theme-gallery__caption {
+      color: rgba(209, 210, 224, 0.75);
+    }
+
+    .theme-card--lavender .theme-gallery__caption {
+      color: rgba(26, 25, 31, 0.75);
+    }
+
+    .theme-gallery__dot {
+      width: 8px;
+      height: 8px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: var(--transition-default);
+      background: rgba(209, 210, 224, 0.35);
+    }
+
+    .theme-card--lavender .theme-gallery__dot {
+      background: rgba(26, 25, 31, 0.25);
+    }
+
+    .theme-gallery__dot.is-active {
+      background: var(--color-border-accent);
+      transform: scale(1.15);
+    }
+
+    .theme-card--lavender .theme-gallery__dot.is-active {
+      background: #1A191F;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .theme-gallery__viewport {
+        scroll-behavior: auto;
+      }
+    }
+
+    .project-back {
+      padding-top: 0;
+      padding-bottom: var(--space-6);
+    }
+
+    .footer {
+      border-top: 1px solid var(--color-border-subtle);
+      padding: var(--space-6) 0;
+    }
+
+    .case-study-visual video,
+    .theme-card__figure video {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: none;
+      background: var(--color-ink-900);
+    }
+
+    #process > .container > .case-study-visual + .section__body,
+    #process > .container > .theme-gallery + .section__body {
+      margin-top: var(--space-6);
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header class="nav">
+    <div class="container nav__wrapper">
+      <div class="nav__inner">
+        <a href="../index.html" class="nav__wordmark" aria-label="mgriffin designs — home">
+          <img src="../assets/mgriffin-designs.png?v=final2" alt="mgriffin designs" width="144" height="48">
+        </a>
+        <button class="nav__toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu" id="nav-toggle">
+          <i data-lucide="menu" aria-hidden="true"></i>
+        </button>
+        <ul class="nav__menu" id="nav-menu" role="list">
+          <li><a href="../index.html" class="nav__link">Home</a></li>
+          <li><a href="../index.html#work" class="nav__link nav__link--active">Work</a></li>
+          <li><a href="../index.html#contact" class="nav__link">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="project-hero section">
+      <div class="container">
+        <h1 class="type-display-lg case-caps">Bibliocat</h1>
+        <p class="project-hero__tagline type-subheading">Down the rabbit hole of endless books.</p>
+        <p class="project-hero__summary type-body text-muted">Fall down the rabbit hole of literature with Bibliocat, a book discovery tool powered by Open Library API. Search by title, author, or subject to find your next great adventure.</p>
+        <figure class="project-hero__media">
+          <img src="assets/mockup-bibliocat-search.png" alt="Bibliocat search results page showing a list of Dave Eggers books displayed under a 'Your Curious Collection' heading.">
+        </figure>
+        <dl class="project-meta">
+          <div class="project-meta__item">
+            <dt class="project-meta__label type-label">Role</dt>
+            <dd class="project-meta__value type-body text-muted">UX Designer &amp; Full-Stack Developer</dd>
+          </div>
+          <div class="project-meta__item">
+            <dt class="project-meta__label type-label">Timeline</dt>
+            <dd class="project-meta__value type-body text-muted">1 week · 2026</dd>
+          </div>
+          <div class="project-meta__item">
+            <dt class="project-meta__label type-label">Tools</dt>
+            <dd class="project-meta__value type-body text-muted">React, Tailwind CSS, JavaScript, Figma, Flaticon, Netlify, Gemini, GitHub</dd>
+          </div>
+          <div class="project-meta__item">
+            <dt class="project-meta__label type-label">Team</dt>
+            <dd class="project-meta__value type-body text-muted">Solo independent project</dd>
+          </div>
+        </dl>
+        <p class="project-hero__actions">
+          <a href="https://bibliocat.netlify.app/" class="btn btn--default btn--primary" target="_blank" rel="noopener noreferrer">
+            Open published app
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="challenge">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="type-display-md case-caps">Challenge</h2>
+        </header>
+        <div class="demo-panel">
+          <div class="theme-card theme-card--lavender prose-card">
+            <div class="theme-card__body">
+              <p class="type-body">The challenge when building Bibliocat was to design and build a book discovery tool that balances a cozy aesthetic with high-performance functionality, ensuring a seamless user experience across all interaction states, from the initial loading state to handling complex data errors.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="type-display-md case-caps">Process</h2>
+        </header>
+
+        <p class="section__body type-body text-muted">Because I am a professional librarian, I jumped at the opportunity to build a book-searching application. In the library world, &ldquo;biblio cat&rdquo; stands for &ldquo;bibliographic catalog.&rdquo; I thought it would be the perfect name for my application because I wanted to create a rainy-day, cozy, cat-themed book-finding app. Initially, I walked through another set of prompts to lay the groundwork for the app, but I strongly disliked the color theme and style, so I decided to start over with a more clearly defined prompt.</p>
+        <p class="section__body type-body text-muted">Before diving in further, I reviewed the Open Library API page to comply with usage guidelines and rate limits. I also wanted to understand the setup process for searching for authors, book titles, and book covers.</p>
+
+        <h3 class="type-subheading">Visual design</h3>
+        <p class="section__body type-body text-muted">My initial design idea was to create a rainy-day, sleeping-cat-in-a-bookstore theme. I envisioned a design featuring a cat silhouette, with its paw hanging off the top edge of the search bar, giving the impression that the cat is laying on top of it. I could never get the sizing or placement quite right, so I decided to abandon the idea. This is how the original design appeared.</p>
+        <div class="case-study-visual case-study-visual--night">
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 1.</span> Early design iteration</p>
+          <figure class="theme-card__figure theme-card__figure--contain">
+            <img src="assets/early-iteration.png" alt="Early Bibliocat design iteration with a cat silhouette resting on the search bar">
+          </figure>
+        </div>
+        <p class="section__body type-body text-muted">During my second project attempt, I asked Gemini to provide the hex codes for the book <em>The Midnight Library</em> by Matt Haig, as displayed below.</p>
+        <div class="case-study-visual case-study-visual--night">
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 2.</span> Midnight Library color inspiration</p>
+          <figure class="theme-card__figure theme-card__figure--contain theme-card__figure--half">
+            <img src="assets/the-midnight-library.jpg" alt="The Midnight Library book cover used as color inspiration for navy, gold, orange, and teal accents">
+          </figure>
+        </div>
+        <p class="section__body type-body text-muted">I envisioned a navy background with gold, orange, and teal accents. This was my first prompt for my second project attempt in Cursor.</p>
+        <div class="theme-gallery theme-gallery--compact" data-gallery>
+          <p class="theme-gallery__hint type-caption">
+            <i data-lucide="move-horizontal" aria-hidden="true"></i>
+            Swipe or drag to browse
+          </p>
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 3.</span> Second attempt prompts and initial home page</p>
+          <div class="theme-gallery__frame">
+            <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Second attempt prompts and initial home page" aria-roledescription="carousel">
+              <div class="theme-gallery__track">
+                <figure class="theme-gallery__slide" data-caption="First Cursor prompt defining the Midnight Library-inspired navy, gold, orange, and teal color scheme.">
+                  <img src="assets/prompt1.png" alt="Cursor prompt establishing Bibliocat color scheme and cozy bookstore direction">
+                </figure>
+                <figure class="theme-gallery__slide" data-caption="Follow-up prompt refining the visual direction for the rebuilt Bibliocat interface.">
+                  <img src="assets/prompt2.png" alt="Cursor prompt continuing the second Bibliocat build attempt">
+                </figure>
+                <figure class="theme-gallery__slide" data-caption="Early home page after the second build attempt with the refreshed color theme.">
+                  <img src="assets/homepage.png" alt="Early Bibliocat home page after the second build attempt">
+                </figure>
+              </div>
+            </div>
+            <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
+              <i data-lucide="chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
+              <i data-lucide="chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <p class="theme-gallery__caption type-body" aria-live="polite"></p>
+        </div>
+        <p class="section__body type-body text-muted">I was much happier with the overall look of the web application. To ensure functionality, I tested various searches and noticed that users had to wait a few seconds for results to load. I decided to add a &ldquo;loading&rdquo; message and thought a cat silhouette prancing across the page would be fun, as if it were &ldquo;searching the stacks.&rdquo; While researching literary cat names, I discovered the Cheshire Cat from <em>Alice&rsquo;s Adventures in Wonderland</em>, which felt like a perfect whimsical touch for my book-search app.</p>
+        <p class="section__body type-body text-muted"><strong>Loading state:</strong> I implemented responsive indicators to maintain user engagement during asynchronous API calls, ensuring the interface remains interactive while data loads. I developed the following prompt and sent it to Cursor.</p>
+        <div class="case-study-visual case-study-visual--night">
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 4.</span> Loading state prompt</p>
+          <figure class="theme-card__figure theme-card__figure--contain">
+            <img src="assets/prompt3.png" alt="Cursor prompt requesting a loading message and cat silhouette animation while search results load">
+          </figure>
+        </div>
+        <p class="section__body type-body text-muted">These are design iterations of the loading status.</p>
+        <div class="theme-gallery theme-gallery--compact" data-gallery>
+          <p class="theme-gallery__hint type-caption">
+            <i data-lucide="move-horizontal" aria-hidden="true"></i>
+            Swipe or drag to browse
+          </p>
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 5.</span> Loading state design iterations</p>
+          <div class="theme-gallery__frame">
+            <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Loading state design iterations" aria-roledescription="carousel">
+              <div class="theme-gallery__track">
+                <figure class="theme-gallery__slide" data-caption="Early cat-themed loading concept with a silhouette searching the stacks.">
+                  <img src="assets/cat-themed-loading.png" alt="Cat-themed loading state concept for Bibliocat">
+                </figure>
+                <figure class="theme-gallery__slide" data-caption="Alice-inspired loading treatment introducing Wonderland whimsy to the wait state.">
+                  <img src="assets/alice-themed-loading.png" alt="Alice-themed loading state concept for Bibliocat">
+                </figure>
+                <figure class="theme-gallery__slide" data-caption="Final &ldquo;down the rabbit hole&rdquo; loading direction with paw-print branding.">
+                  <img src="assets/down-the-rabbit-hole.png" alt="Down the rabbit hole loading state with paw print theme">
+                </figure>
+              </div>
+            </div>
+            <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
+              <i data-lucide="chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
+              <i data-lucide="chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <p class="theme-gallery__caption type-body" aria-live="polite"></p>
+        </div>
+        <p class="section__body type-body text-muted">It was important for me to have paw print stamps throughout the theme to emulate footprints. This video showcases the loading state in action, featuring the custom paw-print animation.</p>
+        <div class="case-study-visual case-study-visual--night">
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 6.</span> Loading state in action</p>
+          <figure class="theme-card__figure">
+            <video controls playsinline preload="metadata">
+              <source src="assets/loading-state-new.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </figure>
+        </div>
+        <p class="section__body type-body text-muted"><strong>Empty state:</strong> I also designed an intuitive &ldquo;no result&rdquo; message to guide users when searches retrieved no matching titles to help prevent confusion and encourage further exploration.</p>
+        <div class="case-study-visual case-study-visual--night">
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 7.</span> Empty state prompt</p>
+          <figure class="theme-card__figure theme-card__figure--contain">
+            <img src="assets/prompt4.png" alt="Cursor prompt for a no-results empty state message">
+          </figure>
+        </div>
+        <p class="section__body type-body text-muted">Design iterations for the empty state.</p>
+        <div class="theme-gallery theme-gallery--compact" data-gallery>
+          <p class="theme-gallery__hint type-caption">
+            <i data-lucide="move-horizontal" aria-hidden="true"></i>
+            Swipe or drag to browse
+          </p>
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 8.</span> Empty state design iterations</p>
+          <div class="theme-gallery__frame">
+            <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Empty state design iterations" aria-roledescription="carousel">
+              <div class="theme-gallery__track">
+                <figure class="theme-gallery__slide" data-caption="Quiet library empty-state concept when a search returns no titles.">
+                  <img src="assets/library-quiet.png" alt="Library quiet empty state concept">
+                </figure>
+                <figure class="theme-gallery__slide" data-caption="&ldquo;Oh dear&rdquo; empty-state iteration with Alice-inspired messaging.">
+                  <img src="assets/oh-dear1.png" alt="Oh dear empty state design iteration">
+                </figure>
+                <figure class="theme-gallery__slide" data-caption="Refined empty-state treatment encouraging users to try another search.">
+                  <img src="assets/oh-dear2.png" alt="Refined oh dear empty state design">
+                </figure>
+              </div>
+            </div>
+            <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
+              <i data-lucide="chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
+              <i data-lucide="chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <p class="theme-gallery__caption type-body" aria-live="polite"></p>
+        </div>
+        <p class="section__body type-body text-muted"><strong>Error state:</strong> I implemented error handling to provide helpful feedback when network interruptions or API downtime occur, enabling users to retry their requests easily.</p>
+        <div class="case-study-visual case-study-visual--night">
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 9.</span> Error state prompt</p>
+          <figure class="theme-card__figure theme-card__figure--contain">
+            <img src="assets/prompt5.png" alt="Cursor prompt for error handling and retry feedback">
+          </figure>
+        </div>
+        <p class="section__body type-body text-muted">Design iterations for the error state.</p>
+        <div class="theme-gallery theme-gallery--compact" data-gallery>
+          <p class="theme-gallery__hint type-caption">
+            <i data-lucide="move-horizontal" aria-hidden="true"></i>
+            Swipe or drag to browse
+          </p>
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 10.</span> Error state design iterations</p>
+          <div class="theme-gallery__frame">
+            <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Error state design iterations" aria-roledescription="carousel">
+              <div class="theme-gallery__track">
+                <figure class="theme-gallery__slide" data-caption="First error-state concept for network or API failures.">
+                  <img src="assets/error-state1.png" alt="Error state design iteration one">
+                </figure>
+                <figure class="theme-gallery__slide" data-caption="Refined error-state treatment with clearer retry guidance.">
+                  <img src="assets/error-state2.png" alt="Error state design iteration two">
+                </figure>
+              </div>
+            </div>
+            <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
+              <i data-lucide="chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
+              <i data-lucide="chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <p class="theme-gallery__caption type-body" aria-live="polite"></p>
+        </div>
+        <p class="section__body type-body text-muted"><strong>Success state:</strong> I optimized the delivery and presentation of the search results, ensuring a seamless transition from the user&rsquo;s query to displaying the actual results.</p>
+        <div class="case-study-visual case-study-visual--night">
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 11.</span> Success state prompt</p>
+          <figure class="theme-card__figure theme-card__figure--contain">
+            <img src="assets/prompt6.png" alt="Cursor prompt optimizing search results presentation">
+          </figure>
+        </div>
+        <p class="section__body type-body text-muted">Later iterations included adding a &ldquo;Return to Home&rdquo; button, creating credits for icons used from Flaticon, reducing the size of the book cover images to make the search results appear sharper, and adding the book publication year and edition number.</p>
+        <div class="theme-gallery theme-gallery--compact" data-gallery>
+          <p class="theme-gallery__hint type-caption">
+            <i data-lucide="move-horizontal" aria-hidden="true"></i>
+            Swipe or drag to browse
+          </p>
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 12.</span> Later iteration prompts</p>
+          <div class="theme-gallery__frame">
+            <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Later iteration prompts" aria-roledescription="carousel">
+              <div class="theme-gallery__track">
+                <figure class="theme-gallery__slide" data-caption="Prompt to add a Return to Home button.">
+                  <img src="assets/prompt7.png" alt="Cursor prompt to add a Return to Home button">
+                </figure>
+                <figure class="theme-gallery__slide" data-caption="Prompt to credit Flaticon icons used in the interface.">
+                  <img src="assets/prompt8.png" alt="Cursor prompt to add Flaticon icon credits">
+                </figure>
+                <figure class="theme-gallery__slide" data-caption="Prompt to reduce book cover image size for sharper search results.">
+                  <img src="assets/prompt9.png" alt="Cursor prompt to reduce book cover image size">
+                </figure>
+                <figure class="theme-gallery__slide" data-caption="Prompt to display publication year and edition number on results.">
+                  <img src="assets/prompt10.png" alt="Cursor prompt to add publication year and edition number">
+                </figure>
+              </div>
+            </div>
+            <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
+              <i data-lucide="chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
+              <i data-lucide="chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <p class="theme-gallery__caption type-body" aria-live="polite"></p>
+        </div>
+        <p class="section__body type-body text-muted">I also continued styling the home page across several prompt and design passes.</p>
+        <div class="theme-gallery theme-gallery--compact" data-gallery>
+          <p class="theme-gallery__hint type-caption">
+            <i data-lucide="move-horizontal" aria-hidden="true"></i>
+            Swipe or drag to browse
+          </p>
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 13.</span> Home page styling iterations</p>
+          <div class="theme-gallery__frame">
+            <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Home page styling iterations" aria-roledescription="carousel">
+              <div class="theme-gallery__track">
+                <figure class="theme-gallery__slide" data-caption="Prompt refining home page layout and styling.">
+                  <img src="assets/prompt11.png" alt="Cursor prompt for home page styling">
+                </figure>
+                <figure class="theme-gallery__slide" data-caption="Follow-up home page styling prompt.">
+                  <img src="assets/prompt12.png" alt="Cursor prompt continuing home page styling">
+                </figure>
+                <figure class="theme-gallery__slide" data-caption="Additional home page polish prompt.">
+                  <img src="assets/prompt13.png" alt="Cursor prompt for additional home page polish">
+                </figure>
+                <figure class="theme-gallery__slide" data-caption="Further home page refinement prompt.">
+                  <img src="assets/prompt14.png" alt="Cursor prompt for further home page refinement">
+                </figure>
+                <figure class="theme-gallery__slide" data-caption="Earlier home page visual before later refinements.">
+                  <img src="assets/homepage-early.png" alt="Earlier Bibliocat home page design">
+                </figure>
+                <figure class="theme-gallery__slide" data-caption="Later home page visual after styling iterations.">
+                  <img src="assets/homepage-later.png" alt="Later Bibliocat home page design">
+                </figure>
+              </div>
+            </div>
+            <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
+              <i data-lucide="chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
+              <i data-lucide="chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <p class="theme-gallery__caption type-body" aria-live="polite"></p>
+        </div>
+
+        <h3 class="type-subheading">AI-assisted development</h3>
+        <p class="section__body type-body text-muted">UI &amp; experience enhancements focused on quick search shortcuts for spontaneous and thematic discovery.</p>
+        <ul class="section__list type-body text-muted">
+          <li><strong>Surprise Me (randomized):</strong> I added the ability for users to generate a random search from a curated array of classics to enable spontaneous discovery.</li>
+          <li><strong>Featured Author (static):</strong> This tool immediately filters or searches for works by Lewis Carroll, offering a one-click path to the primary author theme in the app.</li>
+          <li><strong>Browse Fantasy (static):</strong> Users can quickly execute a search for the fantasy genre, providing a quick shortcut for individuals interested in this category.</li>
+        </ul>
+        <div class="theme-gallery theme-gallery--compact" data-gallery>
+          <p class="theme-gallery__hint type-caption">
+            <i data-lucide="move-horizontal" aria-hidden="true"></i>
+            Swipe or drag to browse
+          </p>
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 14.</span> Quick search shortcut prompts</p>
+          <div class="theme-gallery__frame">
+            <div class="theme-gallery__viewport" tabindex="0" role="region" aria-label="Quick search shortcut prompts" aria-roledescription="carousel">
+              <div class="theme-gallery__track">
+                <figure class="theme-gallery__slide" data-caption="Prompt introducing Surprise Me randomized discovery.">
+                  <img src="assets/prompt15.png" alt="Cursor prompt for Surprise Me randomized search">
+                </figure>
+                <figure class="theme-gallery__slide" data-caption="Prompt adding Featured Author shortcut for Lewis Carroll.">
+                  <img src="assets/prompt16.png" alt="Cursor prompt for Featured Author shortcut">
+                </figure>
+                <figure class="theme-gallery__slide" data-caption="Prompt adding Browse Fantasy genre shortcut.">
+                  <img src="assets/prompt17.png" alt="Cursor prompt for Browse Fantasy shortcut">
+                </figure>
+              </div>
+            </div>
+            <button class="theme-gallery__btn theme-gallery__btn--prev" type="button" aria-label="Previous image">
+              <i data-lucide="chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="theme-gallery__btn theme-gallery__btn--next" type="button" aria-label="Next image">
+              <i data-lucide="chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <p class="theme-gallery__caption type-body" aria-live="polite"></p>
+        </div>
+        <p class="section__body type-body text-muted"><strong>Technical &amp; functional updates:</strong> I enhanced the search function to include each book&rsquo;s work key, enabling direct retrieval of detailed summaries from the Open Library API. I also refactored the book component to fetch and display summaries automatically.</p>
+        <div class="case-study-visual case-study-visual--night">
+          <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 15.</span> Summary retrieval prompt</p>
+          <figure class="theme-card__figure theme-card__figure--contain">
+            <img src="assets/prompt18.png" alt="Cursor prompt to fetch and display book summaries using Open Library work keys">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="final-concept">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="type-display-md case-caps">Solution</h2>
+        </header>
+        <div class="demo-panel">
+          <div class="theme-card theme-card--lavender prose-card">
+            <div class="theme-card__body">
+              <h3 class="type-subheading">Key features</h3>
+              <p class="type-body">Bibliocat was created to streamline the book-finding process while fostering a whimsical, thematic user experience through the following core features.</p>
+              <ul class="feature-list type-body">
+                <li><strong>Intuitive discovery —</strong> Designed as a bibliographic catalog, the app uses the Open Library API to provide a cozy book-finding experience that prioritizes discoverability and seamless access.</li>
+              </ul>
+              <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 16.</span> Bibliocat search experience</p>
+              <figure class="theme-card__figure theme-card__figure--full-width">
+                <img src="assets/mockup-bibliocat-search.png" alt="Bibliocat search results showing book covers and titles in Your Curious Collection">
+              </figure>
+              <ul class="feature-list type-body">
+                <li><strong>Quick search shortcuts —</strong> Unlock a seamless reading experience by simply clicking on the &ldquo;Surprise Me,&rdquo; &ldquo;Featured Author,&rdquo; or &ldquo;Fantasy&rdquo; genre filters, allowing you to effortlessly discover your next favorite book.</li>
+                <li><strong>Responsive UI feedback —</strong> Bibliocat captivates users with enchanting Alice-in-Wonderland-themed animations during loading states, ensuring the interface remains engaging and interactive while API calls are underway.</li>
+              </ul>
+              <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 17.</span> Themed loading feedback</p>
+              <figure class="theme-card__figure theme-card__figure--full-width">
+                <img src="assets/down-the-rabbit-hole.png" alt="Down the rabbit hole loading state with Alice-inspired whimsy and paw prints">
+              </figure>
+              <ul class="feature-list type-body">
+                <li><strong>Integrated summary retrieval —</strong> By capturing the unique work key for each search result, the application dynamically retrieves and displays detailed book descriptions to significantly enhance the user&rsquo;s experience.</li>
+              </ul>
+              <p class="theme-gallery__figure-title"><span class="theme-gallery__figure-label">Figure 18.</span> Polished home page</p>
+              <figure class="theme-card__figure theme-card__figure--full-width">
+                <img src="assets/homepage-later.png" alt="Later Bibliocat home page with shortcuts and cohesive Alice-inspired branding">
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="outcome">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="type-display-md case-caps">Deployment</h2>
+        </header>
+        <p class="section__body type-body text-muted">The deployment provides users with an immersive, responsive, Alice-in-Wonderland-themed search tool that integrates data from the Open Library API. The Bibliocat application is live on Netlify.</p>
+        <p class="project-hero__actions">
+          <a href="https://bibliocat.netlify.app/" class="btn btn--default btn--primary" target="_blank" rel="noopener noreferrer">
+            Open published app
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="reflection">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="type-display-md case-caps">Reflection</h2>
+        </header>
+        <p class="section__body type-body text-muted">I most enjoyed moving beyond basic API integration to add themed loading states and consistent branding, which can create a more welcoming environment online. Technical hurdles, including creating a looping CSS animation for the pawprints during the loading state, enhanced my ability to use AI as a collaborator to resolve challenges. While I&rsquo;m happy with the current version, future iterations could include more filtering options, such as limiting results by subject and genre. Furthermore, to enhance the enchanted Alice in Wonderland theme, I&rsquo;d like to explore adding more animated imagery. For example, replacing the static teapot and teacup in the error state with a dynamic animation of tea being poured into a cup.</p>
+      </div>
+    </section>
+
+    <section class="section project-back">
+      <div class="container">
+        <a href="../index.html#work" class="btn btn--default btn--secondary">Back to featured work</a>
+      </div>
+    </section>
+
+  </main>
+
+
+  <footer class="footer">
+    <div class="container">
+      <p class="type-caption text-muted">&copy; 2026 Molly Griffin. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('nav-menu');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      const icon = toggle.querySelector('[data-lucide]');
+      icon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    });
+
+    menu.querySelectorAll('.nav__link').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 768) {
+          menu.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', 'Open menu');
+          const icon = toggle.querySelector('[data-lucide]');
+          icon.setAttribute('data-lucide', 'menu');
+          if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+      });
+    });
+
+    document.querySelectorAll('[data-gallery]').forEach((gallery) => {
+      const viewport = gallery.querySelector('.theme-gallery__viewport');
+      const track = gallery.querySelector('.theme-gallery__track');
+      const slides = Array.from(gallery.querySelectorAll('.theme-gallery__slide'));
+      const prevBtn = gallery.querySelector('.theme-gallery__btn--prev');
+      const nextBtn = gallery.querySelector('.theme-gallery__btn--next');
+      const dotsContainer = gallery.querySelector('.theme-gallery__dots');
+      const captionEl = gallery.querySelector('.theme-gallery__caption');
+      if (!viewport || slides.length === 0) return;
+
+      let activeIndex = 0;
+      let slideWidth = 0;
+      let dragStartX = 0;
+      let dragScrollLeft = 0;
+      let isDragging = false;
+      let touchStartX = 0;
+      let scrollSnapTimer;
+
+      if (dotsContainer) {
+        slides.forEach((_, index) => {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'theme-gallery__dot' + (index === 0 ? ' is-active' : '');
+          dot.setAttribute('role', 'tab');
+          dot.setAttribute('aria-label', `Image ${index + 1} of ${slides.length}`);
+          dot.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+          dot.addEventListener('click', () => goTo(index));
+          dotsContainer.appendChild(dot);
+        });
+      }
+
+      const dots = dotsContainer ? Array.from(dotsContainer.querySelectorAll('.theme-gallery__dot')) : [];
+
+      function layoutSlides() {
+        slideWidth = Math.round(viewport.clientWidth);
+        if (slideWidth <= 0) return;
+        slides.forEach((slide) => {
+          slide.style.flex = `0 0 ${slideWidth}px`;
+          slide.style.width = `${slideWidth}px`;
+        });
+        if (track) {
+          track.style.width = `${slideWidth * slides.length}px`;
+        }
+      }
+
+      function refreshGallery() {
+        layoutSlides();
+        goTo(activeIndex);
+        updateState();
+      }
+
+      function slideOffset(index) {
+        return index * slideWidth;
+      }
+
+      function snapToActiveSlide() {
+        if (isDragging || slideWidth <= 0) return;
+        const target = slideOffset(activeIndex);
+        if (Math.abs(viewport.scrollLeft - target) > 1) {
+          viewport.scrollLeft = target;
+        }
+      }
+
+      function goTo(index) {
+        activeIndex = Math.max(0, Math.min(index, slides.length - 1));
+        const target = slideOffset(activeIndex);
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reducedMotion) {
+          viewport.scrollLeft = target;
+          updateState();
+          return;
+        }
+        viewport.scrollTo({ left: target, behavior: 'smooth' });
+      }
+
+      function updateState() {
+        if (slideWidth <= 0) return;
+        activeIndex = Math.round(viewport.scrollLeft / slideWidth);
+        activeIndex = Math.max(0, Math.min(activeIndex, slides.length - 1));
+
+        dots.forEach((dot, index) => {
+          const isActive = index === activeIndex;
+          dot.classList.toggle('is-active', isActive);
+          dot.setAttribute('aria-selected', String(isActive));
+        });
+
+        viewport.classList.toggle('can-scroll-prev', activeIndex > 0);
+        viewport.classList.toggle('can-scroll-next', activeIndex < slides.length - 1);
+
+        if (captionEl) {
+          const caption = slides[activeIndex]?.dataset.caption || '';
+          captionEl.textContent = caption;
+          captionEl.hidden = !caption;
+        }
+      }
+
+      if (prevBtn) prevBtn.addEventListener('click', () => goTo(activeIndex - 1));
+      if (nextBtn) nextBtn.addEventListener('click', () => goTo(activeIndex + 1));
+
+      viewport.addEventListener('scroll', () => {
+        updateState();
+        clearTimeout(scrollSnapTimer);
+        scrollSnapTimer = setTimeout(snapToActiveSlide, 80);
+      }, { passive: true });
+      window.addEventListener('resize', refreshGallery);
+
+      viewport.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          goTo(activeIndex - 1);
+        }
+        if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          goTo(activeIndex + 1);
+        }
+      });
+
+      viewport.addEventListener('pointerdown', (event) => {
+        if (event.pointerType === 'mouse') {
+          isDragging = true;
+          dragStartX = event.clientX;
+          dragScrollLeft = viewport.scrollLeft;
+          viewport.classList.add('is-dragging');
+          viewport.setPointerCapture(event.pointerId);
+        }
+      });
+
+      viewport.addEventListener('pointermove', (event) => {
+        if (!isDragging) return;
+        const delta = event.clientX - dragStartX;
+        viewport.scrollLeft = dragScrollLeft - delta;
+      });
+
+      function endDrag(event) {
+        if (!isDragging) return;
+        isDragging = false;
+        viewport.classList.remove('is-dragging');
+        if (event.pointerId !== undefined && viewport.hasPointerCapture(event.pointerId)) {
+          viewport.releasePointerCapture(event.pointerId);
+        }
+        const targetIndex = slideWidth > 0 ? Math.round(viewport.scrollLeft / slideWidth) : activeIndex;
+        goTo(targetIndex);
+      }
+
+      viewport.addEventListener('pointerup', endDrag);
+      viewport.addEventListener('pointercancel', endDrag);
+
+      viewport.addEventListener('touchstart', (event) => {
+        touchStartX = event.touches[0].clientX;
+      }, { passive: true });
+
+      viewport.addEventListener('touchend', (event) => {
+        const delta = event.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(delta) > 40) {
+          goTo(activeIndex + (delta < 0 ? 1 : -1));
+        }
+      }, { passive: true });
+
+      gallery.querySelectorAll('img').forEach((img) => {
+        if (!img.complete) {
+          img.addEventListener('load', refreshGallery, { once: true });
+        }
+      });
+
+      refreshGallery();
+      requestAnimationFrame(refreshGallery);
+      window.addEventListener('load', refreshGallery);
+    });
+
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>
