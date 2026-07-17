@@ -11,7 +11,7 @@ heroAlt: "Bibliocat search results page showing a list of Dave Eggers books disp
 externalUrl: "https://bibliocat.netlify.app/"
 role: "UX Designer & Full-Stack Developer"
 timeline: "1 week · 2026"
-tools: "React, Tailwind CSS, JavaScript, Figma, Flaticon, Netlify, Gemini, GitHub"
+tools: "React, Tailwind CSS, JavaScript, Figma, Flaticon, Netlify, Gemini, Git/GitHub"
 team: "Solo independent project"
 ---
 

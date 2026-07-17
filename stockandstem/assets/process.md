@@ -10,7 +10,7 @@ heroImage: "assets/mockup_hero-stock&stem-key_features.svg"
 heroAlt: "Stock and Stem dashboard mockup highlighting weekly meal plan, pantry alerts, and grocery list"
 role: "UX Designer & Full-Stack Development"
 timeline: "8 weeks · 2026"
-tools: "Figma, HTML/CSS, React, Supabase, Vite, Tailwind CSS, Cursor"
+tools: "Figma, HTML/CSS, React, Supabase, Vite, Tailwind CSS, Cursor, Git/GitHub"
 team: "Solo independent project"
 ---
 

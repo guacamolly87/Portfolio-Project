@@ -11,7 +11,7 @@ heroAlt: "The key features of the Glass Botanist include: plant management (add,
 externalUrl: "https://griffin-plant-glass-botanist.netlify.app/"
 role: "UX Designer & Full-Stack Developer"
 timeline: "2 weeks · 2026"
-tools: "HTML/CSS, JavaScript, Tailwind CSS, Cursor, Lucid icons, and Unsplash API"
+tools: "HTML/CSS, JavaScript, Tailwind CSS, Cursor, Lucid icons, Unsplash API, and Git/GitHub"
 team: "Solo independent project"
 ---
 

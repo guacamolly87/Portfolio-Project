@@ -11,7 +11,7 @@ heroAlt: "The Dream Desk Visualizer allows users to personalize (select your dre
 externalUrl: "https://griffin-dream-desk-visualizer.netlify.app/"
 role: "UX Designer & Full-Stack Developer"
 timeline: "1 week · 2026"
-tools: "React, TypeScript, CSS/Tailwind CSS, Figma Make, Cursor, Node.js/npm, Radix, Lucide, Motion, & Recharts"
+tools: "React, TypeScript, CSS/Tailwind CSS, Figma Make, Cursor, Node.js/npm, Radix, Lucide, Motion, Recharts, & Git/GitHub"
 team: "Solo independent project"
 ---
 
